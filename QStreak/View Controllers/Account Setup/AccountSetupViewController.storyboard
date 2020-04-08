@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Imf-45-WMQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Account Setup View Controller-->
+        <scene sceneID="APJ-uw-CR1">
+            <objects>
+                <viewController storyboardIdentifier="AccountSetupViewController" id="Xs6-Sr-AAz" customClass="AccountSetupViewController" customModule="QStreak" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U88-NU-qMp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bTg-3n-Q7K">
+                                <rect key="frame" x="15" y="387" width="384" height="122"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZIP Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="es9-eB-L95">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPa-Dq-SjT">
+                                        <rect key="frame" x="0.0" y="44" width="384" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Household Size" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HuV-9o-ZU0">
+                                        <rect key="frame" x="0.0" y="88" width="384" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85E-oB-o3g">
+                                <rect key="frame" x="40" y="812" width="334" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="Xs6-Sr-AAz" eventType="touchUpInside" id="UGT-dE-hsG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="85E-oB-o3g" firstAttribute="leading" secondItem="Nwc-Bc-kWb" secondAttribute="leading" constant="40" id="3b7-wR-7GZ"/>
+                            <constraint firstItem="bTg-3n-Q7K" firstAttribute="centerX" secondItem="U88-NU-qMp" secondAttribute="centerX" id="Bhk-ZN-sgH"/>
+                            <constraint firstItem="Nwc-Bc-kWb" firstAttribute="trailing" secondItem="85E-oB-o3g" secondAttribute="trailing" constant="40" id="EWF-rg-DMB"/>
+                            <constraint firstItem="85E-oB-o3g" firstAttribute="centerX" secondItem="U88-NU-qMp" secondAttribute="centerX" id="Hpm-vo-isg"/>
+                            <constraint firstItem="Nwc-Bc-kWb" firstAttribute="trailing" secondItem="bTg-3n-Q7K" secondAttribute="trailing" constant="15" id="aE8-0c-Wk3"/>
+                            <constraint firstItem="bTg-3n-Q7K" firstAttribute="centerY" secondItem="U88-NU-qMp" secondAttribute="centerY" id="jRh-q7-FYx"/>
+                            <constraint firstItem="Nwc-Bc-kWb" firstAttribute="bottom" secondItem="85E-oB-o3g" secondAttribute="bottom" constant="20" id="yQf-D6-r7p"/>
+                            <constraint firstItem="bTg-3n-Q7K" firstAttribute="leading" secondItem="Nwc-Bc-kWb" secondAttribute="leading" constant="15" id="zCG-KG-exG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nwc-Bc-kWb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z3A-oN-dA2"/>
+                    <connections>
+                        <outlet property="ageTextField" destination="xPa-Dq-SjT" id="vpg-zE-r5d"/>
+                        <outlet property="continueButton" destination="85E-oB-o3g" id="GxA-Xv-Obe"/>
+                        <outlet property="householdSizeTextField" destination="HuV-9o-ZU0" id="A48-k6-ICb"/>
+                        <outlet property="zipCodeTextField" destination="es9-eB-L95" id="sRA-m9-UiG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3NW-ti-DZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1949.2753623188407" y="189.50892857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tUx-f7-INP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Imf-45-WMQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V4R-gb-Tou">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Xs6-Sr-AAz" kind="relationship" relationship="rootViewController" id="Qdd-Jm-wVb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PqZ-ie-BGn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039.1304347826087" y="189.50892857142856"/>
+        </scene>
+    </scenes>
+</document>

@@ -29,7 +29,9 @@ class RecordListViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
-        // TODO: Show add record view controller
+        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
+        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        present(addRecordViewController, animated: true, completion: nil)
     }
 
     // MARK: - Methods

@@ -15,6 +15,9 @@
 		990B454E243E4E5D00177002 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B454D243E4E5D00177002 /* RecordListViewModel.swift */; };
 		990B4550243E506F00177002 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B454F243E506F00177002 /* Record.swift */; };
 		990B4552243E510D00177002 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4551243E510D00177002 /* Activity.swift */; };
+		9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */; };
+		9955F947243F7DB500077C58 /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955F946243F7DB500077C58 /* AddRecordViewController.swift */; };
+		9955F949243F7DD600077C58 /* AddRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955F948243F7DD600077C58 /* AddRecordViewModel.swift */; };
 		99A908D2243E1EDE00628E3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A908D1243E1EDE00628E3F /* AppDelegate.swift */; };
 		99A908D4243E1EDE00628E3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A908D3243E1EDE00628E3F /* SceneDelegate.swift */; };
 		99A908DB243E1EDF00628E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A908DA243E1EDF00628E3F /* Assets.xcassets */; };
@@ -49,6 +52,9 @@
 		990B454D243E4E5D00177002 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
 		990B454F243E506F00177002 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		990B4551243E510D00177002 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddRecordViewController.storyboard; sourceTree = "<group>"; };
+		9955F946243F7DB500077C58 /* AddRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
+		9955F948243F7DD600077C58 /* AddRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewModel.swift; sourceTree = "<group>"; };
 		99A908CE243E1EDE00628E3F /* QStreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QStreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A908D1243E1EDE00628E3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A908D3243E1EDE00628E3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				990B4554243E65A300177002 /* Account Setup */,
+				9955F943243F7D8100077C58 /* Add Record */,
 				990B4555243E65AF00177002 /* Record List */,
 			);
 			path = "View Controllers";
@@ -134,6 +141,16 @@
 				99A908DC243E1EDF00628E3F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9955F943243F7D8100077C58 /* Add Record */ = {
+			isa = PBXGroup;
+			children = (
+				9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */,
+				9955F946243F7DB500077C58 /* AddRecordViewController.swift */,
+				9955F948243F7DD600077C58 /* AddRecordViewModel.swift */,
+			);
+			path = "Add Record";
 			sourceTree = "<group>";
 		};
 		99A908C5243E1EDE00628E3F = {
@@ -291,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
 				99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */,
@@ -343,8 +361,10 @@
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,
 				990B4547243E467100177002 /* AccountSetupViewModel.swift in Sources */,
+				9955F949243F7DD600077C58 /* AddRecordViewModel.swift in Sources */,
 				99A908D2243E1EDE00628E3F /* AppDelegate.swift in Sources */,
 				99A908D4243E1EDE00628E3F /* SceneDelegate.swift in Sources */,
+				9955F947243F7DB500077C58 /* AddRecordViewController.swift in Sources */,
 				990B4552243E510D00177002 /* Activity.swift in Sources */,
 				990B4550243E506F00177002 /* Record.swift in Sources */,
 				990B454E243E4E5D00177002 /* RecordListViewModel.swift in Sources */,

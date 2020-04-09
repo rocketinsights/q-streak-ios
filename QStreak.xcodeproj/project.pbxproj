@@ -24,6 +24,9 @@
 		99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99A908DC243E1EDF00628E3F /* LaunchScreen.storyboard */; };
 		99A908E9243E1EDF00628E3F /* QStreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A908E8243E1EDF00628E3F /* QStreakTests.swift */; };
 		99A908F4243E1EDF00628E3F /* QStreakUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A908F3243E1EDF00628E3F /* QStreakUITests.swift */; };
+		D5048AFA243F90270029AE0C /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */; };
+		D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */; };
+		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		99A908EF243E1EDF00628E3F /* QStreakUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QStreakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A908F3243E1EDF00628E3F /* QStreakUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QStreakUITests.swift; sourceTree = "<group>"; };
 		99A908F5243E1EDF00628E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
+		D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
+		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		990B4553243E658A00177002 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5048AF8243F8FAE0029AE0C /* View Record */,
 				990B4554243E65A300177002 /* Account Setup */,
 				9955F943243F7D8100077C58 /* Add Record */,
 				990B4555243E65AF00177002 /* Record List */,
@@ -201,6 +208,16 @@
 				99A908F5243E1EDF00628E3F /* Info.plist */,
 			);
 			path = QStreakUITests;
+			sourceTree = "<group>";
+		};
+		D5048AF8243F8FAE0029AE0C /* View Record */ = {
+			isa = PBXGroup;
+			children = (
+				D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */,
+				D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */,
+				D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */,
+			);
+			path = "View Record";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */,
+				D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
 				99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */,
@@ -358,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,
 				990B4547243E467100177002 /* AccountSetupViewModel.swift in Sources */,
@@ -365,6 +384,7 @@
 				99A908D2243E1EDE00628E3F /* AppDelegate.swift in Sources */,
 				99A908D4243E1EDE00628E3F /* SceneDelegate.swift in Sources */,
 				9955F947243F7DB500077C58 /* AddRecordViewController.swift in Sources */,
+				D5048AFA243F90270029AE0C /* RecordDetailViewController.swift in Sources */,
 				990B4552243E510D00177002 /* Activity.swift in Sources */,
 				990B4550243E506F00177002 /* Record.swift in Sources */,
 				990B454E243E4E5D00177002 /* RecordListViewModel.swift in Sources */,

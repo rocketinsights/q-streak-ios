@@ -55,4 +55,10 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = "\(viewModel.records[indexPath.row].creationDate)"
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? RecordDetailViewController {
+            destination.recordToEdit = viewModel.records[(tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
 }

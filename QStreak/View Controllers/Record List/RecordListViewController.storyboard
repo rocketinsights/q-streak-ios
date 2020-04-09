@@ -42,6 +42,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PmA-SF-nR5" kind="show" identifier="viewRecordDetail" id="ovx-Lz-0bE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -74,6 +77,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njr-cs-JC7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950.72463768115949" y="151.33928571428569"/>
+        </scene>
+        <!--RecordDetailViewController-->
+        <scene sceneID="kPX-0w-UlU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecordDetailViewController" id="PmA-SF-nR5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YTh-eW-LFB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L81-dk-Bbv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1554" y="50"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZhI-Je-MyO">

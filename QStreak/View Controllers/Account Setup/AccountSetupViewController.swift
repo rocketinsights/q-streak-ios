@@ -33,7 +33,7 @@ class AccountSetupViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction private func continueButtonTapped(_ sender: Any) {
-        // TODO: Do network request
+        // Todo: Do network request
         let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
         let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
         navigationController?.pushViewController(recordListViewController, animated: true)

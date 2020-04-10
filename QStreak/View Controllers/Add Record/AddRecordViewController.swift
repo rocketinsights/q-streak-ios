@@ -34,10 +34,10 @@ class AddRecordViewController: UIViewController {
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         if viewModel.isContactCountValid(contactCountString: contactCountTextField.text) {
-            // Todo: Use count, validate selection
+            // TODO: Use count, validate selection
             dismiss(animated: true, completion: nil)
         } else {
-            // Todo: Handle error
+            // TODO: Handle error
         }
     }
 }

@@ -56,9 +56,13 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? RecordDetailViewController {
-            destination.recordToEdit = viewModel.records[(tableView.indexPathForSelectedRow?.row)!]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedRecord = viewModel.records[(tableView.indexPathForSelectedRow?.row)!]
+        let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
+
+        if let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController {
+            viewController.record = selectedRecord
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

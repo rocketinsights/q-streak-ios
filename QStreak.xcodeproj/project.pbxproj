@@ -27,6 +27,7 @@
 		D5048AFA243F90270029AE0C /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */; };
 		D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */; };
 		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
+		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
 		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
+		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +105,10 @@
 		990B4553243E658A00177002 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D5048AF8243F8FAE0029AE0C /* View Record */,
 				990B4554243E65A300177002 /* Account Setup */,
 				9955F943243F7D8100077C58 /* Add Record */,
 				990B4555243E65AF00177002 /* Record List */,
+				D5048AF8243F8FAE0029AE0C /* View Record */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -187,6 +189,7 @@
 				99A908D3243E1EDE00628E3F /* SceneDelegate.swift */,
 				990B4556243E65D800177002 /* Models */,
 				990B4553243E658A00177002 /* View Controllers */,
+				D5048AFF2440B2A10029AE0C /* Utilities */,
 				990B4557243E65FF00177002 /* Resources */,
 			);
 			path = QStreak;
@@ -213,11 +216,19 @@
 		D5048AF8243F8FAE0029AE0C /* View Record */ = {
 			isa = PBXGroup;
 			children = (
+				D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */,
 				D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */,
 				D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */,
-				D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */,
 			);
 			path = "View Record";
+			sourceTree = "<group>";
+		};
+		D5048AFF2440B2A10029AE0C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D5048B002440B33A0029AE0C /* Date+Extensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +390,7 @@
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,
+				D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */,
 				990B4547243E467100177002 /* AccountSetupViewModel.swift in Sources */,
 				9955F949243F7DD600077C58 /* AddRecordViewModel.swift in Sources */,
 				99A908D2243E1EDE00628E3F /* AppDelegate.swift in Sources */,

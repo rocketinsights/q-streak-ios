@@ -10,7 +10,7 @@ import Foundation
 
 class RecordListViewModel {
 
-    // Todo: - Dummy Values
+    // TODO: - Dummy Values
     let records = [Record(creationDate: Date(), contactCount: 2, activities: [Activity(name: "Grocery Store", activityID: 1)]),
                    Record(creationDate: Date(), contactCount: 1, activities: [Activity(name: "Grocery Store", activityID: 1)]),
                    Record(creationDate: Date(), contactCount: 6, activities: [Activity(name: "Grocery Store", activityID: 1)]),

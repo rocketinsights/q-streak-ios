@@ -20,20 +20,30 @@ class RecordDetailViewController: UIViewController {
 
     // MARK: - Properties
 
-    var record: Record?
-
-    private let viewModel = RecordDetailViewModel()
+    var viewModel: RecordDetailViewModel!
 
     // MARK: - Life Cycle
+    
+    
+    
+    static func initialize(viewModel: RecordDetailViewModel) -> RecordDetailViewController? {
+        let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
+        let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController
+        
+        viewController?.viewModel = viewModel
+        
+        return viewController
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let record = record {
-            // TODO: - use viewModel
-            recordDateLabel.text = record.creationDate.formattedDate
-            contactCountLabel.text = String(record.contactCount)
-            activityLabel.text = record.activities.map { $0.name }.joined(separator: ", ")
-        }
+        setupViews()
+    }
+    
+    
+    private func setupViews() {
+        recordDateLabel.text = viewModel.record.creationDate.formattedDate
+        contactCountLabel.text = String(viewModel.record.contactCount)
+        activityLabel.text = viewModel.record.activities.map { $0.name }.joined(separator: ", ")
     }
 }

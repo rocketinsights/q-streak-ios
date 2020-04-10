@@ -12,6 +12,9 @@ class RecordDetailViewModel {
 
     // MARK: - Properties
 
-    let record = Record(creationDate: Date(), contactCount: 2423, activities: [Activity(name: "Grocery Store", activityID: 1)])
-
+    let record: Record
+    
+    init(record: Record) {
+        self.record = record
+    }
 }

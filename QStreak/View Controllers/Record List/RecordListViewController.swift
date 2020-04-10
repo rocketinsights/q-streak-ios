@@ -22,7 +22,7 @@ class RecordListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.delegate = self
         setUpNavigationBar()
     }
 
@@ -57,12 +57,15 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedRecord = viewModel.records[(tableView.indexPathForSelectedRow?.row)!]
-        let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
+        viewModel.userTappedRecordCell(indexPath)
+    }
+}
 
-        if let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController {
-            viewController.record = selectedRecord
-            navigationController?.pushViewController(viewController, animated: true)
+extension RecordListViewController: RecordListViewModelDelegate {
+    func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
+            navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
+
     }
 }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Activity {
-
+struct Activity: Decodable {
     let name: String
     let activityID: Int
 }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Record {
-
+struct Record: Decodable {
     let creationDate: Date
     var contactCount: Int
     var activities: [Activity]

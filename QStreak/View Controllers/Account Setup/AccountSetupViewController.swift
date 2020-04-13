@@ -28,12 +28,20 @@ class AccountSetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel.delegate = self
     }
 
     // MARK: - IBAction
 
     @IBAction private func continueButtonTapped(_ sender: Any) {
-        // TODO: Do network request
+        viewModel.continueButtonTapped(zipCode: zipCodeTextField.text, ageString: ageTextField.text, householdSizeString: householdSizeTextField.text)
+    }
+}
+
+extension AccountSetupViewController: AccountSetupViewModelDelegate {
+
+    func showRecordListViewController() {
         let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
         let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
         navigationController?.pushViewController(recordListViewController, animated: true)

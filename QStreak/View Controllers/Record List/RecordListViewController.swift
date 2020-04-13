@@ -22,7 +22,7 @@ class RecordListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.delegate = self
         setUpNavigationBar()
     }
 
@@ -54,5 +54,18 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = "\(viewModel.records[indexPath.row].contactCount)"
         cell.detailTextLabel?.text = "\(viewModel.records[indexPath.row].creationDate)"
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.userTappedRecordCell(indexPath)
+    }
+}
+
+extension RecordListViewController: RecordListViewModelDelegate {
+    func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
+            navigationController?.pushViewController(recordDetailViewController, animated: true)
+        }
+
     }
 }

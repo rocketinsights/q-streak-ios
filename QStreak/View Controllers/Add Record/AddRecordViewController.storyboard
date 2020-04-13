@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Ot-yF-RTm">
-                                <rect key="frame" x="15" y="128" width="384" height="634"/>
+                                <rect key="frame" x="15" y="182" width="384" height="580"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryCell" textLabel="yjn-bX-4aq" style="IBUITableViewCellStyleDefault" id="520-4f-E98">
@@ -54,6 +54,11 @@
                                     <action selector="saveButtonTapped:" destination="dh0-eu-ygi" eventType="touchUpInside" id="KkO-xg-1NY"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yVs-Mz-47v">
+                                <rect key="frame" x="15" y="108" width="384" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -63,10 +68,13 @@
                             <constraint firstItem="ngg-UG-H36" firstAttribute="bottom" secondItem="Yzo-xT-BrG" secondAttribute="bottom" constant="30" id="KMB-Td-K4d"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="5Ot-yF-RTm" secondAttribute="trailing" constant="15" id="NJK-jE-l9b"/>
                             <constraint firstItem="vnn-RM-2G4" firstAttribute="top" secondItem="ngg-UG-H36" secondAttribute="top" constant="20" id="aEh-pp-mWd"/>
-                            <constraint firstItem="5Ot-yF-RTm" firstAttribute="top" secondItem="vnn-RM-2G4" secondAttribute="bottom" constant="30" id="cfn-Yt-2lM"/>
+                            <constraint firstItem="yVs-Mz-47v" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="15" id="gTM-Ju-xAb"/>
+                            <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="yVs-Mz-47v" secondAttribute="trailing" constant="15" id="nKW-qo-ErR"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="Yzo-xT-BrG" secondAttribute="trailing" constant="15" id="nN7-G7-u7f"/>
                             <constraint firstItem="5Ot-yF-RTm" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="15" id="nX3-an-Ips"/>
+                            <constraint firstItem="yVs-Mz-47v" firstAttribute="top" secondItem="vnn-RM-2G4" secondAttribute="bottom" constant="10" id="sws-xV-KyI"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="vnn-RM-2G4" secondAttribute="trailing" constant="15" id="vu8-TF-K0m"/>
+                            <constraint firstItem="5Ot-yF-RTm" firstAttribute="top" secondItem="yVs-Mz-47v" secondAttribute="bottom" constant="40" id="ySD-Pj-CMW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ngg-UG-H36"/>
                     </view>
@@ -78,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CC3-ZK-BA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="168"/>
+            <point key="canvasLocation" x="137.68115942028987" y="167.41071428571428"/>
         </scene>
     </scenes>
 </document>

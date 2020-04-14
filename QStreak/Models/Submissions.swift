@@ -14,7 +14,7 @@ struct Submissions: Codable {
     let totalPages: Int
     let totalResults: Int
     let records: [Submission]
-    
+
     enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case pageSize = "page_size"

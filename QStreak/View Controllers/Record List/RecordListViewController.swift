@@ -18,12 +18,12 @@ class RecordListViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let viewModel = RecordListViewModel(model: nil)
+    private let viewModel = RecordListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        
+
         viewModel.recordsDidChange = { [weak self] result in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

@@ -24,9 +24,9 @@ class RecordListViewModel {
     weak var delegate: RecordListViewModelDelegate?
 
     private let sessionProvider = URLSessionProvider()
-    
-    init(model: [Submission]?) {
-        records = model
+
+    init() {
+        self.records = []
     }
 
     func fetchRecords() {

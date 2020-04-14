@@ -13,7 +13,7 @@ class RecordDetailViewModel {
     // MARK: - Properties
 
     let record: Submission
-    
+
     init(record: Submission) {
         self.record = record
     }

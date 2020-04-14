@@ -17,5 +17,5 @@ protocol NetworkService {
     var method: HTTPMethod { get }
     var headers: Headers? { get }
     var parameters: Parameters? { get }
-    var parameterEncoding: ParameterEncoding? { get }
+    var parameterEncoding: ParameterEncoding { get }
 }

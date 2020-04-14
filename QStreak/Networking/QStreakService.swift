@@ -67,7 +67,7 @@ extension QstreakService: NetworkService {
         }
     }
 
-    var parameterEncoding: ParameterEncoding? {
+    var parameterEncoding: ParameterEncoding {
         switch self {
         case .signUp, .createSubmission:
             return .json

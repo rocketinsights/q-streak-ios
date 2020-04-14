@@ -11,7 +11,7 @@ import Foundation
 enum QstreakService {
     case signUp(age: Int, householdSize: Int, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
-    case getSubmissions
+    case getSubmissions(page: Int)
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
 }
@@ -62,8 +62,8 @@ extension QstreakService: NetworkService {
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
                                    "destinations": destinations]]
-        case .getSubmissions:
-            return nil
+        case .getSubmissions(let page):
+            return [ "page": page, "page_size": 20 ]
         }
     }
 
@@ -72,7 +72,7 @@ extension QstreakService: NetworkService {
         case .signUp, .createSubmission:
             return .json
         case .getSubmissions:
-            return nil
+            return .url
         }
     }
 }

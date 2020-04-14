@@ -54,12 +54,12 @@ class RecordListViewController: UIViewController {
 extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.records?.count ?? 0
+        return viewModel.records.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordCell", for: indexPath)
-        if let record = viewModel.records?[indexPath.row] {
+        if let record = viewModel.records[indexPath.row] {
             cell.textLabel?.text = "\(record.contactCount)"
             cell.detailTextLabel?.text = "\(record.dateString)"
         }
@@ -78,5 +78,16 @@ extension RecordListViewController: RecordListViewModelDelegate {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
 
+    }
+}
+
+extension RecordListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewContentHeight = tableView.contentSize.height
+        let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+
+        if scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging {
+            viewModel.fetchRecords()
+        }
     }
 }

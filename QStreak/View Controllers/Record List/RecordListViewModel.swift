@@ -15,14 +15,17 @@ protocol RecordListViewModelDelegate: AnyObject {
 class RecordListViewModel {
     // MARK: - Properties
 
-    var records: [Submission]? {
+    var records: [Submission?] {
         didSet { recordsDidChange?(records) }
     }
 
-    var recordsDidChange: (([Submission]?) -> Void)?
+    var recordsDidChange: (([Submission?]) -> Void)?
+    var currentPage = 1
+    var totalPages = 2
 
     weak var delegate: RecordListViewModelDelegate?
 
+    private var isFetchInProgress = false
     private let sessionProvider = URLSessionProvider()
 
     init() {
@@ -30,18 +33,29 @@ class RecordListViewModel {
     }
 
     func fetchRecords() {
-        sessionProvider.request(type: Submissions.self, service: QstreakService.getSubmissions) { [weak self] result in
+        guard !isFetchInProgress && totalPages >= currentPage else {
+            return
+        }
+
+        isFetchInProgress = true
+
+        sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage)) { [weak self] result in
             switch result {
             case let .success(submissions):
-                self?.records = submissions.records
+                self?.currentPage += 1
+                self?.totalPages = submissions.totalPages
+                self?.isFetchInProgress = false
+                self?.records += submissions.records
+
             case let .failure(error):
+                self?.isFetchInProgress = false
                 print(error)
             }
         }
     }
 
     func userTappedRecordCell(_ indexPath: IndexPath) {
-        if let selectedRecord = records?[indexPath.row] {
+        if let selectedRecord = records[indexPath.row] {
             let recordDetailViewModel = RecordDetailViewModel(record: selectedRecord)
 
             delegate?.showRecordDetailViewController(recordDetailViewModel: recordDetailViewModel)

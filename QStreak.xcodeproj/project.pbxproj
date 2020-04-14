@@ -41,7 +41,6 @@
 		D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */; };
 		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
 		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
-		D57874502445103000AFC30D /* Submissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578744F2445103000AFC30D /* Submissions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +101,6 @@
 		D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
 		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
 		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		D578744F2445103000AFC30D /* Submissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submissions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +166,6 @@
 				990B454F243E506F00177002 /* Record.swift */,
 				992249BC2441010700A4790A /* User.swift */,
 				99746A092444E31100829473 /* Submission.swift */,
-				D578744F2445103000AFC30D /* Submissions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -443,7 +440,6 @@
 				9955F980243FF32900077C58 /* URLSession+Extentions.swift in Sources */,
 				992249BD2441010700A4790A /* User.swift in Sources */,
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
-				D57874502445103000AFC30D /* Submissions.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,

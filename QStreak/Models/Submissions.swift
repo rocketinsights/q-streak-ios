@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Submissions: Codable {
+struct PagedSubmissions: Codable {
     let currentPage: Int
     let pageSize: Int
     let totalPages: Int

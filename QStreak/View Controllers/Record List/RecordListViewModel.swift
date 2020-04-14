@@ -13,23 +13,38 @@ protocol RecordListViewModelDelegate: AnyObject {
 }
 
 class RecordListViewModel {
-    
     // MARK: - Properties
+
+    var records: [Submission]? {
+        didSet { recordsDidChange?(records) }
+    }
+
+    var recordsDidChange: (([Submission]?) -> Void)?
 
     weak var delegate: RecordListViewModelDelegate?
 
-    // TODO: - Dummy Values
-    let records = [Record(creationDate: Date(), contactCount: 2, activities: [Activity(name: "Grocery Store", activityID: 1)]),
-                   Record(creationDate: Date(), contactCount: 1, activities: [Activity(name: "Grocery Store", activityID: 1)]),
-                   Record(creationDate: Date(), contactCount: 6, activities: [Activity(name: "Grocery Store", activityID: 1)]),
-                   Record(creationDate: Date(), contactCount: 23, activities: [Activity(name: "Grocery Store", activityID: 1)]),
-                   Record(creationDate: Date(), contactCount: 2423, activities: [Activity(name: "Grocery Store", activityID: 1)])]
+    private let sessionProvider = URLSessionProvider()
     
+    init(model: [Submission]?) {
+        records = model
+    }
+
+    func fetchRecords() {
+        sessionProvider.request(type: Submissions.self, service: QstreakService.getSubmissions) { [weak self] result in
+            switch result {
+            case let .success(submissions):
+                self?.records = submissions.records
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
 
     func userTappedRecordCell(_ indexPath: IndexPath) {
-        let selectedRecord = records[indexPath.row]
-        let recordDetailViewModel = RecordDetailViewModel(record: selectedRecord)
-        
-        delegate?.showRecordDetailViewController(recordDetailViewModel: recordDetailViewModel)
+        if let selectedRecord = records?[indexPath.row] {
+            let recordDetailViewModel = RecordDetailViewModel(record: selectedRecord)
+
+            delegate?.showRecordDetailViewController(recordDetailViewModel: recordDetailViewModel)
+        }
     }
  }

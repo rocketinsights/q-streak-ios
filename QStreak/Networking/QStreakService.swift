@@ -11,6 +11,7 @@ import Foundation
 enum QstreakService {
     case signUp(age: Int, householdSize: Int, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
+    case getSubmissions
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
 }
@@ -27,7 +28,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return "/api/signup"
-        case .createSubmission:
+        case .createSubmission, .getSubmissions:
             return "/api/submissions"
         }
     }
@@ -36,6 +37,8 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
+        case .getSubmissions:
+            return .get
         }
     }
 
@@ -43,7 +46,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission:
+        case .createSubmission, .getSubmissions:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -59,13 +62,17 @@ extension QstreakService: NetworkService {
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
                                    "destinations": destinations]]
+        case .getSubmissions:
+            return nil
         }
     }
 
-    var parameterEncoding: ParameterEncoding {
+    var parameterEncoding: ParameterEncoding? {
         switch self {
         case .signUp, .createSubmission:
             return .json
+        case .getSubmissions:
+            return nil
         }
     }
 }

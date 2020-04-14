@@ -23,15 +23,13 @@ class RecordDetailViewController: UIViewController {
     var viewModel: RecordDetailViewModel!
 
     // MARK: - Life Cycle
-    
-    
-    
+
     static func initialize(viewModel: RecordDetailViewModel) -> RecordDetailViewController? {
         let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
         let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController
-        
+
         viewController?.viewModel = viewModel
-        
+
         return viewController
     }
 
@@ -39,11 +37,10 @@ class RecordDetailViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
-    
-    
+
     private func setupViews() {
-        recordDateLabel.text = viewModel.record.creationDate.formattedDate
+        recordDateLabel.text = viewModel.record.dateString
         contactCountLabel.text = String(viewModel.record.contactCount)
-        activityLabel.text = viewModel.record.activities.map { $0.name }.joined(separator: ", ")
+        activityLabel.text = viewModel.record.destinations.joined(separator: ", ")
     }
 }

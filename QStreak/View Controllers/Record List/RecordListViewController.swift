@@ -18,11 +18,19 @@ class RecordListViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let viewModel = RecordListViewModel()
+    private let viewModel = RecordListViewModel(model: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+        
+        viewModel.recordsDidChange = { [weak self] result in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+
+        viewModel.fetchRecords()
         setUpNavigationBar()
     }
 
@@ -46,13 +54,16 @@ class RecordListViewController: UIViewController {
 extension RecordListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.records.count
+        return viewModel.records?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordCell", for: indexPath)
-        cell.textLabel?.text = "\(viewModel.records[indexPath.row].contactCount)"
-        cell.detailTextLabel?.text = "\(viewModel.records[indexPath.row].creationDate)"
+        if let record = viewModel.records?[indexPath.row] {
+            cell.textLabel?.text = "\(record.contactCount)"
+            cell.detailTextLabel?.text = "\(record.dateString)"
+        }
+
         return cell
     }
 

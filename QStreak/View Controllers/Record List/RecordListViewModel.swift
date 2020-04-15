@@ -10,46 +10,57 @@ import Foundation
 
 protocol RecordListViewModelDelegate: AnyObject {
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel)
+    func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
+    func onFetchFailed(with reason: String)
 }
 
 class RecordListViewModel {
     // MARK: - Properties
+    var records: [Submission?] = []
+    var currentPage = 1
+    var totalPages = 1
+    var total = 0
 
-    var records: [Submission?] {
-        didSet { recordsDidChange?(records) }
+    var currentCount: Int {
+        return records.count
     }
 
-    var recordsDidChange: (([Submission?]) -> Void)?
-    var currentPage = 1
-    var totalPages = 2
+    var totalCount: Int {
+        return total
+    }
 
     weak var delegate: RecordListViewModelDelegate?
 
     private var isFetchInProgress = false
     private let sessionProvider = URLSessionProvider()
 
-    init() {
-        self.records = []
+    func record(at index: Int) -> Submission {
+        return records[index]!
     }
 
     func fetchRecords() {
-        guard !isFetchInProgress && totalPages >= currentPage else {
-            return
-        }
+        guard !isFetchInProgress && totalPages >= currentPage else { return }
 
         isFetchInProgress = true
 
         sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage)) { [weak self] result in
             switch result {
-            case let .success(submissions):
-                self?.currentPage += 1
-                self?.totalPages = submissions.totalPages
-                self?.isFetchInProgress = false
-                self?.records += submissions.records
+            case let .success(response):
+                DispatchQueue.main.async {
+                    self?.currentPage += 1
+                    self?.totalPages = response.totalPages
+                    self?.total = response.totalResults
+                    self?.isFetchInProgress = false
+                    self?.records.append(contentsOf: response.records)
 
+                    let indexPathsToReload = self?.calculateIndexPathsToReload(from: response.records)
+                    self?.delegate?.onFetchCompleted(with: indexPathsToReload)
+                }
             case let .failure(error):
-                self?.isFetchInProgress = false
-                print(error)
+                DispatchQueue.main.async {
+                    self?.isFetchInProgress = false
+                    self?.delegate?.onFetchFailed(with: error.localizedDescription)
+                }
             }
         }
     }
@@ -60,5 +71,11 @@ class RecordListViewModel {
 
             delegate?.showRecordDetailViewController(recordDetailViewModel: recordDetailViewModel)
         }
+    }
+
+    private func calculateIndexPathsToReload(from newRecords: [Submission]) -> [IndexPath] {
+      let startIndex = records.count - newRecords.count
+      let endIndex = startIndex + newRecords.count
+      return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
  }

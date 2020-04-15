@@ -40,6 +40,7 @@
 		D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */; };
 		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
 		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
+		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
 		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
 		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				990B4549243E4E3400177002 /* RecordListViewController.storyboard */,
 				990B454B243E4E4F00177002 /* RecordListViewController.swift */,
 				990B454D243E4E5D00177002 /* RecordListViewModel.swift */,
+				D578745324477DC800AFC30D /* RecordTableViewCell.swift */,
 			);
 			path = "Record List";
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				990B4552243E510D00177002 /* Activity.swift in Sources */,
 				9955F972243FE34200077C58 /* URLRequest+Extensions.swift in Sources */,
 				990B454E243E4E5D00177002 /* RecordListViewModel.swift in Sources */,
+				D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */,
 				9955F97A243FE6BC00077C58 /* Networkable.swift in Sources */,
 				9955F970243FE13C00077C58 /* URLComponents+Extensions.swift in Sources */,
 			);

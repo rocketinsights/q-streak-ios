@@ -47,6 +47,16 @@ class RecordListViewController: UIViewController {
     private func setUpNavigationBar() {
         navigationItem.setHidesBackButton(true, animated: true)
     }
+
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.currentCount
+    }
+
+    func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
+        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+        return Array(indexPathsIntersection)
+    }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -105,16 +115,4 @@ extension RecordListViewController: RecordListViewModelDelegate {
         // TODO - Handle failed request
         print(reason)
     }
-}
-
-private extension RecordListViewController {
-  func isLoadingCell(for indexPath: IndexPath) -> Bool {
-    return indexPath.row >= viewModel.currentCount
-  }
-
-  func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-    let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
-    let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
-    return Array(indexPathsIntersection)
-  }
 }

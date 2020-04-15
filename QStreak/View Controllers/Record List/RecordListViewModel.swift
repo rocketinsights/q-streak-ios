@@ -74,8 +74,8 @@ class RecordListViewModel {
     }
 
     private func calculateIndexPathsToReload(from newRecords: [Submission]) -> [IndexPath] {
-      let startIndex = records.count - newRecords.count
-      let endIndex = startIndex + newRecords.count
-      return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+        let startIndex = records.count - newRecords.count
+        let endIndex = startIndex + newRecords.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
  }

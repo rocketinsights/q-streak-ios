@@ -18,10 +18,6 @@ class AccountSetupViewModel {
 
     weak var delegate: AccountSetupViewModelDelegate?
 
-    func getStartedButtonTapped() {
-        
-    }
-    
     func continueButtonTapped(zipCode: String?, ageString: String?, householdSizeString: String?) {
         guard
             let zipCode = zipCode,

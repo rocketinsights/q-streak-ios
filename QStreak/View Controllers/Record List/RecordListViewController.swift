@@ -41,8 +41,8 @@ class RecordListViewController: UIViewController {
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
         let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
         let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
-        addRecordViewController.presentationController?.delegate = self
-        present(addRecordViewController, animated: true, completion: nil)
+
+        self.navigationController?.pushViewController(addRecordViewController, animated: true)
     }
 
     // MARK: - Methods

@@ -41,9 +41,10 @@ class AccountSetupViewController: UIViewController {
 
 extension AccountSetupViewController: AccountSetupViewModelDelegate {
 
-    func showRecordListViewController() {
-        let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-        let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
-        navigationController?.pushViewController(recordListViewController, animated: true)
+    func showAddRecordViewController() {
+        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
+        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+
+        navigationController?.pushViewController(addRecordViewController, animated: true)
     }
 }

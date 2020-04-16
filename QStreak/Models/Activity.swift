@@ -9,6 +9,7 @@
 import Foundation
 
 struct Activity: Decodable {
+
     let name: String
-    let activityID: Int
+    let slug: String
 }

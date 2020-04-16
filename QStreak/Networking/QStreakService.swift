@@ -11,6 +11,7 @@ import Foundation
 enum QstreakService {
     case signUp(age: Int, householdSize: Int, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
+    case getDestinations
     case getSubmissions(page: Int)
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
@@ -30,6 +31,8 @@ extension QstreakService: NetworkService {
             return "/api/signup"
         case .createSubmission, .getSubmissions:
             return "/api/submissions"
+        case .getDestinations:
+            return "/api/destinations"
         }
     }
 
@@ -37,7 +40,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
-        case .getSubmissions:
+        case .getDestinations, .getSubmissions:
             return .get
         }
     }
@@ -46,7 +49,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission, .getSubmissions:
+        case .createSubmission, .getDestinations, .getSubmissions:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -61,17 +64,19 @@ extension QstreakService: NetworkService {
         case .createSubmission(let contactCount, let date, let destinations):
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
-                                   "destinations": destinations]]
+                                   "destination_slugs": destinations]]
         case .getSubmissions(let page):
             return [ "page": page, "page_size": 20 ]
+        case .getDestinations:
+          return nil
         }
     }
 
-    var parameterEncoding: ParameterEncoding {
+    var parameterEncoding: ParameterEncoding? {
         switch self {
         case .signUp, .createSubmission:
             return .json
-        case .getSubmissions:
+        case .getSubmissions, .getDestinations:
             return .url
         }
     }

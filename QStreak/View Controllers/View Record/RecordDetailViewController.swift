@@ -41,6 +41,8 @@ class RecordDetailViewController: UIViewController {
     private func setupViews() {
         recordDateLabel.text = viewModel.record.dateString
         contactCountLabel.text = String(viewModel.record.contactCount)
-        activityLabel.text = viewModel.record.destinations.joined(separator: ", ")
+        activityLabel.text = viewModel.record.destinations
+                                .map { $0.name }
+                                .joined(separator: ", ")
     }
 }

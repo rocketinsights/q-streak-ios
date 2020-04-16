@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct PagedSubmissions: Codable {
+struct PagedSubmissions: Decodable {
+
     let currentPage: Int
     let pageSize: Int
     let totalPages: Int
@@ -24,10 +25,11 @@ struct PagedSubmissions: Codable {
     }
 }
 
-struct Submission: Codable {
+struct Submission: Decodable {
+
     let contactCount: Int
     let dateString: String
-    let destinations: [String]
+    let destinations: [Activity]
     let submissionID: Int
 
     enum CodingKeys: String, CodingKey {

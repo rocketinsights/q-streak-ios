@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FF2982447884500D42000 /* q_streak_splash.png */; };
 		990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990B4542243E463D00177002 /* AccountSetupViewController.storyboard */; };
 		990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4544243E465900177002 /* AccountSetupViewController.swift */; };
 		990B4547243E467100177002 /* AccountSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4546243E467100177002 /* AccountSetupViewModel.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C7FF2982447884500D42000 /* q_streak_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q_streak_splash.png; sourceTree = "<group>"; };
 		990B4542243E463D00177002 /* AccountSetupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetupViewController.storyboard; sourceTree = "<group>"; };
 		990B4544243E465900177002 /* AccountSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupViewController.swift; sourceTree = "<group>"; };
 		990B4546243E467100177002 /* AccountSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		990B4557243E65FF00177002 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C7FF2982447884500D42000 /* q_streak_splash.png */,
 				99A908DA243E1EDF00628E3F /* Assets.xcassets */,
 				99A908DF243E1EDF00628E3F /* Info.plist */,
 				99A908DC243E1EDF00628E3F /* LaunchScreen.storyboard */,
@@ -388,6 +391,7 @@
 			files = (
 				9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */,
 				D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */,
+				2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
 				99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */,

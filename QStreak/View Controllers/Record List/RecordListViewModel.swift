@@ -65,6 +65,13 @@ class RecordListViewModel {
         }
     }
 
+    func resetPagination() {
+        records = []
+        currentPage = 1
+        totalPages = 1
+        total = 0
+    }
+
     func userTappedRecordCell(_ indexPath: IndexPath) {
         if let selectedRecord = records[indexPath.row] {
             let recordDetailViewModel = RecordDetailViewModel(record: selectedRecord)

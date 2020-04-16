@@ -80,6 +80,7 @@
                     </view>
                     <connections>
                         <outlet property="contactCountTextField" destination="vnn-RM-2G4" id="XSz-kp-OXT"/>
+                        <outlet property="dateTextField" destination="yVs-Mz-47v" id="AWc-8E-XjN"/>
                         <outlet property="saveButton" destination="Yzo-xT-BrG" id="amZ-bk-bJk"/>
                         <outlet property="tableView" destination="5Ot-yF-RTm" id="AAf-Yj-1dy"/>
                     </connections>

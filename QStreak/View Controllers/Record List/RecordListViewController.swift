@@ -22,6 +22,8 @@ class RecordListViewController: UIViewController {
 
     private let viewModel = RecordListViewModel()
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
@@ -39,6 +41,7 @@ class RecordListViewController: UIViewController {
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
         let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
         let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        addRecordViewController.presentationController?.delegate = self
         present(addRecordViewController, animated: true, completion: nil)
     }
 
@@ -59,9 +62,10 @@ class RecordListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching
 
 extension RecordListViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.totalCount
     }
@@ -89,7 +93,10 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate, 
     }
 }
 
+// MARK: - RecordListViewModelDelegate
+
 extension RecordListViewController: RecordListViewModelDelegate {
+
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
         if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
@@ -114,5 +121,16 @@ extension RecordListViewController: RecordListViewModelDelegate {
     func onFetchFailed(with reason: String) {
         // TODO - Handle failed request
         print(reason)
+    }
+}
+
+// MARK: UIAdaptivePresentationControllerDelegate
+
+extension RecordListViewController: UIAdaptivePresentationControllerDelegate {
+
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        viewModel.resetPagination()
+        tableView.reloadData()
+        viewModel.fetchRecords()
     }
 }

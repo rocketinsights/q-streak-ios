@@ -8,16 +8,56 @@
 
 import Foundation
 
+protocol AddRecordViewModelDelegate: AnyObject {
+    func retrievedDestinations()
+    func addedSubmission()
+}
+
 class AddRecordViewModel {
 
     // MARK: - Properties
 
-    let categories = ["Grocery Store",
-                      "Post Office",
-                      "Movie Theater",
-                      "Concert"]
+    private let sessionProvider = URLSessionProvider()
+
+    weak var delegate: AddRecordViewModelDelegate?
+
+    var categories = [Activity]()
+
+    // MARK: Initializers
+
+    init() {
+        sessionProvider.request(type: [Activity].self, service: QstreakService.getDestinations) { [weak self] result in
+            switch result {
+            case .success(let activities):
+                self?.categories = activities
+                self?.delegate?.retrievedDestinations()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
     // MARK: - Methods
+
+    func saveButtonTapped(date: Date?, contactCountString: String?, selectedIndexPaths: [IndexPath]?) {
+        guard
+            let date = date,
+            let contactCountString = contactCountString,
+            let contactCount = Int(contactCountString),
+            let selectedIndexPaths = selectedIndexPaths
+            else { return }
+
+        let destinations = selectedIndexPaths.map { categories[$0.row].slug }
+
+        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate, destinations: destinations)) { [weak self ] result in
+            switch result {
+            case .success:
+                self?.delegate?.addedSubmission()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
     func isContactCountValid(contactCountString: String?) -> Bool {
         guard

@@ -14,6 +14,8 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var contactCountTextField: UITextField!
 
+    @IBOutlet private weak var dateTextField: UITextField!
+
     @IBOutlet private weak var tableView: UITableView!
 
     @IBOutlet private weak var saveButton: UIButton!
@@ -27,18 +29,34 @@ class AddRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
+
         tableView.allowsMultipleSelection = true
+        let datePicker = UIDatePicker()
+        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+        datePicker.datePickerMode = .date
+        dateTextField.inputView = datePicker
+    }
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        if let presentationController = presentationController {
+            presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
+        }
     }
 
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if viewModel.isContactCountValid(contactCountString: contactCountTextField.text) {
-            // TODO: Use count, validate selection
-            dismiss(animated: true, completion: nil)
-        } else {
-            // TODO: Handle error
-        }
+        viewModel.saveButtonTapped(date: (dateTextField.inputView as? UIDatePicker)?.date, contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+    }
+
+    // MARK: - Methods
+
+    @objc private func datePickerChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateTextField.text = dateFormatter.string(from: sender.date)
     }
 }
 
@@ -52,7 +70,7 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = viewModel.categories[indexPath.row]
+        cell.textLabel?.text = viewModel.categories[indexPath.row].name
         return cell
     }
 
@@ -64,5 +82,16 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
+    }
+}
+
+extension AddRecordViewController: AddRecordViewModelDelegate {
+
+    func retrievedDestinations() {
+        DispatchQueue.main.async { [weak self] in self?.tableView.reloadData() }
+    }
+
+    func addedSubmission() {
+        DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
     }
 }

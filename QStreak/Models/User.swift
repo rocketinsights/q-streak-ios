@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Decodable {
+
     let age: Int
     let householdSize: Int
     let uuid: String

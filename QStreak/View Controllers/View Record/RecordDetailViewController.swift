@@ -30,7 +30,7 @@ class RecordDetailViewController: UIViewController {
 
     // MARK: - Properties
 
-    var backButton: UIBarButtonItem!
+    var dashboardButton: UIBarButtonItem!
 
     var viewModel: RecordDetailViewModel!
 
@@ -56,6 +56,12 @@ class RecordDetailViewController: UIViewController {
         setupViews()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     private func setupViews() {
         recordDateLabel.text = viewModel.record.dateString
         contactCountLabel.text = String(viewModel.record.contactCount)
@@ -71,26 +77,18 @@ class RecordDetailViewController: UIViewController {
     }
 
     private func setupNavBar() {
-        // Make sure we always go back to the RecordListViewController
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        self.navigationItem.setHidesBackButton(true, animated: false)
         if comingFromCreation {
-            self.backButton = UIBarButtonItem(title: "Dashboard", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToInitial(sender:)))
-            self.navigationItem.rightBarButtonItem = self.backButton
-        } else {
-            self.backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToInitial(sender:)))
-            self.navigationItem.leftBarButtonItem = self.backButton
+            // Make sure we always go back to the RecordListViewController
+            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+            self.navigationItem.setHidesBackButton(true, animated: false)
+            self.dashboardButton = UIBarButtonItem(title: "Dashboard", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToDashboard(sender:)))
+            self.navigationItem.rightBarButtonItem = self.dashboardButton
         }
-
     }
 
-    @objc private func backToInitial(sender: UIBarButtonItem) {
-        if comingFromCreation {
-            let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-            let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
-            self.navigationController?.pushViewController(recordListViewController, animated: true)
-        } else {
-            self.navigationController?.popToRootViewController(animated: true)
-        }
+    @objc private func backToDashboard(sender: UIBarButtonItem) {
+        let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
+        let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
+        self.navigationController?.pushViewController(recordListViewController, animated: true)
     }
 }

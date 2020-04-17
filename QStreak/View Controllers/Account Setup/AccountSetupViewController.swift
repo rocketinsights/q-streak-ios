@@ -37,6 +37,12 @@ class AccountSetupViewController: UIViewController {
     @IBAction private func continueButtonTapped(_ sender: Any) {
         viewModel.continueButtonTapped(zipCode: zipCodeTextField.text, ageString: ageTextField.text, householdSizeString: householdSizeTextField.text)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 }
 
 extension AccountSetupViewController: AccountSetupViewModelDelegate {

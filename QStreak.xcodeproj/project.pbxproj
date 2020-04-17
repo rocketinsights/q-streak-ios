@@ -40,6 +40,7 @@
 		D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */; };
 		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
 		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
+		D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E589F2448A1EB00A0C2FA /* DailyStat.swift */; };
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
 		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
 		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		D52E589F2448A1EB00A0C2FA /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				990B4551243E510D00177002 /* Activity.swift */,
 				992249BC2441010700A4790A /* User.swift */,
 				99746A092444E31100829473 /* Submission.swift */,
+				D52E589F2448A1EB00A0C2FA /* DailyStat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9955F974243FE4D700077C58 /* NetworkError.swift in Sources */,
+				D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */,
 				99746A0A2444E31100829473 /* Submission.swift in Sources */,
 				9955F96E243FE0D600077C58 /* ParameterEncoding.swift in Sources */,
 				9955F980243FF32900077C58 /* URLSession+Extentions.swift in Sources */,

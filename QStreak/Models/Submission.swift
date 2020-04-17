@@ -9,7 +9,6 @@
 import Foundation
 
 struct PagedSubmissions: Decodable {
-
     let currentPage: Int
     let pageSize: Int
     let totalPages: Int
@@ -26,16 +25,19 @@ struct PagedSubmissions: Decodable {
 }
 
 struct Submission: Decodable {
-
     let contactCount: Int
     let dateString: String
     let destinations: [Activity]
     let submissionID: Int
+    let dailyStats: DailyStat
+    let score: Int
 
     enum CodingKeys: String, CodingKey {
         case contactCount = "contact_count"
         case dateString = "date"
         case destinations
         case submissionID = "id"
+        case dailyStats = "daily_stats"
+        case score
     }
 }

@@ -30,6 +30,7 @@ struct Submission: Decodable {
     let destinations: [Activity]
     let submissionID: Int
     let dailyStats: DailyStat
+    let score: Int
 
     enum CodingKeys: String, CodingKey {
         case contactCount = "contact_count"
@@ -37,5 +38,6 @@ struct Submission: Decodable {
         case destinations
         case submissionID = "id"
         case dailyStats = "daily_stats"
+        case score
     }
 }

@@ -23,6 +23,10 @@ class RecordDetailViewController: UIViewController {
     @IBOutlet private weak var totalDeathsLabel: UILabel!
 
     @IBOutlet private weak var dailyStatsDateLabel: UILabel!
+    
+    @IBOutlet weak var quarantineScoreLabel: UILabel!
+    
+    @IBOutlet weak var riskLevelLabel: UILabel!
 
     // MARK: - Properties
 
@@ -50,6 +54,8 @@ class RecordDetailViewController: UIViewController {
         dailyStatsDateLabel.text = viewModel.record.dailyStats.date
         totalCasesLabel.text = String(viewModel.record.dailyStats.cases)
         totalDeathsLabel.text = String(viewModel.record.dailyStats.deaths)
+        quarantineScoreLabel.text = String(viewModel.record.score)
+        riskLevelLabel.text = String(viewModel.record.dailyStats.riskLevel)
         activityLabel.text = viewModel.record.destinations
                                 .map { $0.name }
                                 .joined(separator: ", ")

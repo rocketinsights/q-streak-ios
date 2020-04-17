@@ -86,13 +86,11 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
         DispatchQueue.main.async { [weak self] in self?.tableView.reloadData() }
     }
 
-    func addedSubmission() {
+    func addedSubmission(record: RecordDetailViewModel) {
         DispatchQueue.main.async {
-            let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-            let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
-
-            self.navigationController?.pushViewController(recordListViewController, animated: true)
+            if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: record, comingFromCreation: true) {
+                self.navigationController?.pushViewController(recordDetailViewController, animated: true)
+            }
         }
-
     }
 }

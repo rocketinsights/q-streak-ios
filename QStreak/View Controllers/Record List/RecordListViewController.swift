@@ -98,7 +98,7 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate, 
 extension RecordListViewController: RecordListViewModelDelegate {
 
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
-        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel, comingFromCreation: false) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
     }

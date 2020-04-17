@@ -30,21 +30,29 @@ class RecordDetailViewController: UIViewController {
 
     // MARK: - Properties
 
+    var backButton: UIBarButtonItem!
+
     var viewModel: RecordDetailViewModel!
+
+    var comingFromCreation = true
 
     // MARK: - Life Cycle
 
-    static func initialize(viewModel: RecordDetailViewModel) -> RecordDetailViewController? {
+    static func initialize(viewModel: RecordDetailViewModel, comingFromCreation: Bool) -> RecordDetailViewController? {
         let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
         let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController
 
         viewController?.viewModel = viewModel
+
+        viewController?.comingFromCreation = comingFromCreation
 
         return viewController
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupNavBar()
         setupViews()
     }
 
@@ -60,5 +68,29 @@ class RecordDetailViewController: UIViewController {
                                 .map { $0.name }
                                 .joined(separator: ", ")
 
+    }
+
+    private func setupNavBar() {
+        // Make sure we always go back to the RecordListViewController
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        if comingFromCreation {
+            self.backButton = UIBarButtonItem(title: "Dashboard", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToInitial(sender:)))
+            self.navigationItem.rightBarButtonItem = self.backButton
+        } else {
+            self.backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToInitial(sender:)))
+            self.navigationItem.leftBarButtonItem = self.backButton
+        }
+
+    }
+
+    @objc private func backToInitial(sender: UIBarButtonItem) {
+        if comingFromCreation {
+            let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
+            let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
+            self.navigationController?.pushViewController(recordListViewController, animated: true)
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }

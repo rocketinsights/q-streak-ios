@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C38EE57244A471A006CDF7D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38EE56244A471A006CDF7D /* WelcomeViewController.swift */; };
 		2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FF2982447884500D42000 /* q_streak_splash.png */; };
 		990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990B4542243E463D00177002 /* AccountSetupViewController.storyboard */; };
 		990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4544243E465900177002 /* AccountSetupViewController.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C38EE56244A471A006CDF7D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		2C7FF2982447884500D42000 /* q_streak_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q_streak_splash.png; sourceTree = "<group>"; };
 		990B4542243E463D00177002 /* AccountSetupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetupViewController.storyboard; sourceTree = "<group>"; };
 		990B4544243E465900177002 /* AccountSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				990B4542243E463D00177002 /* AccountSetupViewController.storyboard */,
 				990B4544243E465900177002 /* AccountSetupViewController.swift */,
 				990B4546243E467100177002 /* AccountSetupViewModel.swift */,
+				2C38EE56244A471A006CDF7D /* WelcomeViewController.swift */,
 			);
 			path = "Account Setup";
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C38EE57244A471A006CDF7D /* WelcomeViewController.swift in Sources */,
 				9955F974243FE4D700077C58 /* NetworkError.swift in Sources */,
 				D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */,
 				99746A0A2444E31100829473 /* Submission.swift in Sources */,

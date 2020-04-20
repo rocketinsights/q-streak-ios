@@ -66,25 +66,99 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3NW-ti-DZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949.2753623188407" y="189.50892857142856"/>
+            <point key="canvasLocation" x="2638" y="190"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tUx-f7-INP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Imf-45-WMQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Imf-45-WMQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V4R-gb-Tou">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P1l-kG-k37">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="Xs6-Sr-AAz" kind="relationship" relationship="rootViewController" id="Qdd-Jm-wVb"/>
+                        <segue destination="1yQ-61-FOK" kind="relationship" relationship="rootViewController" id="GBX-7w-cKC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqZ-ie-BGn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039.1304347826087" y="189.50892857142856"/>
         </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="eiR-7K-tGF">
+            <objects>
+                <viewController title="Welcome View Controller" id="1yQ-61-FOK" customClass="WelcomeViewController" customModule="QStreak" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D0t-j7-GXW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9W-j7-PHQ">
+                                <rect key="frame" x="117" y="777.5" width="180" height="39"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Bq9-NJ-124"/>
+                                    <constraint firstAttribute="height" constant="39" id="rR4-ch-kwp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <state key="normal" title="Get started">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="getStartedButtonTapped:" destination="1yQ-61-FOK" eventType="touchUpInside" id="TKf-3A-NEd"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yD7-Sl-dgP">
+                                <rect key="frame" x="50" y="626" width="314" height="101.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Safer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2Q-t4-ldF">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋 Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Duis vitae libero porttitor commodo." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RT3-CJ-oQE">
+                                        <rect key="frame" x="0.0" y="40.5" width="314" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="q_streak_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="eww-u2-qFb">
+                                <rect key="frame" x="50" y="212" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eww-u2-qFb" secondAttribute="height" multiplier="1:1" id="dzu-r4-0sX"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yD7-Sl-dgP" firstAttribute="top" secondItem="eww-u2-qFb" secondAttribute="bottom" constant="100" id="BE0-Rh-caQ"/>
+                            <constraint firstItem="eww-u2-qFb" firstAttribute="top" secondItem="Eq1-2L-BSS" secondAttribute="top" constant="168" id="PWP-rQ-ihe"/>
+                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="PuP-rv-5TM"/>
+                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="top" secondItem="yD7-Sl-dgP" secondAttribute="bottom" constant="50" id="tJs-jN-mlW"/>
+                            <constraint firstItem="yD7-Sl-dgP" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="50" id="uVN-Ui-ybg"/>
+                            <constraint firstAttribute="trailing" secondItem="yD7-Sl-dgP" secondAttribute="trailing" constant="50" id="udm-Gg-lyD"/>
+                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="trailing" secondItem="eww-u2-qFb" secondAttribute="trailing" constant="50" id="ulO-oZ-4Wk"/>
+                            <constraint firstItem="eww-u2-qFb" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="50" id="yIy-HX-vxK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Eq1-2L-BSS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lkA-I3-pvO"/>
+                    <connections>
+                        <outlet property="getStartedButton" destination="a9W-j7-PHQ" id="vs6-j0-hE8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7t9-NQ-cQo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834.7826086956522" y="189.50892857142856"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="q_streak_splash.png" width="750" height="484"/>
+    </resources>
 </document>

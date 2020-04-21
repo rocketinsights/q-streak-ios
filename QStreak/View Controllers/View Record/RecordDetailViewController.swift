@@ -56,12 +56,6 @@ class RecordDetailViewController: UIViewController {
         setupViews()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
     private func setupViews() {
         recordDateLabel.text = viewModel.record.dateString
         contactCountLabel.text = String(viewModel.record.contactCount)
@@ -77,6 +71,8 @@ class RecordDetailViewController: UIViewController {
     }
 
     private func setupNavBar() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
         if comingFromCreation {
             // Make sure we always go back to the RecordListViewController
             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false

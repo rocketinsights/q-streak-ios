@@ -123,14 +123,3 @@ extension RecordListViewController: RecordListViewModelDelegate {
         print(reason)
     }
 }
-
-// MARK: UIAdaptivePresentationControllerDelegate
-
-extension RecordListViewController: UIAdaptivePresentationControllerDelegate {
-
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        viewModel.resetPagination()
-        tableView.reloadData()
-        viewModel.fetchRecords()
-    }
-}

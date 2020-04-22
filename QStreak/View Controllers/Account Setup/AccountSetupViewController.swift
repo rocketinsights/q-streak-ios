@@ -53,10 +53,8 @@ extension AccountSetupViewController: AccountSetupViewModelDelegate {
 
     func failedAccountCreation(error: NetworkError) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Request Unsuccessful", message: error.message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
+            let alert = UIAlertController(title: "Unable to create account", message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
 
             self.present(alert, animated: true, completion: nil)
         }

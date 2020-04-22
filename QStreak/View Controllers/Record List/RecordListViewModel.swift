@@ -11,7 +11,7 @@ import Foundation
 protocol RecordListViewModelDelegate: AnyObject {
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel)
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
-    func onFetchFailed(with reason: String)
+    func onFetchFailed(error: NetworkError)
 }
 
 class RecordListViewModel {
@@ -59,7 +59,7 @@ class RecordListViewModel {
             case let .failure(error):
                 DispatchQueue.main.async {
                     self?.isFetchInProgress = false
-                    self?.delegate?.onFetchFailed(with: error.localizedDescription)
+                    self?.delegate?.onFetchFailed(error: error)
                 }
             }
         }

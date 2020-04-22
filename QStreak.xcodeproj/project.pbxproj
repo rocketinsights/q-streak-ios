@@ -47,6 +47,7 @@
 		D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E589F2448A1EB00A0C2FA /* DailyStat.swift */; };
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
 		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
+		D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F8662450BE410083DB6C /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		D52E589F2448A1EB00A0C2FA /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D5B1F8662450BE410083DB6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				D5048B002440B33A0029AE0C /* Date+Extensions.swift */,
+				D5B1F8662450BE410083DB6C /* String+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
+				D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,
 				D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */,

@@ -14,6 +14,8 @@ enum NetworkError: Error {
     case failedJSONDecoding
     case failedBuildingURLRequest
     case malformedRequest(message: String)
+    case unauthorized
+    case badRequest
 }
 
 extension NetworkError {
@@ -21,15 +23,14 @@ extension NetworkError {
         switch self {
         case .unknown:
             return "An unknown error has occured. Please try again later..."
-        case .noJSONData:
-            return ". Please try again later..."
-        case .failedJSONDecoding:
-            return "Malformed response from server. Please try again later..."
-        case .failedBuildingURLRequest:
+        case .noJSONData, .badRequest:
+            return "Bad request. Please try again later..."
+        case .failedJSONDecoding, .failedBuildingURLRequest:
             return "Unable to access server. Please try again later..."
         case .malformedRequest(let message):
-            return "Unsuccessful request: \(message). Please correct errors and try again."
-            
+            return "\(message). Please correct errors and try again."
+        case .unauthorized:
+            return "Account cannot be found or you are unauthorized to take that action."
         }
     }
 }

@@ -12,7 +12,7 @@ struct APIError: Decodable {
     var errors: [String:[String]]
 
     func message() -> String {
-        return self.errors.map { "\($0.key) \($0.value.joined(separator: ", "))" }
+        return self.errors.map { "\($0.key.camelCaseToWords()) \($0.value.joined(separator: ", "))" }
                           .joined(separator: " ")
     }
 }

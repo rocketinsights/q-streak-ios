@@ -50,4 +50,15 @@ extension AccountSetupViewController: AccountSetupViewModelDelegate {
 
         navigationController?.pushViewController(addRecordViewController, animated: true)
     }
+
+    func failedAccountCreation(error: NetworkError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Request Unsuccessful", message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }

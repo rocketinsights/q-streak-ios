@@ -10,6 +10,7 @@ import Foundation
 
 protocol AccountSetupViewModelDelegate: AnyObject {
     func showAddRecordViewController()
+    func failedAccountCreation(error: NetworkError)
 }
 
 class AccountSetupViewModel {
@@ -35,7 +36,7 @@ class AccountSetupViewModel {
                     self?.delegate?.showAddRecordViewController()
                 }
             case let .failure(error):
-                print(error)
+                self?.delegate?.failedAccountCreation(error: error)
             }
         }
     }

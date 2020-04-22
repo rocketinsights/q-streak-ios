@@ -23,9 +23,9 @@ class RecordDetailViewController: UIViewController {
     @IBOutlet private weak var totalDeathsLabel: UILabel!
 
     @IBOutlet private weak var dailyStatsDateLabel: UILabel!
-    
+
     @IBOutlet weak var quarantineScoreLabel: UILabel!
-    
+
     @IBOutlet weak var riskLevelLabel: UILabel!
 
     // MARK: - Properties

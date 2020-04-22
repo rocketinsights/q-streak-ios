@@ -18,6 +18,8 @@
 		990B4552243E510D00177002 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4551243E510D00177002 /* Activity.swift */; };
 		992249BB2440F92800A4790A /* QStreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BA2440F92800A4790A /* QStreakService.swift */; };
 		992249BD2441010700A4790A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BC2441010700A4790A /* User.swift */; };
+		9946D6CD24509627005D5A7C /* QButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D6CC24509627005D5A7C /* QButton.swift */; };
+		9946D6D12450A7F8005D5A7C /* QTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D6D02450A7F8005D5A7C /* QTextField.swift */; };
 		9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */; };
 		9955F947243F7DB500077C58 /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955F946243F7DB500077C58 /* AddRecordViewController.swift */; };
 		9955F949243F7DD600077C58 /* AddRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955F948243F7DD600077C58 /* AddRecordViewModel.swift */; };
@@ -75,6 +77,8 @@
 		990B4551243E510D00177002 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		992249BA2440F92800A4790A /* QStreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QStreakService.swift; sourceTree = "<group>"; };
 		992249BC2441010700A4790A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9946D6CC24509627005D5A7C /* QButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QButton.swift; sourceTree = "<group>"; };
+		9946D6D02450A7F8005D5A7C /* QTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QTextField.swift; sourceTree = "<group>"; };
 		9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddRecordViewController.storyboard; sourceTree = "<group>"; };
 		9955F946243F7DB500077C58 /* AddRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 		9955F948243F7DD600077C58 /* AddRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewModel.swift; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		9946D6CB245095F3005D5A7C /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				9946D6CC24509627005D5A7C /* QButton.swift */,
+				9946D6D02450A7F8005D5A7C /* QTextField.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
 		9955F943243F7D8100077C58 /* Add Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +257,7 @@
 				99A908D3243E1EDE00628E3F /* SceneDelegate.swift */,
 				990B4556243E65D800177002 /* Models */,
 				990B4553243E658A00177002 /* View Controllers */,
+				9946D6CB245095F3005D5A7C /* UI Elements */,
 				9955F966243FDFD000077C58 /* Networking */,
 				D5048AFF2440B2A10029AE0C /* Utilities */,
 				990B4557243E65FF00177002 /* Resources */,
@@ -463,6 +477,8 @@
 				99A908D4243E1EDE00628E3F /* SceneDelegate.swift in Sources */,
 				9955F978243FE59600077C58 /* URLSessionProvider.swift in Sources */,
 				9955F947243F7DB500077C58 /* AddRecordViewController.swift in Sources */,
+				9946D6D12450A7F8005D5A7C /* QTextField.swift in Sources */,
+				9946D6CD24509627005D5A7C /* QButton.swift in Sources */,
 				9955F96A243FE03700077C58 /* HTTPMethod.swift in Sources */,
 				9955F976243FE4F700077C58 /* NetworkProvider.swift in Sources */,
 				D5048AFA243F90270029AE0C /* RecordDetailViewController.swift in Sources */,

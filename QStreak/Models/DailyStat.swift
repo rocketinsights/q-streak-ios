@@ -13,7 +13,7 @@ struct DailyStat: Decodable {
     let date: String
     let deaths: Int
     let riskLevel: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case cases
         case date

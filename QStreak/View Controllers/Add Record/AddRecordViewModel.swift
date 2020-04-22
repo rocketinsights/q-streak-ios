@@ -10,7 +10,7 @@ import Foundation
 
 protocol AddRecordViewModelDelegate: AnyObject {
     func retrievedDestinations()
-    func addedSubmission()
+    func addedSubmission(record: RecordDetailViewModel)
 }
 
 class AddRecordViewModel {
@@ -51,8 +51,9 @@ class AddRecordViewModel {
 
         sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate, destinations: destinations)) { [weak self ] result in
             switch result {
-            case .success:
-                self?.delegate?.addedSubmission()
+            case .success(let submission):
+                let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
+                self?.delegate?.addedSubmission(record: recordDetailViewModel)
             case .failure(let error):
                 print(error)
             }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AccountSetupViewModelDelegate: AnyObject {
-    func showRecordListViewController()
+    func showAddRecordViewController()
 }
 
 class AccountSetupViewModel {
@@ -32,7 +32,7 @@ class AccountSetupViewModel {
             case let .success(user):
                 UserDefaults.standard.set(user.uuid, forKey: "uuid")
                 DispatchQueue.main.async {
-                    self?.delegate?.showRecordListViewController()
+                    self?.delegate?.showAddRecordViewController()
                 }
             case let .failure(error):
                 print(error)

@@ -41,8 +41,8 @@ class RecordListViewController: UIViewController {
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
         let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
         let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
-        addRecordViewController.presentationController?.delegate = self
-        present(addRecordViewController, animated: true, completion: nil)
+
+        self.navigationController?.pushViewController(addRecordViewController, animated: true)
     }
 
     // MARK: - Methods
@@ -98,7 +98,7 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate, 
 extension RecordListViewController: RecordListViewModelDelegate {
 
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
-        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel, comingFromCreation: false) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
     }
@@ -121,16 +121,5 @@ extension RecordListViewController: RecordListViewModelDelegate {
     func onFetchFailed(with reason: String) {
         // TODO - Handle failed request
         print(reason)
-    }
-}
-
-// MARK: UIAdaptivePresentationControllerDelegate
-
-extension RecordListViewController: UIAdaptivePresentationControllerDelegate {
-
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        viewModel.resetPagination()
-        tableView.reloadData()
-        viewModel.fetchRecords()
     }
 }

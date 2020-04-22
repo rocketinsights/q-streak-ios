@@ -32,17 +32,12 @@ class AddRecordViewController: UIViewController {
         viewModel.delegate = self
 
         tableView.allowsMultipleSelection = true
+
         let datePicker = UIDatePicker()
         datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
         datePicker.datePickerMode = .date
         dateTextField.inputView = datePicker
-    }
-
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
-        if let presentationController = presentationController {
-            presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
-        }
+        dateTextField.text = Date().formattedDate
     }
 
     // MARK: - IBActions
@@ -91,7 +86,11 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
         DispatchQueue.main.async { [weak self] in self?.tableView.reloadData() }
     }
 
-    func addedSubmission() {
-        DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
+    func addedSubmission(record: RecordDetailViewModel) {
+        DispatchQueue.main.async {
+            if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: record, comingFromCreation: true) {
+                self.navigationController?.pushViewController(recordDetailViewController, animated: true)
+            }
+        }
     }
 }

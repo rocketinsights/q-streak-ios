@@ -1,0 +1,19 @@
+//
+//  APIError.swift
+//  QStreak
+//
+//  Created by Daniel McCoy on 4/21/20.
+//  Copyright © 2020 Rocket Insights. All rights reserved.
+//
+
+import Foundation
+
+struct APIError: Decodable {
+    var errors: [String:[String]]
+
+    func message() -> String {
+        let msg = self.errors.map { "\($0.key) \($0.value.joined(separator: ", "))." }
+        return "Error processing request: \(msg.joined(separator: " "))"
+    }
+}
+

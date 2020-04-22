@@ -13,5 +13,5 @@ enum NetworkError: Error {
     case noJSONData
     case failedJSONDecoding
     case failedBuildingURLRequest
-    case malformedRequest
+    case malformedRequest(message: String)
 }

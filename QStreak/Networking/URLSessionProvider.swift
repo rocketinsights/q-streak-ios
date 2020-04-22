@@ -38,7 +38,13 @@ final class URLSessionProvider: NetworkProvider {
 
             completion(.success(model))
         case 400...499:
-            completion(.failure(.malformedRequest))
+            guard let data = data,
+                let apiError = try? JSONDecoder().decode(APIError.self, from: data)
+                else { return completion(.failure(.failedJSONDecoding)) }
+            
+            print(apiError)
+
+            completion(.failure(.malformedRequest(message: apiError.message())))
         default:
             completion(.failure(.unknown))
         }

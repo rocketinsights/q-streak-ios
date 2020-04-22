@@ -46,6 +46,7 @@
 		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
 		D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E589F2448A1EB00A0C2FA /* DailyStat.swift */; };
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
+		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D52E589F2448A1EB00A0C2FA /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 		9955F966243FDFD000077C58 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D5B1F85F244F93860083DB6C /* APIError.swift */,
 				9955F967243FE00F00077C58 /* NetworkService.swift */,
 				9955F969243FE03700077C58 /* HTTPMethod.swift */,
 				9955F96D243FE0D600077C58 /* ParameterEncoding.swift */,
@@ -485,6 +488,7 @@
 				990B4552243E510D00177002 /* Activity.swift in Sources */,
 				9955F972243FE34200077C58 /* URLRequest+Extensions.swift in Sources */,
 				990B454E243E4E5D00177002 /* RecordListViewModel.swift in Sources */,
+				D5B1F860244F93860083DB6C /* APIError.swift in Sources */,
 				D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */,
 				9955F97A243FE6BC00077C58 /* Networkable.swift in Sources */,
 				9955F970243FE13C00077C58 /* URLComponents+Extensions.swift in Sources */,

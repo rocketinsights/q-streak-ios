@@ -55,7 +55,7 @@ class AddRecordViewModel {
                 let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
                 self?.delegate?.addedSubmission(record: recordDetailViewModel)
             case .failure(let error):
-                print(error)
+                print(error.message)
             }
         }
     }

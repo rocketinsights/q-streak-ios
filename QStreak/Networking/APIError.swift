@@ -12,8 +12,7 @@ struct APIError: Decodable {
     var errors: [String:[String]]
 
     func message() -> String {
-        let msg = self.errors.map { "\($0.key) \($0.value.joined(separator: ", "))." }
-        return "Error processing request: \(msg.joined(separator: " "))"
+        return self.errors.map { "\($0.key) \($0.value.joined(separator: ", "))" }
+                          .joined(separator: " ")
     }
 }
-

@@ -120,8 +120,8 @@ extension RecordListViewController: RecordListViewModelDelegate {
 
     func onFetchFailed(error: NetworkError) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Unable to fetch submissions", message: error.message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            let alert = UIAlertController(title: self.viewModel.alertTitleText, message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: self.viewModel.alertDismissButtonText, style: .default))
 
             self.present(alert, animated: true, completion: nil)
         }

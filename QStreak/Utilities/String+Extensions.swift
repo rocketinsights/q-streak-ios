@@ -9,8 +9,8 @@
 import Foundation
 
 extension String {
-    func camelCaseToWords() -> String {
-        return self.replacingOccurrences(of: "_", with: " ", options: .regularExpression)
+    func snakeCaseToWords() -> String {
+        return self.replacingOccurrences(of: "_", with: " ")
                    .capitalized
     }
 }

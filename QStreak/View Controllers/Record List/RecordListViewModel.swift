@@ -16,6 +16,10 @@ protocol RecordListViewModelDelegate: AnyObject {
 
 class RecordListViewModel {
     // MARK: - Properties
+
+    let alertTitleText = "Unable to fetch submissions"
+    let alertDismissButtonText =  "OK"
+
     var records: [Submission?] = []
     var currentPage = 1
     var totalPages = 1

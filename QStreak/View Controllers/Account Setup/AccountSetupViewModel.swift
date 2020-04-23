@@ -15,6 +15,9 @@ protocol AccountSetupViewModelDelegate: AnyObject {
 
 class AccountSetupViewModel {
 
+    let alertTitleText = "Unable to create account"
+    let alertDismissButtonText =  "OK"
+
     private let sessionProvider = URLSessionProvider()
 
     weak var delegate: AccountSetupViewModelDelegate?

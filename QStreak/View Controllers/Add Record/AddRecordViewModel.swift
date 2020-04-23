@@ -18,6 +18,9 @@ class AddRecordViewModel {
 
     // MARK: - Properties
 
+    let alertTitleText = "Unable to create submission"
+    let alertDismissButtonText =  "OK"
+
     private let sessionProvider = URLSessionProvider()
 
     weak var delegate: AddRecordViewModelDelegate?

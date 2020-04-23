@@ -11,11 +11,15 @@ import Foundation
 protocol RecordListViewModelDelegate: AnyObject {
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel)
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
-    func onFetchFailed(with reason: String)
+    func onFetchFailed(error: NetworkError)
 }
 
 class RecordListViewModel {
     // MARK: - Properties
+
+    let alertTitleText = "Unable to fetch submissions"
+    let alertDismissButtonText =  "OK"
+
     var records: [Submission?] = []
     var currentPage = 1
     var totalPages = 1
@@ -59,7 +63,7 @@ class RecordListViewModel {
             case let .failure(error):
                 DispatchQueue.main.async {
                     self?.isFetchInProgress = false
-                    self?.delegate?.onFetchFailed(with: error.localizedDescription)
+                    self?.delegate?.onFetchFailed(error: error)
                 }
             }
         }

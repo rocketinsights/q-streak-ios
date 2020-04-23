@@ -10,9 +10,13 @@ import Foundation
 
 protocol AccountSetupViewModelDelegate: AnyObject {
     func showAddRecordViewController()
+    func failedAccountCreation(error: NetworkError)
 }
 
 class AccountSetupViewModel {
+
+    let alertTitleText = "Unable to create account"
+    let alertDismissButtonText =  "OK"
 
     private let sessionProvider = URLSessionProvider()
 
@@ -35,7 +39,7 @@ class AccountSetupViewModel {
                     self?.delegate?.showAddRecordViewController()
                 }
             case let .failure(error):
-                print(error)
+                self?.delegate?.failedAccountCreation(error: error)
             }
         }
     }

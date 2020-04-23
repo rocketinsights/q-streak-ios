@@ -93,4 +93,13 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
             }
         }
     }
+
+    func failedSubmission(error: NetworkError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: self.viewModel.alertTitleText, message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: self.viewModel.alertDismissButtonText, style: .default))
+
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }

@@ -118,8 +118,12 @@ extension RecordListViewController: RecordListViewModelDelegate {
         }
     }
 
-    func onFetchFailed(with reason: String) {
-        // TODO - Handle failed request
-        print(reason)
+    func onFetchFailed(error: NetworkError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: self.viewModel.alertTitleText, message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: self.viewModel.alertDismissButtonText, style: .default))
+
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

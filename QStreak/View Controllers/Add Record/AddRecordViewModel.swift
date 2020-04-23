@@ -11,11 +11,15 @@ import Foundation
 protocol AddRecordViewModelDelegate: AnyObject {
     func retrievedDestinations()
     func addedSubmission(record: RecordDetailViewModel)
+    func failedSubmission(error: NetworkError)
 }
 
 class AddRecordViewModel {
 
     // MARK: - Properties
+
+    let alertTitleText = "Unable to create submission"
+    let alertDismissButtonText =  "OK"
 
     private let sessionProvider = URLSessionProvider()
 
@@ -55,7 +59,7 @@ class AddRecordViewModel {
                 let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
                 self?.delegate?.addedSubmission(record: recordDetailViewModel)
             case .failure(let error):
-                print(error)
+                self?.delegate?.failedSubmission(error: error)
             }
         }
     }

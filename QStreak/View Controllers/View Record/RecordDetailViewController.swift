@@ -43,7 +43,6 @@ class RecordDetailViewController: UIViewController {
         let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController
 
         viewController?.viewModel = viewModel
-
         viewController?.comingFromCreation = comingFromCreation
 
         return viewController
@@ -52,8 +51,14 @@ class RecordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
+
         setupNavBar()
         setupViews()
+    }
+
+    @IBAction private func deleteButtonTapped(_ sender: Any) {
+        viewModel.deleteButtonTapped()
     }
 
     private func setupViews() {
@@ -67,7 +72,6 @@ class RecordDetailViewController: UIViewController {
         activityLabel.text = viewModel.record.destinations
                                 .map { $0.name }
                                 .joined(separator: ", ")
-
     }
 
     private func setupNavBar() {
@@ -83,8 +87,29 @@ class RecordDetailViewController: UIViewController {
     }
 
     @objc private func backToDashboard(sender: UIBarButtonItem) {
-        let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-        let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
-        self.navigationController?.pushViewController(recordListViewController, animated: true)
+        redirectToDashboard()
+    }
+
+    func redirectToDashboard() {
+        DispatchQueue.main.async {
+             let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
+             let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
+             self.navigationController?.pushViewController(recordListViewController, animated: true)
+        }
+    }
+}
+
+extension RecordDetailViewController: RecordDetailViewModelDelegate {
+    func submissionDeletionSuccess() {
+        redirectToDashboard()
+    }
+
+    func submissionDeletionFailure(error: NetworkError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: self.viewModel.alertTitleText, message: error.message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: self.viewModel.alertDismissButtonText, style: .default))
+
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

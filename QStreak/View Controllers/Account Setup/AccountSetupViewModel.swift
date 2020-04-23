@@ -34,9 +34,11 @@ class AccountSetupViewModel {
         sessionProvider.request(type: User.self, service: QstreakService.signUp(age: age, householdSize: householdSize, zipCode: zipCode)) { [weak self] result in
             switch result {
             case let .success(user):
-                UserDefaults.standard.set(user.uuid, forKey: "uuid")
-                DispatchQueue.main.async {
-                    self?.delegate?.showAddRecordViewController()
+                if let user = user {
+                    UserDefaults.standard.set(user.uuid, forKey: "uuid")
+                    DispatchQueue.main.async {
+                        self?.delegate?.showAddRecordViewController()
+                    }
                 }
             case let .failure(error):
                 self?.delegate?.failedAccountCreation(error: error)

@@ -33,8 +33,10 @@ class AddRecordViewModel {
         sessionProvider.request(type: [Activity].self, service: QstreakService.getDestinations) { [weak self] result in
             switch result {
             case .success(let activities):
-                self?.categories = activities
-                self?.delegate?.retrievedDestinations()
+                if let activities = activities {
+                    self?.categories = activities
+                    self?.delegate?.retrievedDestinations()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -56,8 +58,10 @@ class AddRecordViewModel {
         sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate, destinations: destinations)) { [weak self ] result in
             switch result {
             case .success(let submission):
-                let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
-                self?.delegate?.addedSubmission(record: recordDetailViewModel)
+                if let submission = submission {
+                    let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
+                    self?.delegate?.addedSubmission(record: recordDetailViewModel)
+                }
             case .failure(let error):
                 self?.delegate?.failedSubmission(error: error)
             }

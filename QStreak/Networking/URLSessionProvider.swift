@@ -16,7 +16,7 @@ final class URLSessionProvider: NetworkProvider {
         self.session = session
     }
 
-    func request<T>(type: T.Type, service: NetworkService, completion: @escaping (Result<T, NetworkError>) -> Void) where T: Decodable {
+    func request<T>(type: T.Type, service: NetworkService, completion: @escaping (Result<T?, NetworkError>) -> Void) where T: Decodable {
         guard let request = URLRequest(service: service) else { return completion(.failure(.failedBuildingURLRequest))}
         let task = session.dataTask(request: request, completionHandler: { [weak self] data, response, error in
             let httpResponse = response as? HTTPURLResponse
@@ -25,12 +25,14 @@ final class URLSessionProvider: NetworkProvider {
         task.resume()
     }
 
-    private func handleDataResponse<T: Decodable>(data: Data?, response: HTTPURLResponse?, error: Error?, completion: (Result<T, NetworkError>) -> Void) {
+    private func handleDataResponse<T: Decodable>(data: Data?, response: HTTPURLResponse?, error: Error?, completion: (Result<T?, NetworkError>) -> Void) {
         guard error == nil else { return completion(.failure(.unknown)) }
 
         guard let response = response else { return completion(.failure(.noJSONData)) }
 
         switch response.statusCode {
+        case 204:
+            completion(.success(nil))
         case 200...299:
             guard let data = data,
                 let model = try? JSONDecoder().decode(T.self, from: data)

@@ -18,7 +18,7 @@ class AccountSetupViewController: UIViewController {
 
     @IBOutlet private weak var householdSizeTextField: UITextField!
 
-    @IBOutlet private weak var continueButton: UIButton!
+    @IBOutlet private weak var continueButton: QButton!
 
     // MARK: - Properties
 

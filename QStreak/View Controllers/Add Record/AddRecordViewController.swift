@@ -9,16 +9,29 @@
 import UIKit
 
 class AddRecordViewController: UIViewController {
+    // TODO: move these to a constants file?
+    let teal = UIColor(red: 0.55, green: 0.96, blue: 0.82, alpha: 0.30)
+    let grey = UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.00)
 
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var contactCountTextField: UITextField!
-
-    @IBOutlet private weak var dateTextField: UITextField!
-
     @IBOutlet private weak var tableView: UITableView!
 
-    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var saveButton: QButton!
+
+    @IBOutlet weak var submissionDateLabel: UILabel!
+
+    @IBOutlet weak var wentOutsideYesButton: QButton!
+
+    @IBOutlet weak var wentOutsideNoButton: QButton!
+
+    @IBOutlet weak var numberOfPeople: QTextField!
+
+    @IBOutlet weak var decrementNumberOfPeopleButton: UIButton!
+
+    @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
+    
+    var wentOutsideToday = true
 
     // MARK: - Properties
 
@@ -33,25 +46,62 @@ class AddRecordViewController: UIViewController {
 
         tableView.allowsMultipleSelection = true
 
-        let datePicker = UIDatePicker()
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
-        datePicker.datePickerMode = .date
-        dateTextField.inputView = datePicker
-        dateTextField.text = Date().formattedDate
+        setDefaultFieldValues()
     }
 
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        viewModel.saveButtonTapped(date: (dateTextField.inputView as? UIDatePicker)?.date, contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+//        viewModel.saveButtonTapped(date: (dateTextField.inputView as? UIDatePicker)?.date, contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+    }
+
+    @IBAction func wentOutsideYesButtonTapped(_ sender: Any) {
+        self.wentOutsideToday = true
+
+        self.wentOutsideNoButton.backgroundColor = grey
+        self.wentOutsideYesButton.backgroundColor = teal
+    }
+
+    @IBAction func wentOutsideNoButtonTapped(_ sender: Any) {
+        self.wentOutsideToday = false
+
+        self.wentOutsideYesButton.backgroundColor = grey
+        self.wentOutsideNoButton.backgroundColor = teal
+    }
+
+    @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
+        if let fieldValue = self.numberOfPeople.text {
+            let originalNum = Int(fieldValue) ?? 0
+
+            if originalNum == 1 {
+                self.decrementNumberOfPeopleButton.tintColor = grey
+                self.decrementNumberOfPeopleButton.isUserInteractionEnabled = false
+            }
+
+            self.numberOfPeople.text = "\(originalNum - 1)"
+        }
+    }
+
+    @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
+        if let fieldValue = self.numberOfPeople.text {
+            let originalNum = Int(fieldValue) ?? 0
+            
+            if originalNum == 0 {
+                self.decrementNumberOfPeopleButton.tintColor = UIColor.black
+                self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
+            }
+
+            self.numberOfPeople.text = "\(originalNum + 1)"
+        }
     }
 
     // MARK: - Methods
 
-    @objc private func datePickerChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateTextField.text = dateFormatter.string(from: sender.date)
+    func setDefaultFieldValues() {
+        self.submissionDateLabel.text = "Today, \(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
+        self.numberOfPeople.text = "0"
+        self.numberOfPeople.isUserInteractionEnabled = false
+        self.decrementNumberOfPeopleButton.tintColor = grey
     }
 }
 

@@ -55,7 +55,7 @@ class AddRecordViewModel {
 
         let destinations = selectedIndexPaths.map { categories[$0.row].slug }
 
-        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate, destinations: destinations)) { [weak self ] result in
+        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
             switch result {
             case .success(let submission):
                 if let submission = submission {

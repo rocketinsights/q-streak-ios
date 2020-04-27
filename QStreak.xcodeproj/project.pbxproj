@@ -48,6 +48,7 @@
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
 		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
 		D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F8662450BE410083DB6C /* String+Extensions.swift */; };
+		D5B1F86E245774C50083DB6C /* ActivityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F86D245774C50083DB6C /* ActivityTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D5B1F8662450BE410083DB6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D5B1F86D245774C50083DB6C /* ActivityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */,
 				9955F946243F7DB500077C58 /* AddRecordViewController.swift */,
 				9955F948243F7DD600077C58 /* AddRecordViewModel.swift */,
+				D5B1F86D245774C50083DB6C /* ActivityTableCell.swift */,
 			);
 			path = "Add Record";
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
+				D5B1F86E245774C50083DB6C /* ActivityTableCell.swift in Sources */,
 				D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,

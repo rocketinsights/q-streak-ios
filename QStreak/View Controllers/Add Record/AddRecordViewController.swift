@@ -17,13 +17,7 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    @IBOutlet private weak var saveButton: QButton!
-
     @IBOutlet weak var submissionDateLabel: UILabel!
-
-    @IBOutlet weak var wentOutsideYesButton: QButton!
-
-    @IBOutlet weak var wentOutsideNoButton: QButton!
 
     @IBOutlet weak var numberOfPeople: QTextField!
 
@@ -32,7 +26,7 @@ class AddRecordViewController: UIViewController {
     @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
 
     @IBOutlet weak var dismissSubmissionCreationModal: UIButton!
-    
+
     var wentOutsideToday = true
 
     // MARK: - Properties
@@ -57,43 +51,23 @@ class AddRecordViewController: UIViewController {
         viewModel.saveButtonTapped(date: Date(), contactCountString: numberOfPeople.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
     }
 
-    @IBAction func wentOutsideYesButtonTapped(_ sender: Any) {
-        self.wentOutsideToday = true
-
-        self.wentOutsideNoButton.backgroundColor = grey
-        self.wentOutsideYesButton.backgroundColor = teal
-    }
-
-    @IBAction func wentOutsideNoButtonTapped(_ sender: Any) {
-        self.wentOutsideToday = false
-
-        self.wentOutsideYesButton.backgroundColor = grey
-        self.wentOutsideNoButton.backgroundColor = teal
-    }
-
     @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
         if let fieldValue = self.numberOfPeople.text {
-            let originalNum = Int(fieldValue) ?? 0
+            let newNum = (Int(fieldValue) ?? 0) - 1
 
-            if originalNum == 1 {
-                self.decrementNumberOfPeopleButton.tintColor = grey
-                self.decrementNumberOfPeopleButton.isUserInteractionEnabled = false
-            }
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 
-            self.numberOfPeople.text = "\(originalNum - 1)"
+            self.numberOfPeople.text = "\(newNum)"
         }
     }
 
     @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
-        if let fieldValue = self.numberOfPeople.text {
-            let originalNum = Int(fieldValue) ?? 0
+        if let fieldText = self.numberOfPeople.text {
+            let newNum = (Int(fieldText) ?? 0) + 1
 
-            if originalNum == 0 {
-                self.decrementNumberOfPeopleButton.tintColor = UIColor.black
-                self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
-            }
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 
-            self.numberOfPeople.text = "\(originalNum + 1)"
+            self.numberOfPeople.text = "\(newNum)"
         }
     }
 
@@ -102,13 +76,31 @@ class AddRecordViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func numberOfPeopleEditingChanged(_ sender: Any) {
+        if let fieldText = self.numberOfPeople.text {
+            if fieldText.isEmpty { return }
+            let newNum = Int(fieldText) ?? 0
+
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
+        }
+    }
+
     // MARK: - Methods
 
     func setDefaultFieldValues() {
-        self.submissionDateLabel.text = "Today, \(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
+        self.submissionDateLabel.text = "\(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
         self.numberOfPeople.text = "0"
-        self.numberOfPeople.isUserInteractionEnabled = false
         self.decrementNumberOfPeopleButton.tintColor = grey
+    }
+
+    private func setDecrementNumberOfPeopleButtonStyles(newNumber: Int) {
+        if newNumber < 1 {
+            self.decrementNumberOfPeopleButton.tintColor = grey
+            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = false
+        } else {
+            self.decrementNumberOfPeopleButton.tintColor = UIColor.black
+            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
+        }
     }
 }
 

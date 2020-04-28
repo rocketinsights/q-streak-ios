@@ -30,7 +30,7 @@ class AddRecordViewController: UIViewController {
     @IBOutlet weak var decrementNumberOfPeopleButton: UIButton!
 
     @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
-    
+
     var wentOutsideToday = true
 
     // MARK: - Properties
@@ -52,7 +52,7 @@ class AddRecordViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-//        viewModel.saveButtonTapped(date: (dateTextField.inputView as? UIDatePicker)?.date, contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+        viewModel.saveButtonTapped(date: Date(), contactCountString: numberOfPeople.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
     }
 
     @IBAction func wentOutsideYesButtonTapped(_ sender: Any) {
@@ -85,7 +85,7 @@ class AddRecordViewController: UIViewController {
     @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
         if let fieldValue = self.numberOfPeople.text {
             let originalNum = Int(fieldValue) ?? 0
-            
+
             if originalNum == 0 {
                 self.decrementNumberOfPeopleButton.tintColor = UIColor.black
                 self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
@@ -114,19 +114,23 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = viewModel.categories[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as? ActivityCell else { return UITableViewCell() }
+        cell.activityCellLabel?.text = viewModel.categories[indexPath.row].name
+
+        let iconName = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false ? "checkmark.square" : "square"
+        cell.activityCellIcon.image = UIImage(systemName: iconName)
+
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+        guard let cell = tableView.cellForRow(at: indexPath) as? ActivityCell else { return }
+        cell.activityCellIcon.image = UIImage(systemName: "checkmark.square")
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+        guard let cell = tableView.cellForRow(at: indexPath) as? ActivityCell else { return  }
+        cell.activityCellIcon.image = UIImage(systemName: "square")
     }
 }
 

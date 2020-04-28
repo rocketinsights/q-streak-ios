@@ -31,6 +31,8 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
 
+    @IBOutlet weak var dismissSubmissionCreationModal: UIButton!
+    
     var wentOutsideToday = true
 
     // MARK: - Properties
@@ -93,6 +95,11 @@ class AddRecordViewController: UIViewController {
 
             self.numberOfPeople.text = "\(originalNum + 1)"
         }
+    }
+
+    @IBAction func dismissSubmissionCreationModal(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Methods

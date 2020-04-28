@@ -22,16 +22,13 @@ class AccountSetupViewModel {
 
     weak var delegate: AccountSetupViewModelDelegate?
 
-    func continueButtonTapped(zipCode: String?, ageString: String?, householdSizeString: String?) {
+    func continueButtonTapped(zipCode: String?, userName: String?) {
         guard
             let zipCode = zipCode,
-            let ageString = ageString,
-            let age = Int(ageString),
-            let householdSizeString = householdSizeString,
-            let householdSize = Int(householdSizeString)
+            let userName = userName
             else { return }
 
-        sessionProvider.request(type: User.self, service: QstreakService.signUp(age: age, householdSize: householdSize, zipCode: zipCode)) { [weak self] result in
+        sessionProvider.request(type: User.self, service: QstreakService.signUp(zipCode: zipCode, userName: userName)) { [weak self] result in
             switch result {
             case let .success(user):
                 if let user = user {

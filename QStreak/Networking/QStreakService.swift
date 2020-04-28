@@ -9,7 +9,7 @@
 import Foundation
 
 enum QstreakService {
-    case signUp(age: Int, householdSize: Int, zipCode: String)
+    case signUp(zipCode: String, userName: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
     case getDestinations
     case getSubmissions(page: Int)
@@ -62,10 +62,9 @@ extension QstreakService: NetworkService {
 
     var parameters: Parameters? {
         switch self {
-        case .signUp(let age, let householdSize, let zipCode):
-            return ["account": ["age": age,
-                                "household_size": householdSize,
-                                "zip": zipCode]]
+        case .signUp(let zipCode, let userName):
+            return ["account": [ "zip": zipCode,
+                                "name": userName]]
         case .createSubmission(let contactCount, let date, let destinations):
             return ["submission": ["contact_count": contactCount,
                                    "date": date,

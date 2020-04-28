@@ -42,6 +42,7 @@ class RecordListViewController: UIViewController {
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
         let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
         let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        addRecordViewController.presentationController?.delegate = self
         present(addRecordViewController, animated: true, completion: nil)
     }
 
@@ -126,5 +127,13 @@ extension RecordListViewController: RecordListViewModelDelegate {
 
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension RecordListViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        viewModel.resetPagination()
+        tableView.reloadData()
+        viewModel.fetchRecords()
     }
 }

@@ -26,25 +26,7 @@ class AddRecordViewController: UIViewController {
     @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
 
     @IBOutlet weak var dismissSubmissionCreationModal: UIButton!
-
-    var wentOutsideToday = true
-
-    // MARK: - Properties
-
-    private let viewModel = AddRecordViewModel()
-
-    // MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        viewModel.delegate = self
-
-        tableView.allowsMultipleSelection = true
-
-        setDefaultFieldValues()
-    }
-
+    
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -82,6 +64,30 @@ class AddRecordViewController: UIViewController {
             let newNum = Int(fieldText) ?? 0
 
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
+        }
+    }
+
+    // MARK: - Properties
+
+    private let viewModel = AddRecordViewModel()
+
+    // MARK: - Life Cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        viewModel.delegate = self
+
+        tableView.allowsMultipleSelection = true
+
+        setDefaultFieldValues()
+    }
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+
+        if let presentationController = presentationController {
+            presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
         }
     }
 
@@ -140,11 +146,7 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
     }
 
     func addedSubmission(record: RecordDetailViewModel) {
-        DispatchQueue.main.async {
-            if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: record, comingFromCreation: true) {
-                self.navigationController?.pushViewController(recordDetailViewController, animated: true)
-            }
-        }
+        DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
     }
 
     func failedSubmission(error: NetworkError) {

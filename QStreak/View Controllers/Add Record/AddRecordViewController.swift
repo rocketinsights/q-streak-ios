@@ -19,7 +19,7 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet weak var submissionDateLabel: UILabel!
 
-    @IBOutlet weak var numberOfPeople: QTextField!
+    @IBOutlet weak var contactCountTextField: QTextField!
 
     @IBOutlet weak var decrementNumberOfPeopleButton: UIButton!
 
@@ -28,31 +28,31 @@ class AddRecordViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        viewModel.saveButtonTapped(date: Date(), contactCountString: numberOfPeople.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+        viewModel.saveButtonTapped(date: Date(), contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
     }
 
     @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
-        if let fieldValue = self.numberOfPeople.text {
+        if let fieldValue = self.contactCountTextField.text {
             let newNum = (Int(fieldValue) ?? 0) - 1
 
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 
-            self.numberOfPeople.text = "\(newNum)"
+            self.contactCountTextField.text = "\(newNum)"
         }
     }
 
     @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
-        if let fieldText = self.numberOfPeople.text {
+        if let fieldText = self.contactCountTextField.text {
             let newNum = (Int(fieldText) ?? 0) + 1
 
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 
-            self.numberOfPeople.text = "\(newNum)"
+            self.contactCountTextField.text = "\(newNum)"
         }
     }
 
-    @IBAction func numberOfPeopleEditingChanged(_ sender: Any) {
-        if let fieldText = self.numberOfPeople.text {
+    @IBAction func countCountTextFieldEditingChanged(_ sender: Any) {
+        if let fieldText = self.contactCountTextField.text {
             if fieldText.isEmpty { return }
             let newNum = Int(fieldText) ?? 0
 
@@ -88,7 +88,7 @@ class AddRecordViewController: UIViewController {
 
     func setDefaultFieldValues() {
         self.submissionDateLabel.text = "\(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
-        self.numberOfPeople.text = "0"
+        self.contactCountTextField.text = "0"
         self.decrementNumberOfPeopleButton.tintColor = grey
     }
 

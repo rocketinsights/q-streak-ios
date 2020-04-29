@@ -120,16 +120,6 @@
                                     <action selector="saveButtonTapped:" destination="dh0-eu-ygi" eventType="touchUpInside" id="hEK-1D-72u"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngz-Xb-W4u">
-                                <rect key="frame" x="376" y="29" width="18" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="xmark" catalog="system"/>
-                                <connections>
-                                    <action selector="dismissSubmissionCreationModal:" destination="dh0-eu-ygi" eventType="touchUpInside" id="ev1-qC-PAH"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Ot-yF-RTm">
                                 <rect key="frame" x="30" y="417" width="334" height="156"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -173,7 +163,6 @@
                     </view>
                     <connections>
                         <outlet property="decrementNumberOfPeopleButton" destination="zc1-8U-lf3" id="e5d-ZL-aAP"/>
-                        <outlet property="dismissSubmissionCreationModal" destination="Ngz-Xb-W4u" id="CcQ-FJ-q9V"/>
                         <outlet property="incrementNumberOfPeopleButton" destination="CKC-js-dEB" id="NHQ-cq-vE7"/>
                         <outlet property="numberOfPeople" destination="2QC-Fs-ojf" id="zUi-Zq-cK5"/>
                         <outlet property="submissionDateLabel" destination="Ayf-nu-ZDR" id="40e-8r-OR0"/>
@@ -189,6 +178,5 @@
         <image name="minus.circle" catalog="system" width="128" height="121"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="square" catalog="system" width="128" height="114"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>

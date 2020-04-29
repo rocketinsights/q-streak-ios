@@ -25,8 +25,6 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
 
-    @IBOutlet weak var dismissSubmissionCreationModal: UIButton!
-    
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -51,11 +49,6 @@ class AddRecordViewController: UIViewController {
 
             self.numberOfPeople.text = "\(newNum)"
         }
-    }
-
-    @IBAction func dismissSubmissionCreationModal(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func numberOfPeopleEditingChanged(_ sender: Any) {

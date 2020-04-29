@@ -51,11 +51,11 @@ class AddRecordViewController: UIViewController {
         }
     }
 
-    @IBAction func countCountTextFieldEditingChanged(_ sender: Any) {
+    @IBAction func contactCountTextFieldEditingChanged(_ sender: Any) {
         if let fieldText = self.contactCountTextField.text {
             if fieldText.isEmpty { return }
-            let newNum = Int(fieldText) ?? 0
 
+            let newNum = Int(fieldText) ?? 0
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
         }
     }
@@ -72,6 +72,8 @@ class AddRecordViewController: UIViewController {
         viewModel.delegate = self
 
         tableView.allowsMultipleSelection = true
+        tableView.delegate = self
+        tableView.dataSource = self
 
         setDefaultFieldValues()
     }
@@ -112,23 +114,23 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as? ActivityCell else { return UITableViewCell() }
-        cell.activityCellLabel?.text = viewModel.categories[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
+        cell.textLabel?.text = viewModel.categories[indexPath.row].name
 
         let iconName = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false ? "checkmark.square" : "square"
-        cell.activityCellIcon.image = UIImage(systemName: iconName)
+        cell.imageView?.image = UIImage(systemName: iconName)
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ActivityCell else { return }
-        cell.activityCellIcon.image = UIImage(systemName: "checkmark.square")
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.imageView?.image = UIImage(systemName: "checkmark.square")
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ActivityCell else { return  }
-        cell.activityCellIcon.image = UIImage(systemName: "square")
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.imageView?.image = UIImage(systemName: "square")
     }
 }
 

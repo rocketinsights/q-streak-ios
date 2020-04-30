@@ -8,13 +8,36 @@
 
 import Foundation
 
+protocol RecordDetailViewModelDelegate: AnyObject {
+    func submissionDeletionSuccess()
+    func submissionDeletionFailure(error: NetworkError)
+}
+
 class RecordDetailViewModel {
 
     // MARK: - Properties
 
+    let alertTitleText = "Unable to delete submission"
+    let alertDismissButtonText =  "OK"
+
     let record: Submission
+
+    let sessionProvider = URLSessionProvider()
+
+    weak var delegate: RecordDetailViewModelDelegate?
 
     init(record: Submission) {
         self.record = record
+    }
+
+    func deleteButtonTapped() {
+        sessionProvider.request(type: Submission.self, service: QstreakService.deleteSubmission(submissionId: record.submissionID)) { [weak self] result in
+            switch result {
+            case .success:
+                self?.delegate?.submissionDeletionSuccess()
+            case .failure(let error):
+                self?.delegate?.submissionDeletionFailure(error: error)
+            }
+        }
     }
 }

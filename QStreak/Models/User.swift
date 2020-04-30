@@ -10,12 +10,13 @@ import Foundation
 
 struct User: Decodable {
 
+    let name: String
     let uuid: String
     let zipCode: String
 
-    // TODO: add name
     enum CodingKeys: String, CodingKey {
         case uuid = "uid"
         case zipCode = "zip"
+        case name
     }
 }

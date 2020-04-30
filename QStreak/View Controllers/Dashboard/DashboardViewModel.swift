@@ -36,10 +36,12 @@ class DashboardViewModel {
         sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: 1, pageSize: 14)) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(response):
-                self.submissions = response.records
-                self.prepareCollectionView()
-            case let .failure(error):
+            case .success(let response):
+                if let response = response {
+                    self.submissions = response.records
+                    self.prepareCollectionView()
+                }
+            case .failure(let error):
                 print(error)
             }
         }

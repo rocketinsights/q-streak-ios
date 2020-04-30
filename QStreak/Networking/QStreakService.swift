@@ -70,7 +70,7 @@ extension QstreakService: NetworkService {
                                    "date": date,
                                    "destination_slugs": destinations]]
         case .getSubmissions(let page, let pageSize):
-            return [ "page": page, "page_size": pageSize ]        
+            return ["page": page, "page_size": pageSize]
         case .getDestinations, .deleteSubmission:
           return nil
         }

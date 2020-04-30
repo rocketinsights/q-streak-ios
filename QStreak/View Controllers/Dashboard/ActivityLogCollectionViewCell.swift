@@ -9,7 +9,6 @@
 import UIKit
 
 class ActivityLogCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var dayNumberLabel: UILabel!
     @IBOutlet weak var completionStatusImageView: UIImageView!

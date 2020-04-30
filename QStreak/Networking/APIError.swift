@@ -9,7 +9,7 @@
 import Foundation
 
 struct APIError: Decodable {
-    var errors: [String:[String]]
+    var errors: [String: [String]]
 
     func message() -> String {
         return self.errors.map { "\($0.key.snakeCaseToWords()) \($0.value.joined(separator: ", "))" }

@@ -18,6 +18,10 @@
 		990B4552243E510D00177002 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4551243E510D00177002 /* Activity.swift */; };
 		992249BB2440F92800A4790A /* QStreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BA2440F92800A4790A /* QStreakService.swift */; };
 		992249BD2441010700A4790A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BC2441010700A4790A /* User.swift */; };
+		9938CCBE2459D24B002E2B49 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938CCBD2459D24B002E2B49 /* DashboardViewController.swift */; };
+		9938CCC02459D295002E2B49 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938CCBF2459D295002E2B49 /* DashboardViewModel.swift */; };
+		9938CCC22459D2BF002E2B49 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9938CCC12459D2BF002E2B49 /* DashboardViewController.storyboard */; };
+		9938CCC42459F61B002E2B49 /* ActivityLogCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938CCC32459F61B002E2B49 /* ActivityLogCollectionViewCell.swift */; };
 		9946D6CD24509627005D5A7C /* QButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D6CC24509627005D5A7C /* QButton.swift */; };
 		9946D6D12450A7F8005D5A7C /* QTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9946D6D02450A7F8005D5A7C /* QTextField.swift */; };
 		9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */; };
@@ -79,6 +83,10 @@
 		990B4551243E510D00177002 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		992249BA2440F92800A4790A /* QStreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QStreakService.swift; sourceTree = "<group>"; };
 		992249BC2441010700A4790A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9938CCBD2459D24B002E2B49 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		9938CCBF2459D295002E2B49 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		9938CCC12459D2BF002E2B49 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
+		9938CCC32459F61B002E2B49 /* ActivityLogCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCollectionViewCell.swift; sourceTree = "<group>"; };
 		9946D6CC24509627005D5A7C /* QButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QButton.swift; sourceTree = "<group>"; };
 		9946D6D02450A7F8005D5A7C /* QTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QTextField.swift; sourceTree = "<group>"; };
 		9955F944243F7DA700077C58 /* AddRecordViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddRecordViewController.storyboard; sourceTree = "<group>"; };
@@ -147,6 +155,7 @@
 			children = (
 				990B4554243E65A300177002 /* Account Setup */,
 				9955F943243F7D8100077C58 /* Add Record */,
+				9938CCBC2459D227002E2B49 /* Dashboard */,
 				990B4555243E65AF00177002 /* Record List */,
 				D5048AF8243F8FAE0029AE0C /* View Record */,
 			);
@@ -195,6 +204,17 @@
 				99A908DC243E1EDF00628E3F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9938CCBC2459D227002E2B49 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				9938CCC32459F61B002E2B49 /* ActivityLogCollectionViewCell.swift */,
+				9938CCC12459D2BF002E2B49 /* DashboardViewController.storyboard */,
+				9938CCBD2459D24B002E2B49 /* DashboardViewController.swift */,
+				9938CCBF2459D295002E2B49 /* DashboardViewModel.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		9946D6CB245095F3005D5A7C /* UI Elements */ = {
@@ -412,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9938CCC22459D2BF002E2B49 /* DashboardViewController.storyboard in Resources */,
 				9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */,
 				D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */,
 				2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */,
@@ -464,12 +485,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9938CCC42459F61B002E2B49 /* ActivityLogCollectionViewCell.swift in Sources */,
 				2C38EE57244A471A006CDF7D /* WelcomeViewController.swift in Sources */,
 				9955F974243FE4D700077C58 /* NetworkError.swift in Sources */,
 				D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */,
 				99746A0A2444E31100829473 /* Submission.swift in Sources */,
 				9955F96E243FE0D600077C58 /* ParameterEncoding.swift in Sources */,
 				9955F980243FF32900077C58 /* URLSession+Extentions.swift in Sources */,
+				9938CCC02459D295002E2B49 /* DashboardViewModel.swift in Sources */,
 				992249BD2441010700A4790A /* User.swift in Sources */,
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
@@ -496,6 +519,7 @@
 				D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */,
 				9955F97A243FE6BC00077C58 /* Networkable.swift in Sources */,
 				9955F970243FE13C00077C58 /* URLComponents+Extensions.swift in Sources */,
+				9938CCBE2459D24B002E2B49 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

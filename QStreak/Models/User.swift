@@ -10,15 +10,13 @@ import Foundation
 
 struct User: Decodable {
 
-    let age: Int
-    let householdSize: Int
-    let uuid: String
+    let name: String
     let zipCode: String
+    let uuid: String
 
     enum CodingKeys: String, CodingKey {
-        case age
-        case householdSize = "household_size"
-        case uuid = "uid"
+        case name
         case zipCode = "zip"
+        case uuid = "uid"
     }
 }

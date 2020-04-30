@@ -19,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if UserDefaults.standard.string(forKey: "uuid") != nil {
             window = window ?? UIWindow()
-            let recordListViewControllerStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-            let recordListViewController = recordListViewControllerStoryboard.instantiateInitialViewController()
-            window?.rootViewController = recordListViewController
+            let dashboardViewControllerStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
+            let dashboardViewController = dashboardViewControllerStoryboard.instantiateInitialViewController()
+            window?.rootViewController = dashboardViewController
             window?.makeKeyAndVisible()
         }
         guard (scene as? UIWindowScene) != nil else { return }

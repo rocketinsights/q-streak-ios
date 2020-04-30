@@ -9,10 +9,10 @@
 import Foundation
 
 enum QstreakService {
-    case signUp(age: Int, householdSize: Int, zipCode: String)
+    case signUp(name: String?, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
     case getDestinations
-    case getSubmissions(page: Int)
+    case getSubmissions(page: Int, pageSize: Int)
     case deleteSubmission(submissionId: Int)
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
@@ -29,13 +29,13 @@ extension QstreakService: NetworkService {
     var path: String {
         switch self {
         case .signUp:
-            return "/api/signup"
+            return "/signup"
         case .createSubmission, .getSubmissions:
-            return "/api/submissions"
+            return "/submissions"
         case .getDestinations:
-            return "/api/destinations"
+            return "/destinations"
         case .deleteSubmission(let submissionId):
-            return "/api/submissions/\(submissionId)"
+            return "/submissions/\(submissionId)"
         }
     }
 
@@ -62,16 +62,15 @@ extension QstreakService: NetworkService {
 
     var parameters: Parameters? {
         switch self {
-        case .signUp(let age, let householdSize, let zipCode):
-            return ["account": ["age": age,
-                                "household_size": householdSize,
+        case .signUp(let name, let zipCode):
+            return ["account": ["name": name,
                                 "zip": zipCode]]
         case .createSubmission(let contactCount, let date, let destinations):
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
                                    "destination_slugs": destinations]]
-        case .getSubmissions(let page):
-            return [ "page": page, "page_size": 20 ]
+        case .getSubmissions(let page, let pageSize):
+            return [ "page": page, "page_size": pageSize ]        
         case .getDestinations, .deleteSubmission:
           return nil
         }

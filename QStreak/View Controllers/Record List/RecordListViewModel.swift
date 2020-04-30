@@ -47,7 +47,7 @@ class RecordListViewModel {
 
         isFetchInProgress = true
 
-        sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage)) { [weak self] result in
+        sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage, pageSize: 20)) { [weak self] result in
             switch result {
             case let .success(response):
                 DispatchQueue.main.async {

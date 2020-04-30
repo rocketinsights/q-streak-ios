@@ -14,9 +14,7 @@ class AccountSetupViewController: UIViewController {
 
     @IBOutlet private weak var zipCodeTextField: UITextField!
 
-    @IBOutlet private weak var ageTextField: UITextField!
-
-    @IBOutlet private weak var householdSizeTextField: UITextField!
+    @IBOutlet private weak var nameTextField: UITextField!
 
     @IBOutlet private weak var continueButton: UIButton!
 
@@ -37,7 +35,7 @@ class AccountSetupViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction private func continueButtonTapped(_ sender: Any) {
-        viewModel.continueButtonTapped(zipCode: zipCodeTextField.text, ageString: ageTextField.text, householdSizeString: householdSizeTextField.text)
+        viewModel.continueButtonTapped(name: nameTextField.text, zipCode: zipCodeTextField.text)
     }
 
 }

@@ -29,7 +29,7 @@ struct Submission: Decodable {
     let dateString: String
     let destinations: [Activity]
     let submissionID: Int
-    let dailyStats: DailyStat
+    let dailyStats: DailyStat?
     let score: Int
 
     enum CodingKeys: String, CodingKey {

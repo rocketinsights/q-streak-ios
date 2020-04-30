@@ -49,11 +49,14 @@ class AddRecordViewModel {
         guard
             let date = date,
             let contactCountString = contactCountString,
-            let contactCount = Int(contactCountString),
-            let selectedIndexPaths = selectedIndexPaths
-            else { return }
+            let contactCount = Int(contactCountString)
+        else { return }
 
-        let destinations = selectedIndexPaths.map { categories[$0.row].slug }
+        var destinations = [String]()
+
+        if let selectedIndexPaths = selectedIndexPaths {
+            destinations = selectedIndexPaths.map { categories[$0.row].slug }
+        }
 
         sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
             switch result {

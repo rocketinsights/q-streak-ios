@@ -29,13 +29,13 @@ extension QstreakService: NetworkService {
     var path: String {
         switch self {
         case .signUp:
-            return "/api/signup"
+            return "/signup"
         case .createSubmission, .getSubmissions:
-            return "/api/submissions"
+            return "/submissions"
         case .getDestinations:
-            return "/api/destinations"
+            return "/destinations"
         case .deleteSubmission(let submissionId):
-            return "/api/submissions/\(submissionId)"
+            return "/submissions/\(submissionId)"
         }
     }
 

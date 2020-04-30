@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Imf-45-WMQ">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -185,19 +185,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2Q-t4-ldF">
-                                <rect key="frame" x="30" y="362" width="354" height="39"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="q_streak_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="eww-u2-qFb">
+                                <rect key="frame" x="30" y="245" width="354" height="218"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="SSC-ip-9TD"/>
+                                    <constraint firstAttribute="height" constant="218" id="Rda-1t-JEw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2Q-t4-ldF">
+                                <rect key="frame" x="30" y="586" width="354" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="edZ-7g-uT1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋 See your impact of staying home and keeping your community safe " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RT3-CJ-oQE">
-                                <rect key="frame" x="30" y="414" width="354" height="46"/>
+                                <rect key="frame" x="30" y="638" width="354" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="e9x-Xf-iac"/>
+                                    <constraint firstAttribute="height" constant="46" id="8ZB-3I-20j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -207,7 +213,7 @@
                                 <rect key="frame" x="30" y="746" width="354" height="56"/>
                                 <color key="backgroundColor" red="0.5490196078431373" green="0.96078431372549022" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="kmT-QR-GFW"/>
+                                    <constraint firstAttribute="height" constant="56" id="CNY-Q0-k2a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="Get started">
@@ -225,30 +231,25 @@
                                     <action selector="getStartedButtonTapped:" destination="1yQ-61-FOK" eventType="touchUpInside" id="TKf-3A-NEd"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="q_streak_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="eww-u2-qFb">
-                                <rect key="frame" x="55" y="94" width="304" height="218"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="304" id="Qxf-d1-e2W"/>
-                                    <constraint firstAttribute="height" constant="218" id="UbB-o0-FAx"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="trailing" secondItem="E2Q-t4-ldF" secondAttribute="trailing" constant="30" id="2q1-7e-S0U"/>
-                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="trailing" secondItem="a9W-j7-PHQ" secondAttribute="trailing" constant="30" id="8NP-hA-fnt"/>
-                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="ACy-gs-fhL"/>
-                            <constraint firstItem="eww-u2-qFb" firstAttribute="top" secondItem="Eq1-2L-BSS" secondAttribute="top" constant="50" id="HhU-Nt-ByQ"/>
-                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="Ja2-DT-0jF"/>
-                            <constraint firstAttribute="trailing" secondItem="RT3-CJ-oQE" secondAttribute="trailing" constant="30" id="M9a-jD-h9U"/>
-                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="30" id="PRm-Uo-K3h"/>
-                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="bottom" secondItem="a9W-j7-PHQ" secondAttribute="bottom" constant="60" id="iGL-pi-8OL"/>
-                            <constraint firstItem="eww-u2-qFb" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="j12-Ol-vq0"/>
-                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="lOw-PW-mN6"/>
-                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="leading" secondItem="D0t-j7-GXW" secondAttribute="leading" constant="30" id="lav-rO-klN"/>
-                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="top" secondItem="E2Q-t4-ldF" secondAttribute="bottom" constant="13" id="ogw-37-dQg"/>
-                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="30" id="p0w-fZ-e8F"/>
-                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="top" secondItem="eww-u2-qFb" secondAttribute="bottom" constant="50" id="vC8-Dc-50l"/>
+                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="2eD-Uv-Msb"/>
+                            <constraint firstItem="eww-u2-qFb" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="2fg-ut-TTC"/>
+                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="30" id="6Pj-J0-keo"/>
+                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="leading" secondItem="Eq1-2L-BSS" secondAttribute="leading" constant="30" id="Ase-Rl-feY"/>
+                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="top" secondItem="E2Q-t4-ldF" secondAttribute="bottom" constant="13" id="C6K-cD-DKP"/>
+                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="top" secondItem="eww-u2-qFb" secondAttribute="bottom" constant="123" id="DHE-o3-Bho"/>
+                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="trailing" secondItem="a9W-j7-PHQ" secondAttribute="trailing" constant="30" id="I2D-V6-H1j"/>
+                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="bottom" secondItem="a9W-j7-PHQ" secondAttribute="bottom" constant="60" id="Kuz-UV-pfZ"/>
+                            <constraint firstItem="eww-u2-qFb" firstAttribute="leading" secondItem="D0t-j7-GXW" secondAttribute="leading" constant="30" id="L4w-hM-f0j"/>
+                            <constraint firstAttribute="trailing" secondItem="RT3-CJ-oQE" secondAttribute="trailing" constant="30" id="NYZ-mq-pnx"/>
+                            <constraint firstAttribute="trailing" secondItem="eww-u2-qFb" secondAttribute="trailing" constant="30" id="OOa-fx-uvb"/>
+                            <constraint firstItem="RT3-CJ-oQE" firstAttribute="leading" secondItem="D0t-j7-GXW" secondAttribute="leading" constant="30" id="Vgh-yl-63p"/>
+                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="top" secondItem="RT3-CJ-oQE" secondAttribute="bottom" constant="62" id="bX6-Xw-OUV"/>
+                            <constraint firstItem="a9W-j7-PHQ" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="eRm-mR-EgZ"/>
+                            <constraint firstItem="Eq1-2L-BSS" firstAttribute="trailing" secondItem="E2Q-t4-ldF" secondAttribute="trailing" constant="30" id="fpI-GF-prw"/>
+                            <constraint firstItem="E2Q-t4-ldF" firstAttribute="centerX" secondItem="D0t-j7-GXW" secondAttribute="centerX" id="qNh-Va-3S4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Eq1-2L-BSS"/>
                     </view>

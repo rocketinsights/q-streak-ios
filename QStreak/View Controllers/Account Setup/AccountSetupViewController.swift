@@ -16,7 +16,7 @@ class AccountSetupViewController: UIViewController {
 
     @IBOutlet weak var userNameTextField: QTextField!
 
-    @IBOutlet private weak var continueButton: UIButton!
+    @IBOutlet private weak var continueButton: QButton!
 
     // MARK: - Properties
 

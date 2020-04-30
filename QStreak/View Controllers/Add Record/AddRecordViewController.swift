@@ -9,7 +9,7 @@
 import UIKit
 
 class AddRecordViewController: UIViewController {
-    
+
     private let grey = UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.00)
 
     // MARK: - IBOutlets
@@ -20,9 +20,9 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet weak var contactCountTextField: QTextField!
 
-    @IBOutlet weak var decrementNumberOfPeopleButton: UIButton!
+    @IBOutlet weak var decrementNumberOfPeopleButton: QButton!
 
-    @IBOutlet weak var incrementNumberOfPeopleButton: UIButton!
+    @IBOutlet weak var incrementNumberOfPeopleButton: QButton!
 
     // MARK: - IBActions
 

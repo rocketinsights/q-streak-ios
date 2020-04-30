@@ -9,9 +9,8 @@
 import UIKit
 
 class AddRecordViewController: UIViewController {
-    // TODO: move these to a constants file?
-    let teal = UIColor(red: 0.55, green: 0.96, blue: 0.82, alpha: 0.30)
-    let grey = UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.00)
+    
+    private let grey = UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.00)
 
     // MARK: - IBOutlets
 

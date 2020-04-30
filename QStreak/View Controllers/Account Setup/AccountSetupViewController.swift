@@ -14,9 +14,9 @@ class AccountSetupViewController: UIViewController {
 
     @IBOutlet private weak var zipCodeTextField: UITextField!
 
-    @IBOutlet private weak var continueButton: QButton!
-
     @IBOutlet weak var userNameTextField: QTextField!
+    
+    @IBOutlet private weak var continueButton: QButton!
 
     // MARK: - Properties
 

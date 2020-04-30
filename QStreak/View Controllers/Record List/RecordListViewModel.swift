@@ -47,9 +47,9 @@ class RecordListViewModel {
 
         isFetchInProgress = true
 
-        sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage)) { [weak self] result in
+        sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage, pageSize: 20)) { [weak self] result in
             switch result {
-            case let .success(response):
+            case .success(let response):
                 guard let response = response else { return }
 
                 DispatchQueue.main.async {
@@ -62,7 +62,7 @@ class RecordListViewModel {
                     let indexPathsToReload = self?.calculateIndexPathsToReload(from: response.records)
                     self?.delegate?.onFetchCompleted(with: indexPathsToReload)
                 }
-            case let .failure(error):
+            case .failure(let error):
                 DispatchQueue.main.async {
                     self?.isFetchInProgress = false
                     self?.delegate?.onFetchFailed(error: error)

@@ -22,22 +22,19 @@ class AccountSetupViewModel {
 
     weak var delegate: AccountSetupViewModelDelegate?
 
-    func continueButtonTapped(zipCode: String?, userName: String?) {
-        guard
-            let zipCode = zipCode,
-            let userName = userName
-            else { return }
+    func continueButtonTapped(name: String?, zipCode: String?) {
+        guard let zipCode = zipCode else { return }
 
-        sessionProvider.request(type: User.self, service: QstreakService.signUp(zipCode: zipCode, userName: userName)) { [weak self] result in
+        sessionProvider.request(type: User.self, service: QstreakService.signUp(name: name, zipCode: zipCode)) { [weak self] result in
             switch result {
-            case let .success(user):
+            case .success(let user):
                 if let user = user {
                     UserDefaults.standard.set(user.uuid, forKey: "uuid")
                     DispatchQueue.main.async {
                         self?.delegate?.showAddRecordViewController()
                     }
                 }
-            case let .failure(error):
+            case .failure(let error):
                 self?.delegate?.failedAccountCreation(error: error)
             }
         }

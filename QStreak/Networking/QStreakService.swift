@@ -9,10 +9,10 @@
 import Foundation
 
 enum QstreakService {
-    case signUp(zipCode: String, userName: String)
+    case signUp(name: String?, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
     case getDestinations
-    case getSubmissions(page: Int)
+    case getSubmissions(page: Int, pageSize: Int)
     case deleteSubmission(submissionId: Int)
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
@@ -62,15 +62,15 @@ extension QstreakService: NetworkService {
 
     var parameters: Parameters? {
         switch self {
-        case .signUp(let zipCode, let userName):
-            return ["account": [ "zip": zipCode,
-                                "name": userName]]
+        case .signUp(let name, let zipCode):
+            return ["account": ["name": name,
+                                "zip": zipCode]]
         case .createSubmission(let contactCount, let date, let destinations):
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
                                    "destination_slugs": destinations]]
-        case .getSubmissions(let page):
-            return [ "page": page, "page_size": 20 ]
+        case .getSubmissions(let page, let pageSize):
+            return ["page": page, "page_size": pageSize]
         case .getDestinations, .deleteSubmission:
           return nil
         }

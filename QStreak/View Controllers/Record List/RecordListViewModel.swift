@@ -50,6 +50,8 @@ class RecordListViewModel {
         sessionProvider.request(type: PagedSubmissions.self, service: QstreakService.getSubmissions(page: currentPage, pageSize: 20)) { [weak self] result in
             switch result {
             case let .success(response):
+                guard let response = response else { return }
+
                 DispatchQueue.main.async {
                     self?.currentPage += 1
                     self?.totalPages = response.totalPages

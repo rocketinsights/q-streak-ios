@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NetworkProvider {
-    func request<T>(type: T.Type, service: NetworkService, completion: @escaping (Result<T, NetworkError>) -> Void) where T: Decodable
+    func request<T>(type: T.Type, service: NetworkService, completion: @escaping (Result<T?, NetworkError>) -> Void) where T: Decodable
 }

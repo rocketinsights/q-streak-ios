@@ -20,6 +20,10 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var viewHistoryButton: UIButton!
 
+    @IBOutlet private weak var scoreButton: UIButton!
+
+    @IBOutlet private weak var greetingLabel: UILabel!
+
     // MARK: - Properties
 
     private let viewModel = DashboardViewModel()
@@ -54,6 +58,25 @@ extension DashboardViewController: DashboardViewModelDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.submissionsToShow.count - 1, section: 0), at: .right, animated: false)
+
+            let scoreImage: UIImage?
+            switch self.viewModel.score {
+            case 1...5:
+                scoreImage = UIImage(named: "Score\(self.viewModel.score)")
+            default:
+                scoreImage = UIImage(named: "noScore")
+            }
+            self.scoreButton.setBackgroundImage(scoreImage, for: .normal)
+        }
+    }
+
+    func userUpdated(_ user: User) {
+        DispatchQueue.main.async {
+            if let firstName = user.name.components(separatedBy: .whitespaces).first?.capitalized {
+                self.greetingLabel.text = "Thanks For Tracking, \(firstName)!"
+            } else {
+                self.greetingLabel.text = "Thanks For Tracking!"
+            }
         }
     }
 }

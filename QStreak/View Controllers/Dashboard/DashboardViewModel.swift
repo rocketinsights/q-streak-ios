@@ -10,6 +10,7 @@ import Foundation
 
 protocol DashboardViewModelDelegate: AnyObject {
     func submissionsUpdated()
+    func userUpdated(_ user: User)
 }
 
 class DashboardViewModel {
@@ -24,10 +25,13 @@ class DashboardViewModel {
 
     weak var delegate: DashboardViewModelDelegate?
 
+    var score = 0
+
     // MARK: - Initializers
 
     init() {
         fetchSubmissions()
+        fetchUser()
     }
 
     // MARK: - Methods
@@ -40,6 +44,8 @@ class DashboardViewModel {
                 if let response = response {
                     self.submissions = response.records
                     self.prepareCollectionView()
+                    self.updateScore()
+                    self.delegate?.submissionsUpdated()
                 }
             case .failure(let error):
                 print(error)
@@ -70,7 +76,6 @@ class DashboardViewModel {
             }
         }
         self.submissionsToShow = submissionsToShow.reversed()
-        delegate?.submissionsUpdated()
     }
 
     func getDayAndDayNumber(at submissionIndex: Int) -> (day: String, dayNumber: Int)? {
@@ -83,5 +88,30 @@ class DashboardViewModel {
         let day = Calendar.current.shortWeekdaySymbols[weekday - 1]
 
         return (day, dayNumber)
+    }
+
+    private func updateScore() {
+        guard
+            let submission = submissions.first,
+            let submissionDate = Date.date(for: submission.dateString),
+            Calendar.current.isDateInToday(submissionDate)
+            else { return }
+
+        score = submission.score
+    }
+
+    private func fetchUser() {
+        sessionProvider.request(type: User.self, service: QstreakService.getUser) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let user):
+                if let user = user {
+                    self.delegate?.userUpdated(user)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

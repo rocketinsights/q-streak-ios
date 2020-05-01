@@ -14,6 +14,7 @@ enum QstreakService {
     case getDestinations
     case getSubmissions(page: Int, pageSize: Int)
     case deleteSubmission(submissionId: Int)
+    case getUser
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
 }
@@ -36,6 +37,8 @@ extension QstreakService: NetworkService {
             return "/destinations"
         case .deleteSubmission(let submissionId):
             return "/submissions/\(submissionId)"
+        case .getUser:
+            return "/me"
         }
     }
 
@@ -43,7 +46,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
-        case .getDestinations, .getSubmissions:
+        case .getDestinations, .getSubmissions, .getUser:
             return .get
         case .deleteSubmission:
             return .delete
@@ -54,7 +57,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission, .getDestinations, .getSubmissions, .deleteSubmission:
+        case .createSubmission, .getDestinations, .getSubmissions, .deleteSubmission, .getUser:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -71,7 +74,7 @@ extension QstreakService: NetworkService {
                                    "destination_slugs": destinations]]
         case .getSubmissions(let page, let pageSize):
             return ["page": page, "page_size": pageSize]
-        case .getDestinations, .deleteSubmission:
+        case .getDestinations, .deleteSubmission, .getUser:
           return nil
         }
     }
@@ -82,6 +85,8 @@ extension QstreakService: NetworkService {
             return .json
         case .getSubmissions, .getDestinations, .deleteSubmission:
             return .url
+        case .getUser:
+            return nil
         }
     }
 }

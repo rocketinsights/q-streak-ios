@@ -24,6 +24,12 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var greetingLabel: UILabel!
 
+    @IBOutlet private weak var placeholderView1: UIView!
+
+    @IBOutlet private weak var placeholderView2: UIView!
+
+    @IBOutlet private weak var recordActivityView: UIView!
+
     // MARK: - Properties
 
     private let viewModel = DashboardViewModel()
@@ -34,6 +40,8 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         setUpCollectionView()
+        setUpPlaceholderViews()
+        setUpRecordActivityView()
     }
 
     // MARK: IBActions
@@ -47,6 +55,28 @@ class DashboardViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    }
+
+    private func setUpPlaceholderViews() {
+        let borderColor = UIColor(red: 63 / 255, green: 61 / 255, blue: 86 / 255, alpha: 0.2).cgColor
+        placeholderView1.clipsToBounds = true
+        placeholderView1.layer.cornerRadius = 11
+        placeholderView1.layer.borderWidth = 1
+        placeholderView1.layer.borderColor = borderColor
+
+        placeholderView2.clipsToBounds = true
+        placeholderView2.layer.cornerRadius = 11
+        placeholderView2.layer.borderWidth = 1
+        placeholderView2.layer.borderColor = borderColor
+    }
+
+    private func setUpRecordActivityView() {
+        recordActivityView.layer.cornerRadius = 20
+        recordActivityView.layer.shadowColor = UIColor(red: 213 / 255, green: 214 / 255, blue: 219 / 255, alpha: 0.3).cgColor
+        recordActivityView.layer.shadowOpacity = 1
+        recordActivityView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        recordActivityView.layer.shadowRadius = 10
+        recordActivityView.layer.shadowPath = UIBezierPath(rect: recordActivityView.bounds).cgPath
     }
 }
 

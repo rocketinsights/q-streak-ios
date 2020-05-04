@@ -64,11 +64,11 @@ class RecordDetailViewController: UIViewController {
     private func setupViews() {
         recordDateLabel.text = viewModel.record.dateString
         contactCountLabel.text = String(viewModel.record.contactCount)
-        dailyStatsDateLabel.text = viewModel.record.dailyStats.date
-        totalCasesLabel.text = String(viewModel.record.dailyStats.cases)
-        totalDeathsLabel.text = String(viewModel.record.dailyStats.deaths)
+        dailyStatsDateLabel.text = viewModel.record.dailyStats?.date
+        totalCasesLabel.text = String(viewModel.record.dailyStats?.cases ?? 0)
+        totalDeathsLabel.text = String(viewModel.record.dailyStats?.deaths ?? 0)
         quarantineScoreLabel.text = String(viewModel.record.score)
-        riskLevelLabel.text = String(viewModel.record.dailyStats.riskLevel)
+        riskLevelLabel.text = String(viewModel.record.dailyStats?.riskLevel ?? 0)
         activityLabel.text = viewModel.record.destinations
                                 .map { $0.name }
                                 .joined(separator: ", ")

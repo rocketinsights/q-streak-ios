@@ -26,6 +26,7 @@ class RecordListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.delegate = self
 
         tableView.dataSource = self
@@ -41,14 +42,15 @@ class RecordListViewController: UIViewController {
     @IBAction private func addRecordBarButtonItemTapped(_ sender: Any) {
         let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
         let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
-
-        self.navigationController?.pushViewController(addRecordViewController, animated: true)
+        addRecordViewController.presentationController?.delegate = self
+        present(addRecordViewController, animated: true, completion: nil)
     }
 
     // MARK: - Methods
 
     private func setUpNavigationBar() {
-        navigationItem.setHidesBackButton(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.setHidesBackButton(true, animated: false)
     }
 
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
@@ -125,5 +127,13 @@ extension RecordListViewController: RecordListViewModelDelegate {
 
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension RecordListViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        viewModel.resetPagination()
+        tableView.reloadData()
+        viewModel.fetchRecords()
     }
 }

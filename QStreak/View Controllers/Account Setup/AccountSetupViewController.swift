@@ -12,11 +12,11 @@ class AccountSetupViewController: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var zipCodeTextField: UITextField!
+    @IBOutlet private weak var zipCodeTextField: QTextField!
 
-    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var userNameTextField: QTextField!
 
-    @IBOutlet private weak var continueButton: UIButton!
+    @IBOutlet private weak var continueButton: QButton!
 
     // MARK: - Properties
 
@@ -35,7 +35,7 @@ class AccountSetupViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction private func continueButtonTapped(_ sender: Any) {
-        viewModel.continueButtonTapped(name: nameTextField.text, zipCode: zipCodeTextField.text)
+        viewModel.continueButtonTapped(name: userNameTextField.text, zipCode: zipCodeTextField.text)
     }
 
 }
@@ -43,10 +43,10 @@ class AccountSetupViewController: UIViewController {
 extension AccountSetupViewController: AccountSetupViewModelDelegate {
 
     func showAddRecordViewController() {
-        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
-        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        let recordListViewStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
+        let recordListViewController = recordListViewStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
 
-        navigationController?.pushViewController(addRecordViewController, animated: true)
+        navigationController?.pushViewController(recordListViewController, animated: true)
     }
 
     func failedAccountCreation(error: NetworkError) {

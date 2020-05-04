@@ -102,7 +102,7 @@ extension DashboardViewController: DashboardViewModelDelegate {
 
     func userUpdated(_ user: User) {
         DispatchQueue.main.async {
-            if let firstName = user.name.components(separatedBy: .whitespaces).first?.capitalized {
+            if let firstName = user.name?.components(separatedBy: .whitespaces).first?.capitalized {
                 self.greetingLabel.text = "Thanks For Tracking, \(firstName)!"
             } else {
                 self.greetingLabel.text = "Thanks For Tracking!"

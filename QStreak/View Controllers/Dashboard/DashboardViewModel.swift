@@ -6,7 +6,7 @@
 //  Copyright © 2020 Rocket Insights. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol DashboardViewModelDelegate: AnyObject {
     func submissionsUpdated()
@@ -26,6 +26,12 @@ class DashboardViewModel {
     weak var delegate: DashboardViewModelDelegate?
 
     var score = 0
+
+    let calendar = Calendar.current
+
+    private var numberOfDaysInWeek: Int {
+        return calendar.range(of: .weekday, in: .weekOfYear, for: calendar.startOfDay(for: Date()))?.count ?? 0
+    }
 
     // MARK: - Initializers
 
@@ -54,20 +60,24 @@ class DashboardViewModel {
     }
 
     private func prepareCollectionView() {
-        let currentDate = Date()
-        guard let collectionViewStartDate = Calendar.current.date(byAdding: .weekOfYear, value: -2, to: currentDate) else { return }
+        let days = getCollectionViewDates()
+
+        guard let collectionViewStartDate = days.first else { return }
+
         let submissions = self.submissions.filter {
             if let date = Date.date(for: $0.dateString) {
-                return date > collectionViewStartDate
+                let submissionDate = calendar.startOfDay(for: date)
+                return submissionDate >= collectionViewStartDate
             }
             return false
         }
 
-        var submissionsToShow: [Submission?] = Array(repeating: nil, count: 14)
+        var submissionsToShow: [Submission?] = Array(repeating: nil, count: numberOfDaysInWeek * 2)
 
         submissions.forEach {
-            if let submissionDate = Date.date(for: $0.dateString) {
-                let dateComponents = Calendar.current.dateComponents([.day], from: submissionDate, to: currentDate)
+            if let date = Date.date(for: $0.dateString) {
+                let submissionDate = calendar.startOfDay(for: date)
+                let dateComponents = calendar.dateComponents([.day], from: collectionViewStartDate, to: submissionDate)
                 if let days = dateComponents.day,
                     days >= 0,
                     days < submissionsToShow.count {
@@ -75,26 +85,53 @@ class DashboardViewModel {
                 }
             }
         }
-        self.submissionsToShow = submissionsToShow.reversed()
+        self.submissionsToShow = submissionsToShow
     }
 
     func getDayAndDayNumber(at submissionIndex: Int) -> (day: String, dayNumber: Int)? {
+        let days = getCollectionViewDates()
+
         guard
-            let date = Calendar.current.date(byAdding: .day, value: submissionIndex - 13, to: Date()),
-            let weekday = Calendar.current.dateComponents([.weekday, .day], from: date).weekday,
-            let dayNumber = Calendar.current.dateComponents([.weekday, .day], from: date).day
+            let collectionViewStartDate = days.first,
+            let date = calendar.date(byAdding: .day, value: submissionIndex, to: collectionViewStartDate),
+            let weekday = calendar.dateComponents([.weekday, .day], from: date).weekday,
+            let dayNumber = calendar.dateComponents([.weekday, .day], from: date).day
             else { return nil }
 
-        let day = Calendar.current.shortWeekdaySymbols[weekday - 1]
+        let day = calendar.shortWeekdaySymbols[weekday - 1]
 
         return (day, dayNumber)
+    }
+
+    private func getCollectionViewDates() -> [Date] {
+        let today = calendar.startOfDay(for: Date())
+        let dayOfWeek = calendar.component(.weekday, from: today)
+
+        guard let weekdays = calendar.range(of: .weekday, in: .weekOfYear, for: today) else { return [] }
+
+        return ((weekdays.lowerBound - weekdays.count) ..< weekdays.upperBound)
+            .compactMap { calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: today) }
+    }
+
+    func getActivityLogStatusImage(for submissionIndex: Int) -> UIImage? {
+        if submissionsToShow[submissionIndex] != nil {
+            return UIImage(named: "greenCheck")
+        } else {
+            let days = getCollectionViewDates()
+            let date = days[submissionIndex]
+            let today = calendar.startOfDay(for: Date())
+            if date > today {
+                return UIImage(named: "emptyCheck")
+            }
+            return UIImage(named: "fadedCheck")
+        }
     }
 
     private func updateScore() {
         guard
             let submission = submissions.first,
             let submissionDate = Date.date(for: submission.dateString),
-            Calendar.current.isDateInToday(submissionDate)
+            calendar.isDateInToday(submissionDate)
             else { return }
 
         score = submission.score

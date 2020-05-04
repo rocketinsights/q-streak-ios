@@ -62,7 +62,7 @@ class DashboardViewController: UIViewController {
     private func setUpCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        collectionView.isPagingEnabled = true
     }
 
     private func setUpPlaceholderViews() {
@@ -130,14 +130,7 @@ extension DashboardViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "activityLogCell", for: indexPath) as? ActivityLogCollectionViewCell else { return UICollectionViewCell() }
 
-        if indexPath.item == viewModel.submissionsToShow.count - 1,
-            viewModel.submissionsToShow[indexPath.item] == nil {
-            cell.completionStatusImageView.image = UIImage(named: "fadedCheck")
-        } else if viewModel.submissionsToShow[indexPath.item] != nil {
-            cell.completionStatusImageView.image = UIImage(named: "greenCheck")
-        } else {
-            cell.completionStatusImageView.image = UIImage(named: "emptyCheck")
-        }
+        cell.completionStatusImageView.image = viewModel.getActivityLogStatusImage(for: indexPath.item)
 
         let dayStrings = viewModel.getDayAndDayNumber(at: indexPath.item)
         cell.dayLabel.text = dayStrings?.day.uppercased()
@@ -152,6 +145,6 @@ extension DashboardViewController: UICollectionViewDataSource {
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 36, height: 70)
+        return CGSize(width: collectionView.bounds.width / 7, height: 70)
     }
 }

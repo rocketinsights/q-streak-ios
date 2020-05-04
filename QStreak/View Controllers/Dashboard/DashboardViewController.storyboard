@@ -74,8 +74,8 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sm5-8D-0gG">
                                                         <rect key="frame" x="0.0" y="92.5" width="414" height="73.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="wey-KQ-6qd">
-                                                            <size key="itemSize" width="36" height="70"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1B0-FK-LXC">
+                                                            <size key="itemSize" width="128" height="128"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -109,15 +109,14 @@
                                                                         </imageView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="9nx-0G-gL4" secondAttribute="trailing" id="LrS-eG-fFm"/>
                                                                         <constraint firstItem="YA0-hG-MGG" firstAttribute="top" secondItem="6Pr-TE-p7V" secondAttribute="top" id="XUp-qK-EmO"/>
                                                                         <constraint firstItem="YA0-hG-MGG" firstAttribute="leading" secondItem="6Pr-TE-p7V" secondAttribute="leading" id="aGB-70-TJM"/>
                                                                         <constraint firstItem="9nx-0G-gL4" firstAttribute="top" secondItem="YA0-hG-MGG" secondAttribute="bottom" constant="6" id="cOx-5O-7M7"/>
                                                                         <constraint firstAttribute="trailing" secondItem="AdN-ep-bKd" secondAttribute="trailing" id="dt0-qz-SXp"/>
                                                                         <constraint firstItem="AdN-ep-bKd" firstAttribute="leading" secondItem="6Pr-TE-p7V" secondAttribute="leading" id="j31-Ej-66A"/>
+                                                                        <constraint firstItem="9nx-0G-gL4" firstAttribute="centerX" secondItem="6Pr-TE-p7V" secondAttribute="centerX" id="lHV-A5-tSS"/>
                                                                         <constraint firstItem="AdN-ep-bKd" firstAttribute="top" secondItem="9nx-0G-gL4" secondAttribute="bottom" constant="6" id="nk4-LP-iHt"/>
                                                                         <constraint firstAttribute="bottom" secondItem="AdN-ep-bKd" secondAttribute="bottom" id="pu7-Td-e1m"/>
-                                                                        <constraint firstItem="9nx-0G-gL4" firstAttribute="leading" secondItem="6Pr-TE-p7V" secondAttribute="leading" id="v5G-eh-fwS"/>
                                                                         <constraint firstAttribute="trailing" secondItem="YA0-hG-MGG" secondAttribute="trailing" id="zcN-pm-1Fw"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>

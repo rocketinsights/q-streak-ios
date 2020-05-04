@@ -49,13 +49,16 @@ class AddRecordViewModel {
         guard
             let date = date,
             let contactCountString = contactCountString,
-            let contactCount = Int(contactCountString),
-            let selectedIndexPaths = selectedIndexPaths
-            else { return }
+            let contactCount = Int(contactCountString)
+        else { return }
 
-        let destinations = selectedIndexPaths.map { categories[$0.row].slug }
+        var destinations = [String]()
 
-        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate, destinations: destinations)) { [weak self ] result in
+        if let selectedIndexPaths = selectedIndexPaths {
+            destinations = selectedIndexPaths.map { categories[$0.row].slug }
+        }
+
+        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
             switch result {
             case .success(let submission):
                 if let submission = submission {
@@ -75,5 +78,13 @@ class AddRecordViewModel {
             else { return false }
 
         return contactCount > 0 ? true : false
+    }
+
+    func decrementedContactCount(currentCount: String) -> Int {
+        return (Int(currentCount) ?? 0) - 1
+    }
+
+    func incrementedContactCount(currentCount: String) -> Int {
+        return (Int(currentCount) ?? 0) + 1
     }
 }

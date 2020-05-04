@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var getStartedButton: UIButton!
+    @IBOutlet private weak var getStartedButton: QButton!
 
     // MARK: - IBAction
 
@@ -20,5 +20,4 @@ class WelcomeViewController: UIViewController {
         guard let accountSetupViewController = self.storyboard?.instantiateViewController(withIdentifier: String(describing: AccountSetupViewController.self)) else { return }
         self.navigationController?.pushViewController(accountSetupViewController, animated: true)
     }
-
 }

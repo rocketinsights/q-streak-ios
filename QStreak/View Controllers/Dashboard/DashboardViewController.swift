@@ -58,6 +58,12 @@ class DashboardViewController: UIViewController {
     }
 
     // MARK: - Methods
+    @IBAction func recordActivityButtonTapped(_ sender: Any) {
+        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
+        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        addRecordViewController.presentationController?.delegate = self
+        present(addRecordViewController, animated: true, completion: nil)
+    }
 
     private func setUpCollectionView() {
         collectionView.dataSource = self
@@ -110,7 +116,7 @@ extension DashboardViewController: DashboardViewModelDelegate {
 
     func userUpdated(_ user: User) {
         DispatchQueue.main.async {
-            if let firstName = user.name.components(separatedBy: .whitespaces).first?.capitalized {
+            if let firstName = user.name?.components(separatedBy: .whitespaces).first?.capitalized {
                 self.greetingLabel.text = "Thanks For Tracking, \(firstName)!"
             } else {
                 self.greetingLabel.text = "Thanks For Tracking!"
@@ -146,5 +152,11 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width / 7, height: 70)
+    }
+}
+
+extension DashboardViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.viewModel.fetchSubmissions()
     }
 }

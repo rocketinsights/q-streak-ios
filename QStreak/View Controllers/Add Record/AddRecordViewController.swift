@@ -10,15 +10,54 @@ import UIKit
 
 class AddRecordViewController: UIViewController {
 
+    private let grey = UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.00)
+
     // MARK: - IBOutlets
-
-    @IBOutlet private weak var contactCountTextField: UITextField!
-
-    @IBOutlet private weak var dateTextField: UITextField!
 
     @IBOutlet private weak var tableView: UITableView!
 
-    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var submissionDateLabel: UILabel!
+
+    @IBOutlet private weak var contactCountTextField: QTextField!
+
+    @IBOutlet private weak var decrementNumberOfPeopleButton: QButton!
+
+    @IBOutlet private weak var incrementNumberOfPeopleButton: QButton!
+
+    // MARK: - IBActions
+
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        viewModel.saveButtonTapped(date: Date(), contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+    }
+
+    @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
+        if let fieldValue = self.contactCountTextField.text {
+            let newNum = viewModel.decrementedContactCount(currentCount: fieldValue)
+
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
+
+            self.contactCountTextField.text = "\(newNum)"
+        }
+    }
+
+    @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
+        if let fieldText = self.contactCountTextField.text {
+            let newNum = viewModel.incrementedContactCount(currentCount: fieldText)
+
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
+
+            self.contactCountTextField.text = "\(newNum)"
+        }
+    }
+
+    @IBAction func contactCountTextFieldEditingChanged(_ sender: Any) {
+        if let fieldText = self.contactCountTextField.text {
+            if fieldText.isEmpty { return }
+
+            let newNum = Int(fieldText) ?? 0
+            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
+        }
+    }
 
     // MARK: - Properties
 
@@ -32,26 +71,37 @@ class AddRecordViewController: UIViewController {
         viewModel.delegate = self
 
         tableView.allowsMultipleSelection = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 44
 
-        let datePicker = UIDatePicker()
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
-        datePicker.datePickerMode = .date
-        dateTextField.inputView = datePicker
-        dateTextField.text = Date().formattedDate
+        setDefaultFieldValues()
     }
 
-    // MARK: - IBActions
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
 
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        viewModel.saveButtonTapped(date: (dateTextField.inputView as? UIDatePicker)?.date, contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+        if let presentationController = presentationController {
+            presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
+        }
     }
 
     // MARK: - Methods
 
-    @objc private func datePickerChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateTextField.text = dateFormatter.string(from: sender.date)
+    func setDefaultFieldValues() {
+        self.submissionDateLabel.text = "\(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
+        self.contactCountTextField.text = "0"
+        self.decrementNumberOfPeopleButton.tintColor = grey
+    }
+
+    private func setDecrementNumberOfPeopleButtonStyles(newNumber: Int) {
+        if newNumber < 1 {
+            self.decrementNumberOfPeopleButton.tintColor = grey
+            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = false
+        } else {
+            self.decrementNumberOfPeopleButton.tintColor = UIColor.black
+            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
+        }
     }
 }
 
@@ -64,19 +114,31 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = viewModel.categories[indexPath.row].name
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
+
+        cell.activityCellLabel?.text = viewModel.categories[indexPath.row].name
+
+        let imageName = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false ? "squareCheckboxChecked" : "squareCheckboxUnchecked"
+        cell.setImageAs(imageName: imageName)
+
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+        // swiftlint:disable force_cast
+        let cell = tableView.cellForRow(at: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
+        cell.setImageAs(imageName: "squareCheckboxChecked")
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+        // swiftlint:disable force_cast
+        let cell = tableView.cellForRow(at: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
+
+        cell.setImageAs(imageName: "squareCheckboxUnchecked")
     }
 }
 
@@ -87,11 +149,7 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
     }
 
     func addedSubmission(record: RecordDetailViewModel) {
-        DispatchQueue.main.async {
-            if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: record, comingFromCreation: true) {
-                self.navigationController?.pushViewController(recordDetailViewController, animated: true)
-            }
-        }
+        DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
     }
 
     func failedSubmission(error: NetworkError) {

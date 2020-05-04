@@ -12,21 +12,13 @@ class RecordDetailViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet private weak var recordDateLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
-    @IBOutlet private weak var contactCountLabel: UILabel!
+    @IBOutlet weak var submissionDateLabel: UILabel!
 
-    @IBOutlet private weak var activityLabel: UILabel!
+    @IBOutlet weak var submissionRatingImage: UIImageView!
 
-    @IBOutlet private weak var totalCasesLabel: UILabel!
-
-    @IBOutlet private weak var totalDeathsLabel: UILabel!
-
-    @IBOutlet private weak var dailyStatsDateLabel: UILabel!
-
-    @IBOutlet weak var quarantineScoreLabel: UILabel!
-
-    @IBOutlet weak var riskLevelLabel: UILabel!
+    @IBOutlet weak var contactCountLabel: UILabel!
 
     // MARK: - Properties
 
@@ -52,8 +44,7 @@ class RecordDetailViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel.delegate = self
-
-        setupNavBar()
+        setupNavbar()
         setupViews()
     }
 
@@ -62,40 +53,75 @@ class RecordDetailViewController: UIViewController {
     }
 
     private func setupViews() {
-        recordDateLabel.text = viewModel.record.dateString
-        contactCountLabel.text = String(viewModel.record.contactCount)
-        dailyStatsDateLabel.text = viewModel.record.dailyStats?.date
-        totalCasesLabel.text = String(viewModel.record.dailyStats?.cases ?? 0)
-        totalDeathsLabel.text = String(viewModel.record.dailyStats?.deaths ?? 0)
-        quarantineScoreLabel.text = String(viewModel.record.score)
-        riskLevelLabel.text = String(viewModel.record.dailyStats?.riskLevel ?? 0)
-        activityLabel.text = viewModel.record.destinations
-                                .map { $0.name }
-                                .joined(separator: ", ")
+        setSubmissionDateLabel()
+        setContactLabel()
+        setRatingImage()
+        setupTableView()
     }
-
-    private func setupNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-
-        if comingFromCreation {
-            // Make sure we always go back to the RecordListViewController
-            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-            self.navigationItem.setHidesBackButton(true, animated: false)
-            self.dashboardButton = UIBarButtonItem(title: "Dashboard", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backToDashboard(sender:)))
-            self.navigationItem.rightBarButtonItem = self.dashboardButton
-        }
-    }
-
-    @objc private func backToDashboard(sender: UIBarButtonItem) {
-        redirectToDashboard()
+    
+    private func setupNavbar() {
+        navigationController?.navigationBar.isHidden = true
     }
 
     func redirectToDashboard() {
         DispatchQueue.main.async {
-             let recordListStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-             let recordListViewController = recordListStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
-             self.navigationController?.pushViewController(recordListViewController, animated: true)
+             let dashboardStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
+             let dashboardViewController = dashboardStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
+             self.navigationController?.pushViewController(dashboardViewController, animated: true)
         }
+    }
+
+    private func setRatingImage() {
+        // TODO: fix this once API is updated
+        switch (self.viewModel.record.score ?? 0) {
+        case 1...5:
+            submissionRatingImage.image = UIImage(named: "Score\(String(describing: self.viewModel.record.score))Large")
+        default:
+            submissionRatingImage.image = UIImage(named: "noScoreLarge")
+        }
+    }
+
+    private func setContactLabel() {
+        if viewModel.record.contactCount < 1 {
+            contactCountLabel.text = "\(viewModel.record.contactCount) person"
+        } else {
+            contactCountLabel.text = "\(viewModel.record.contactCount) people"
+        }
+    }
+
+    private func setSubmissionDateLabel() {
+        submissionDateLabel.text = viewModel.record.titleizedDate()
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 44
+    }
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
+extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.record.destinations.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recordActivitiesCell", for: indexPath) as! SubmissionActivityCell
+        // swiftlint:enable force_cast
+
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor(red: 0.25, green: 0.24, blue: 0.34, alpha: 0.20).cgColor
+
+        cell.activityLabel?.text = viewModel.record.destinations[indexPath.row]?.name
+        cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 18)
+        cell.activityIcon.text = "\u{f0f4}"
+
+        return cell
     }
 }
 

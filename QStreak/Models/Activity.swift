@@ -12,4 +12,5 @@ struct Activity: Decodable {
 
     let name: String
     let slug: String
+    let icon: String
 }

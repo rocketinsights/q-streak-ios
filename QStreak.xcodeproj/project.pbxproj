@@ -53,6 +53,8 @@
 		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
 		D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F8662450BE410083DB6C /* String+Extensions.swift */; };
 		D5E2FE11246059E4006F63CA /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E2FE10246059E4006F63CA /* ActivityCell.swift */; };
+		D5E2FE18246095AB006F63CA /* SubmissionActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E2FE17246095AB006F63CA /* SubmissionActivityCell.swift */; };
+		D5E2FE1A2460C31A006F63CA /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5E2FE192460C302006F63CA /* fa-solid-900.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D5B1F8662450BE410083DB6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D5E2FE10246059E4006F63CA /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		D5E2FE17246095AB006F63CA /* SubmissionActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionActivityCell.swift; sourceTree = "<group>"; };
+		D5E2FE192460C302006F63CA /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-solid-900.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,9 +193,9 @@
 		990B4556243E65D800177002 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				99746A092444E31100829473 /* Submission.swift */,
 				990B4551243E510D00177002 /* Activity.swift */,
 				992249BC2441010700A4790A /* User.swift */,
-				99746A092444E31100829473 /* Submission.swift */,
 				D52E589F2448A1EB00A0C2FA /* DailyStat.swift */,
 			);
 			path = Models;
@@ -200,6 +204,7 @@
 		990B4557243E65FF00177002 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D5E2FE192460C302006F63CA /* fa-solid-900.ttf */,
 				2C7FF2982447884500D42000 /* q_streak_splash.png */,
 				99A908DA243E1EDF00628E3F /* Assets.xcassets */,
 				99A908DF243E1EDF00628E3F /* Info.plist */,
@@ -317,6 +322,7 @@
 				D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */,
 				D5048AF9243F90270029AE0C /* RecordDetailViewController.swift */,
 				D5048AFB243F90790029AE0C /* RecordDetailViewModel.swift */,
+				D5E2FE17246095AB006F63CA /* SubmissionActivityCell.swift */,
 			);
 			path = "View Record";
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 				2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
+				D5E2FE1A2460C31A006F63CA /* fa-solid-900.ttf in Resources */,
 				99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */,
 				99A908DB243E1EDF00628E3F /* Assets.xcassets in Resources */,
 			);
@@ -523,6 +530,7 @@
 				D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */,
 				9955F97A243FE6BC00077C58 /* Networkable.swift in Sources */,
 				9955F970243FE13C00077C58 /* URLComponents+Extensions.swift in Sources */,
+				D5E2FE18246095AB006F63CA /* SubmissionActivityCell.swift in Sources */,
 				9938CCBE2459D24B002E2B49 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

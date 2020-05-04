@@ -27,10 +27,11 @@ struct PagedSubmissions: Decodable {
 struct Submission: Decodable {
     let contactCount: Int
     let dateString: String
-    let destinations: [Activity]
+    let destinations: [Activity?]
     let submissionID: Int
     let dailyStats: DailyStat?
-    let score: Int
+    let riskEstimate: Float?
+    let score: Int?
 
     enum CodingKeys: String, CodingKey {
         case contactCount = "contact_count"
@@ -39,5 +40,14 @@ struct Submission: Decodable {
         case submissionID = "id"
         case dailyStats = "daily_stats"
         case score
+        case riskEstimate = "risk_estimate"
+    }
+
+    func titleizedDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+        let date = dateFormatter.date(from: self.dateString)
+
+        return date?.formattedDate(dateFormat: "EEEE MMMM d") ?? ""
     }
 }

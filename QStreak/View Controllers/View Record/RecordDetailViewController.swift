@@ -26,16 +26,13 @@ class RecordDetailViewController: UIViewController {
 
     var viewModel: RecordDetailViewModel!
 
-    var comingFromCreation = true
-
     // MARK: - Life Cycle
 
-    static func initialize(viewModel: RecordDetailViewModel, comingFromCreation: Bool) -> RecordDetailViewController? {
+    static func initialize(viewModel: RecordDetailViewModel) -> RecordDetailViewController? {
         let recordDetailStoryboard = UIStoryboard(name: String(describing: RecordDetailViewController.self), bundle: nil)
         let viewController = recordDetailStoryboard.instantiateViewController(identifier: "RecordDetailViewController") as? RecordDetailViewController
 
         viewController?.viewModel = viewModel
-        viewController?.comingFromCreation = comingFromCreation
 
         return viewController
     }
@@ -48,8 +45,16 @@ class RecordDetailViewController: UIViewController {
         setupViews()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     @IBAction private func deleteButtonTapped(_ sender: Any) {
         viewModel.deleteButtonTapped()
+    }
+
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
 
     private func setupViews() {
@@ -58,24 +63,14 @@ class RecordDetailViewController: UIViewController {
         setRatingImage()
         setupTableView()
     }
-    
     private func setupNavbar() {
-        navigationController?.navigationBar.isHidden = true
-    }
-
-    func redirectToDashboard() {
-        DispatchQueue.main.async {
-             let dashboardStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
-             let dashboardViewController = dashboardStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
-             self.navigationController?.pushViewController(dashboardViewController, animated: true)
-        }
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     private func setRatingImage() {
-        // TODO: fix this once API is updated
-        switch (self.viewModel.record.score ?? 0) {
+        switch self.viewModel.record.score {
         case 1...5:
-            submissionRatingImage.image = UIImage(named: "Score\(String(describing: self.viewModel.record.score))Large")
+            submissionRatingImage.image = UIImage(named: "score\(String(describing: self.viewModel.record.score))Large")
         default:
             submissionRatingImage.image = UIImage(named: "noScoreLarge")
         }
@@ -127,7 +122,9 @@ extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate
 
 extension RecordDetailViewController: RecordDetailViewModelDelegate {
     func submissionDeletionSuccess() {
-        redirectToDashboard()
+        let dashboardStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
+        let dashboardViewController = dashboardStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
+        self.navigationController?.pushViewController(dashboardViewController, animated: true)
     }
 
     func submissionDeletionFailure(error: NetworkError) {

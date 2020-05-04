@@ -136,8 +136,7 @@ class DashboardViewModel {
             calendar.isDateInToday(submissionDate)
             else { return }
 
-                // TODO: fix this once API is updated
-        score = submission.score ?? 2
+        score = submission.score
     }
 
     private func fetchUser() {

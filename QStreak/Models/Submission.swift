@@ -30,8 +30,8 @@ struct Submission: Decodable {
     let destinations: [Activity?]
     let submissionID: Int
     let dailyStats: DailyStat?
-    let riskEstimate: Float?
-    let score: Int?
+    let riskEstimate: Float
+    let score: Int
 
     enum CodingKeys: String, CodingKey {
         case contactCount = "contact_count"
@@ -48,6 +48,6 @@ struct Submission: Decodable {
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
         let date = dateFormatter.date(from: self.dateString)
 
-        return date?.formattedDate(dateFormat: "EEEE MMMM d") ?? ""
+        return date?.formattedDate(dateFormat: "EEEE, MMMM d") ?? ""
     }
 }

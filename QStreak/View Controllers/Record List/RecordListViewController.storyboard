@@ -63,15 +63,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="04U-2C-T9G"/>
                     </view>
-                    <navigationItem key="navigationItem" id="raw-Ek-KgY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vb2-Mg-LYm">
-                            <connections>
-                                <action selector="addRecordBarButtonItemTapped:" destination="xRD-a1-QX8" id="Lhz-1y-aXt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
-                        <outlet property="addRecordBarButtonItem" destination="Vb2-Mg-LYm" id="kBp-Iu-JeP"/>
                         <outlet property="tableView" destination="hse-JU-Uob" id="3WU-om-BO7"/>
                     </connections>
                 </viewController>

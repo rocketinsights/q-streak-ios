@@ -49,7 +49,7 @@ class RecordListViewController: UIViewController {
     // MARK: - Methods
 
     private func setUpNavigationBar() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
@@ -99,7 +99,7 @@ extension RecordListViewController: UITableViewDataSource, UITableViewDelegate, 
 extension RecordListViewController: RecordListViewModelDelegate {
 
     func showRecordDetailViewController(recordDetailViewModel: RecordDetailViewModel) {
-        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel, comingFromCreation: false) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
     }

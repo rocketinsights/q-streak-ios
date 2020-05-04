@@ -73,6 +73,7 @@ class AddRecordViewController: UIViewController {
         tableView.allowsMultipleSelection = true
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 44
 
         setDefaultFieldValues()
     }
@@ -113,23 +114,31 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
-        cell.textLabel?.text = viewModel.categories[indexPath.row].name
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
 
-        let iconName = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false ? "checkmark.square" : "square"
-        cell.imageView?.image = UIImage(systemName: iconName)
+        cell.activityCellLabel?.text = viewModel.categories[indexPath.row].name
+
+        let imageName = tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false ? "squareCheckboxChecked" : "squareCheckboxUnchecked"
+        cell.setImageAs(imageName: imageName)
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.imageView?.image = UIImage(systemName: "checkmark.square")
+        // swiftlint:disable force_cast
+        let cell = tableView.cellForRow(at: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
+        cell.setImageAs(imageName: "squareCheckboxChecked")
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.imageView?.image = UIImage(systemName: "square")
+        // swiftlint:disable force_cast
+        let cell = tableView.cellForRow(at: indexPath) as! ActivityCell
+        // swiftlint:enable force_cast
+
+        cell.setImageAs(imageName: "squareCheckboxUnchecked")
     }
 }
 

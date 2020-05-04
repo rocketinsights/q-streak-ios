@@ -79,4 +79,12 @@ class AddRecordViewModel {
 
         return contactCount > 0 ? true : false
     }
+    
+    func decrementedContactCount(currentCount: String) -> Int {
+        return (Int(currentCount) ?? 0) - 1
+    }
+    
+    func incrementedContactCount(currentCount: String) -> Int {
+        return (Int(currentCount) ?? 0) + 1
+    }
 }

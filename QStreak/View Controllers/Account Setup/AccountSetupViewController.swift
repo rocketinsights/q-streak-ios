@@ -12,9 +12,9 @@ class AccountSetupViewController: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var zipCodeTextField: UITextField!
+    @IBOutlet private weak var zipCodeTextField: QTextField!
 
-    @IBOutlet weak var userNameTextField: QTextField!
+    @IBOutlet private weak var userNameTextField: QTextField!
 
     @IBOutlet private weak var continueButton: QButton!
 

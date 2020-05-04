@@ -16,13 +16,13 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    @IBOutlet weak var submissionDateLabel: UILabel!
+    @IBOutlet private weak var submissionDateLabel: UILabel!
 
-    @IBOutlet weak var contactCountTextField: QTextField!
+    @IBOutlet private weak var contactCountTextField: QTextField!
 
-    @IBOutlet weak var decrementNumberOfPeopleButton: QButton!
+    @IBOutlet private weak var decrementNumberOfPeopleButton: QButton!
 
-    @IBOutlet weak var incrementNumberOfPeopleButton: QButton!
+    @IBOutlet private weak var incrementNumberOfPeopleButton: QButton!
 
     // MARK: - IBActions
 
@@ -32,7 +32,7 @@ class AddRecordViewController: UIViewController {
 
     @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
         if let fieldValue = self.contactCountTextField.text {
-            let newNum = (Int(fieldValue) ?? 0) - 1
+            let newNum = viewModel.decrementedContactCount(currentCount: fieldValue)
 
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 
@@ -42,7 +42,7 @@ class AddRecordViewController: UIViewController {
 
     @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
         if let fieldText = self.contactCountTextField.text {
-            let newNum = (Int(fieldText) ?? 0) + 1
+            let newNum = viewModel.incrementedContactCount(currentCount: fieldText)
 
             setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
 

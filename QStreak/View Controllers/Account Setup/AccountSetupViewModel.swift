@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AccountSetupViewModelDelegate: AnyObject {
-    func showAddRecordViewController()
+    func showDashboardViewController()
     func failedAccountCreation(error: NetworkError)
 }
 
@@ -31,7 +31,7 @@ class AccountSetupViewModel {
                 if let user = user {
                     UserDefaults.standard.set(user.uuid, forKey: "uuid")
                     DispatchQueue.main.async {
-                        self?.delegate?.showAddRecordViewController()
+                        self?.delegate?.showDashboardViewController()
                     }
                 }
             case .failure(let error):

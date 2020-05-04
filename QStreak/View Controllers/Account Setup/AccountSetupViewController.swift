@@ -42,11 +42,11 @@ class AccountSetupViewController: UIViewController {
 
 extension AccountSetupViewController: AccountSetupViewModelDelegate {
 
-    func showAddRecordViewController() {
-        let recordListViewStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-        let recordListViewController = recordListViewStoryboard.instantiateViewController(withIdentifier: String(describing: RecordListViewController.self))
+    func showDashboardViewController() {
+        let dashboardViewStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
+        let dashboardViewController = dashboardViewStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
 
-        navigationController?.pushViewController(recordListViewController, animated: true)
+        navigationController?.pushViewController(dashboardViewController, animated: true)
     }
 
     func failedAccountCreation(error: NetworkError) {

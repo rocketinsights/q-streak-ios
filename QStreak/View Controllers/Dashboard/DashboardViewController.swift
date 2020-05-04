@@ -50,6 +50,12 @@ class DashboardViewController: UIViewController {
     }
 
     // MARK: - Methods
+    @IBAction func recordActivityButtonTapped(_ sender: Any) {
+        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
+        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
+        addRecordViewController.presentationController?.delegate = self
+        present(addRecordViewController, animated: true, completion: nil)
+    }
 
     private func setUpCollectionView() {
         collectionView.dataSource = self
@@ -145,5 +151,11 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 36, height: 70)
+    }
+}
+
+extension DashboardViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.viewModel.fetchSubmissions()
     }
 }

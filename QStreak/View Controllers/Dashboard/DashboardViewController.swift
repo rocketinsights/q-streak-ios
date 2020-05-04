@@ -44,9 +44,17 @@ class DashboardViewController: UIViewController {
         setUpRecordActivityView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
     // MARK: IBActions
 
     @IBAction func viewHistoryButtonTapped(_ sender: Any) {
+        let recordListViewControllerStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
+        let recordListViewController = recordListViewControllerStoryboard.instantiateViewController(identifier: String(describing: RecordListViewController.self))
+        navigationController?.pushViewController(recordListViewController, animated: true)
     }
 
     // MARK: - Methods

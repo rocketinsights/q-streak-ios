@@ -20,9 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UserDefaults.standard.string(forKey: "uuid") != nil {
             window = window ?? UIWindow()
             let dashboardViewControllerStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
-            let dashboardViewController = dashboardViewControllerStoryboard.instantiateInitialViewController()
-            window?.rootViewController = dashboardViewController
-            window?.makeKeyAndVisible()
+            if let dashboardViewController = dashboardViewControllerStoryboard.instantiateInitialViewController() {
+                let navigationController = UINavigationController(rootViewController: dashboardViewController)
+                window?.rootViewController = navigationController
+                window?.makeKeyAndVisible()
+            }
         }
         guard (scene as? UIWindowScene) != nil else { return }
     }

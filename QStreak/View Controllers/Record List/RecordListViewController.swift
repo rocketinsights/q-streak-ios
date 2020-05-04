@@ -48,7 +48,7 @@ class RecordListViewController: UIViewController {
     // MARK: - Methods
 
     private func setUpNavigationBar() {
-        navigationItem.setHidesBackButton(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     func isLoadingCell(for indexPath: IndexPath) -> Bool {

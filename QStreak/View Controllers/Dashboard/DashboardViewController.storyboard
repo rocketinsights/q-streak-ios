@@ -61,16 +61,6 @@
                                                         <color key="textColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdE-Md-3HR">
-                                                        <rect key="frame" x="285" y="22" width="99" height="32"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                        <state key="normal" title="View History">
-                                                            <color key="titleColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="viewHistoryButtonTapped:" destination="D8d-ak-FG3" eventType="touchUpInside" id="otj-If-lBi"/>
-                                                        </connections>
-                                                    </button>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sm5-8D-0gG">
                                                         <rect key="frame" x="0.0" y="92.5" width="414" height="73.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,9 +124,7 @@
                                                 <constraints>
                                                     <constraint firstItem="Sm5-8D-0gG" firstAttribute="top" secondItem="kF5-Ua-6S4" secondAttribute="bottom" constant="20" id="6qn-OC-uYX"/>
                                                     <constraint firstAttribute="bottom" secondItem="Sm5-8D-0gG" secondAttribute="bottom" constant="34" id="C9A-W1-qlI"/>
-                                                    <constraint firstAttribute="trailing" secondItem="FdE-Md-3HR" secondAttribute="trailing" constant="30" id="CgB-Ob-0Bn"/>
                                                     <constraint firstItem="Sm5-8D-0gG" firstAttribute="leading" secondItem="FwJ-PN-unV" secondAttribute="leading" id="gBm-eM-D4Y"/>
-                                                    <constraint firstItem="FdE-Md-3HR" firstAttribute="top" secondItem="FwJ-PN-unV" secondAttribute="top" constant="22" id="h6N-HW-veG"/>
                                                     <constraint firstAttribute="trailing" secondItem="Sm5-8D-0gG" secondAttribute="trailing" id="kGr-Qe-AEF"/>
                                                     <constraint firstItem="kF5-Ua-6S4" firstAttribute="top" secondItem="Gna-lg-lq2" secondAttribute="bottom" constant="5" id="kPQ-6l-ECZ"/>
                                                     <constraint firstItem="Gna-lg-lq2" firstAttribute="leading" secondItem="FwJ-PN-unV" secondAttribute="leading" constant="30" id="rsh-tp-au7"/>
@@ -253,7 +241,6 @@
                         <outlet property="placeholderView2" destination="GCm-oG-587" id="gD1-kt-pij"/>
                         <outlet property="recordActivityView" destination="HlQ-pd-uwl" id="6IZ-Fq-92v"/>
                         <outlet property="scoreButton" destination="zCX-Z6-AYa" id="8J2-B1-PIl"/>
-                        <outlet property="viewHistoryButton" destination="FdE-Md-3HR" id="b8s-zh-rwc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExG-EK-KYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

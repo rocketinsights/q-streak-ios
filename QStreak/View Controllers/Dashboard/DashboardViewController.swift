@@ -18,8 +18,6 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var lastTwoWeeksLabel: UILabel!
 
-    @IBOutlet private weak var viewHistoryButton: UIButton!
-
     @IBOutlet private weak var scoreButton: UIButton!
 
     @IBOutlet private weak var greetingLabel: UILabel!
@@ -53,13 +51,6 @@ class DashboardViewController: UIViewController {
 
     // MARK: IBActions
 
-    @IBAction func viewHistoryButtonTapped(_ sender: Any) {
-        let recordListViewControllerStoryboard = UIStoryboard(name: String(describing: RecordListViewController.self), bundle: nil)
-        let recordListViewController = recordListViewControllerStoryboard.instantiateViewController(identifier: String(describing: RecordListViewController.self))
-        navigationController?.pushViewController(recordListViewController, animated: true)
-    }
-
-    // MARK: - Methods
     @IBAction func recordActivityButtonTapped(_ sender: Any) {
         if let addRecordViewController = AddRecordViewController.initialize(viewModel: AddRecordViewModel()) {
             addRecordViewController.presentationController?.delegate = self
@@ -67,6 +58,7 @@ class DashboardViewController: UIViewController {
         }
     }
 
+    // MARK: - Methods
     private func setUpCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -131,7 +123,7 @@ extension DashboardViewController: DashboardViewModelDelegate {
 
     func showSubmissionDetail(for submission: Submission) {
         let recordDetailViewModel = RecordDetailViewModel(record: submission)
-        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel, comingFromCreation: false) {
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }
     }

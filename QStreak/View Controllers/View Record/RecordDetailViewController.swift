@@ -77,7 +77,7 @@ class RecordDetailViewController: UIViewController {
     }
 
     private func setContactLabel() {
-        if viewModel.record.contactCount < 1 {
+        if viewModel.record.contactCount == 1 {
             contactCountLabel.text = "\(viewModel.record.contactCount) person"
         } else {
             contactCountLabel.text = "\(viewModel.record.contactCount) people"
@@ -91,7 +91,7 @@ class RecordDetailViewController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 44
+        tableView.rowHeight = 56
     }
 }
 
@@ -136,9 +136,11 @@ extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate
 
 extension RecordDetailViewController: RecordDetailViewModelDelegate {
     func submissionDeletionSuccess() {
-        let dashboardStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
-        let dashboardViewController = dashboardStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
-        self.navigationController?.pushViewController(dashboardViewController, animated: true)
+        DispatchQueue.main.async {
+            let dashboardStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
+            let dashboardViewController = dashboardStoryboard.instantiateViewController(withIdentifier: String(describing: DashboardViewController.self))
+            self.navigationController?.pushViewController(dashboardViewController, animated: true)
+        }
     }
 
     func submissionDeletionFailure(error: NetworkError) {

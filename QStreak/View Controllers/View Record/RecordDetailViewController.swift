@@ -112,10 +112,16 @@ extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(red: 0.25, green: 0.24, blue: 0.34, alpha: 0.20).cgColor
 
-        cell.activityLabel?.text = viewModel.record.destinations[indexPath.section]?.name
-        cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
-        cell.activityIcon.text = "\u{f0f4}"
+        if let destination = viewModel.record.destinations[indexPath.section] {
+            cell.activityLabel?.text = destination.name
+            cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
 
+            if let iconNum = Int(destination.icon, radix: 16) {
+                if let scalar = UnicodeScalar(iconNum) {
+                    cell.activityIcon.text = String(scalar)
+                }
+            }
+        }
         return cell
     }
 

@@ -27,7 +27,7 @@ class AddRecordViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        viewModel.saveButtonTapped(date: Date(), contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+        viewModel.saveButtonTapped(contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
     }
 
     @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
@@ -61,7 +61,16 @@ class AddRecordViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let viewModel = AddRecordViewModel()
+    private var viewModel: AddRecordViewModel!
+
+    // MARK: - Initializers
+
+    static func initialize(viewModel: AddRecordViewModel) -> AddRecordViewController? {
+        let addRecordViewControllerStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
+        let addRecordViewController = addRecordViewControllerStoryboard.instantiateInitialViewController() as? AddRecordViewController
+        addRecordViewController?.viewModel = viewModel
+        return addRecordViewController
+    }
 
     // MARK: - Life Cycle
 
@@ -89,7 +98,7 @@ class AddRecordViewController: UIViewController {
     // MARK: - Methods
 
     func setDefaultFieldValues() {
-        self.submissionDateLabel.text = "\(Date().formattedDate(dateFormat: "EEEE MMMM d"))"
+        self.submissionDateLabel.text = "\(viewModel.submissionDate.formattedDate(dateFormat: "EEEE MMMM d"))"
         self.contactCountTextField.text = "0"
         self.decrementNumberOfPeopleButton.tintColor = grey
     }

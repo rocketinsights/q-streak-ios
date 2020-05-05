@@ -11,6 +11,8 @@ import UIKit
 protocol DashboardViewModelDelegate: AnyObject {
     func submissionsUpdated()
     func userUpdated(_ user: User)
+    func showSubmissionDetail(for submission: Submission)
+    func showAddSubmission(for date: Date)
 }
 
 class DashboardViewModel {
@@ -149,6 +151,20 @@ class DashboardViewModel {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+
+    func didSelectItem(for submissionIndex: Int) {
+        let today = calendar.startOfDay(for: Date())
+        let days = getCollectionViewDates()
+        let submissionDate = days[submissionIndex]
+
+        guard submissionDate <= today else { return }
+
+        if let submission = submissionsToShow[submissionIndex] {
+            delegate?.showSubmissionDetail(for: submission)
+        } else {
+            delegate?.showAddSubmission(for: submissionDate)
         }
     }
 }

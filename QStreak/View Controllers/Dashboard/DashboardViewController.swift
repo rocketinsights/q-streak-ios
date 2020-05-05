@@ -34,6 +34,8 @@ class DashboardViewController: UIViewController {
 
     private let viewModel = DashboardViewModel()
 
+    private var isInitialLoad = true
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -59,10 +61,10 @@ class DashboardViewController: UIViewController {
 
     // MARK: - Methods
     @IBAction func recordActivityButtonTapped(_ sender: Any) {
-        let addRecordStoryboard = UIStoryboard(name: String(describing: AddRecordViewController.self), bundle: nil)
-        let addRecordViewController = addRecordStoryboard.instantiateViewController(withIdentifier: String(describing: AddRecordViewController.self))
-        addRecordViewController.presentationController?.delegate = self
-        present(addRecordViewController, animated: true, completion: nil)
+        if let addRecordViewController = AddRecordViewController.initialize(viewModel: AddRecordViewModel()) {
+            addRecordViewController.presentationController?.delegate = self
+            present(addRecordViewController, animated: true, completion: nil)
+        }
     }
 
     private func setUpCollectionView() {
@@ -101,7 +103,10 @@ extension DashboardViewController: DashboardViewModelDelegate {
     func submissionsUpdated() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.submissionsToShow.count - 1, section: 0), at: .right, animated: false)
+            if self.isInitialLoad {
+                self.isInitialLoad.toggle()
+                self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.submissionsToShow.count - 1, section: 0), at: .right, animated: false)
+            }
 
             let scoreImage: UIImage?
             switch self.viewModel.score {
@@ -121,6 +126,21 @@ extension DashboardViewController: DashboardViewModelDelegate {
             } else {
                 self.greetingLabel.text = "Thanks For Tracking!"
             }
+        }
+    }
+
+    func showSubmissionDetail(for submission: Submission) {
+        let recordDetailViewModel = RecordDetailViewModel(record: submission)
+        if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel, comingFromCreation: false) {
+            navigationController?.pushViewController(recordDetailViewController, animated: true)
+        }
+    }
+
+    func showAddSubmission(for date: Date) {
+        let addRecordViewModel = AddRecordViewModel(date: date)
+        if let addRecordViewController = AddRecordViewController.initialize(viewModel: addRecordViewModel) {
+            addRecordViewController.presentationController?.delegate = self
+            present(addRecordViewController, animated: true, completion: nil)
         }
     }
 }
@@ -143,6 +163,10 @@ extension DashboardViewController: UICollectionViewDataSource {
         cell.dayNumberLabel.text = "\(dayStrings?.dayNumber ?? 0)"
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectItem(for: indexPath.item)
     }
 }
 

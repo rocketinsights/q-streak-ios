@@ -27,9 +27,13 @@ class AddRecordViewModel {
 
     var categories = [Activity]()
 
+    let submissionDate: Date
+
     // MARK: Initializers
 
-    init() {
+    init(date: Date = Calendar.current.startOfDay(for: Date())) {
+        submissionDate = date
+
         sessionProvider.request(type: [Activity].self, service: QstreakService.getDestinations) { [weak self] result in
             switch result {
             case .success(let activities):
@@ -45,9 +49,8 @@ class AddRecordViewModel {
 
     // MARK: - Methods
 
-    func saveButtonTapped(date: Date?, contactCountString: String?, selectedIndexPaths: [IndexPath]?) {
+    func saveButtonTapped(contactCountString: String?, selectedIndexPaths: [IndexPath]?) {
         guard
-            let date = date,
             let contactCountString = contactCountString,
             let contactCount = Int(contactCountString)
         else { return }
@@ -58,7 +61,7 @@ class AddRecordViewModel {
             destinations = selectedIndexPaths.map { categories[$0.row].slug }
         }
 
-        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: date.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
+        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: submissionDate.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
             switch result {
             case .success(let submission):
                 if let submission = submission {

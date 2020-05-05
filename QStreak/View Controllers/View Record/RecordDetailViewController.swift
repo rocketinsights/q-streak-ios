@@ -100,7 +100,7 @@ class RecordDetailViewController: UIViewController {
 extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.record.destinations.count
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,15 +108,29 @@ extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordActivitiesCell", for: indexPath) as! SubmissionActivityCell
         // swiftlint:enable force_cast
 
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(red: 0.25, green: 0.24, blue: 0.34, alpha: 0.20).cgColor
 
-        cell.activityLabel?.text = viewModel.record.destinations[indexPath.row]?.name
-        cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 18)
+        cell.activityLabel?.text = viewModel.record.destinations[indexPath.section]?.name
+        cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
         cell.activityIcon.text = "\u{f0f4}"
 
         return cell
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.record.destinations.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(11)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
 }
 

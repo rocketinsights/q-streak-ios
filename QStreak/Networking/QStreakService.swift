@@ -13,7 +13,7 @@ enum QstreakService {
     case createSubmission(contactCount: Int, date: String, destinations: [String])
     case getDestinations
     case getSubmissions(page: Int, pageSize: Int)
-    case deleteSubmission(submissionId: Int)
+    case deleteSubmission(date: String)
     case getUser
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
@@ -35,8 +35,8 @@ extension QstreakService: NetworkService {
             return "/submissions"
         case .getDestinations:
             return "/destinations"
-        case .deleteSubmission(let submissionId):
-            return "/submissions/\(submissionId)"
+        case .deleteSubmission(let date):
+            return "/submissions/\(date)"
         case .getUser:
             return "/me"
         }

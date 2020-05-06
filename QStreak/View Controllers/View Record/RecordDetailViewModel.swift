@@ -31,7 +31,7 @@ class RecordDetailViewModel {
     }
 
     func deleteButtonTapped() {
-        sessionProvider.request(type: Submission.self, service: QstreakService.deleteSubmission(submissionId: record.submissionID)) { [weak self] result in
+        sessionProvider.request(type: Submission.self, service: QstreakService.deleteSubmission(date: record.dateString)) { [weak self] result in
             switch result {
             case .success:
                 self?.delegate?.submissionDeletionSuccess()

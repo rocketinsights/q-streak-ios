@@ -58,7 +58,18 @@ class DashboardViewController: UIViewController {
         }
     }
 
+    @IBAction func aboutScoreButtonTapped(_ sender: Any) {
+        let aboutScoreViewStoryboard = UIStoryboard(name: String(describing: AboutScoreViewController.self), bundle: nil)
+        let aboutScoreViewController = aboutScoreViewStoryboard.instantiateViewController(withIdentifier: String(describing: AboutScoreViewController.self))
+
+        aboutScoreViewController.transitioningDelegate = self
+        aboutScoreViewController.modalPresentationStyle = .custom
+
+        present(aboutScoreViewController, animated: true, completion: nil)
+    }
+
     // MARK: - Methods
+
     private func setUpCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -174,5 +185,11 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
 extension DashboardViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.viewModel.fetchSubmissions()
+    }
+}
+
+extension DashboardViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

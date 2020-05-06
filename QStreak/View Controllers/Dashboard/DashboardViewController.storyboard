@@ -41,6 +41,9 @@
                                                     <constraint firstAttribute="width" constant="28" id="zNq-DO-cay"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="questionmarkCircle"/>
+                                                <connections>
+                                                    <action selector="aboutScoreButtonTapped:" destination="D8d-ak-FG3" eventType="touchUpInside" id="2dR-dI-8Cq"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCX-Z6-AYa">
                                                 <rect key="frame" x="291" y="65" width="93" height="69"/>

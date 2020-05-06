@@ -24,39 +24,33 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var incrementNumberOfPeopleButton: QButton!
 
+    @IBOutlet private weak var infoLabel: UILabel!
+
+    @IBOutlet private weak var peopleLabel: UILabel!
+
+    @IBOutlet private weak var saveButton: QButton!
+
     // MARK: - IBActions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        viewModel.saveButtonTapped(contactCountString: contactCountTextField.text, selectedIndexPaths: tableView.indexPathsForSelectedRows)
+        viewModel.saveButtonTapped(selectedIndexPaths: tableView.indexPathsForSelectedRows)
     }
 
     @IBAction func decrementNumberOfPeopleButtonTapped(_ sender: Any) {
-        if let fieldValue = self.contactCountTextField.text {
-            let newNum = viewModel.decrementedContactCount(currentCount: fieldValue)
-
-            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
-
-            self.contactCountTextField.text = "\(newNum)"
-        }
+        viewModel.decrementedContactCount()
+        updateCount()
     }
 
     @IBAction func incrementNumberOfPeopleButtonTapped(_ sender: Any) {
-        if let fieldText = self.contactCountTextField.text {
-            let newNum = viewModel.incrementedContactCount(currentCount: fieldText)
-
-            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
-
-            self.contactCountTextField.text = "\(newNum)"
-        }
+        viewModel.incrementedContactCount()
+        updateCount()
     }
 
     @IBAction func contactCountTextFieldEditingChanged(_ sender: Any) {
-        if let fieldText = self.contactCountTextField.text {
-            if fieldText.isEmpty { return }
+        guard let contactCountString = contactCountTextField.text else { return }
 
-            let newNum = Int(fieldText) ?? 0
-            setDecrementNumberOfPeopleButtonStyles(newNumber: newNum)
-        }
+        viewModel.setContactCount(contactCountString)
+        updateCount()
     }
 
     // MARK: - Properties
@@ -77,14 +71,9 @@ class AddRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.delegate = self
-
-        tableView.allowsMultipleSelection = true
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 44
-
-        setDefaultFieldValues()
+        setUpViewModel()
+        setUpViews()
+        updateViews()
     }
 
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -97,20 +86,66 @@ class AddRecordViewController: UIViewController {
 
     // MARK: - Methods
 
-    func setDefaultFieldValues() {
-        self.submissionDateLabel.text = "\(viewModel.submissionDate.formattedDate(dateFormat: "EEEE MMMM d"))"
-        self.contactCountTextField.text = "0"
-        self.decrementNumberOfPeopleButton.tintColor = grey
+    private func setUpViewModel() {
+        viewModel.delegate = self
     }
 
-    private func setDecrementNumberOfPeopleButtonStyles(newNumber: Int) {
-        if newNumber < 1 {
-            self.decrementNumberOfPeopleButton.tintColor = grey
-            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = false
-        } else {
-            self.decrementNumberOfPeopleButton.tintColor = UIColor.black
-            self.decrementNumberOfPeopleButton.isUserInteractionEnabled = true
+    private func setUpViews() {
+        addDoneButtonOnKeyboard()
+        setUpTableView()
+    }
+
+    private func setUpTableView() {
+        tableView.allowsMultipleSelection = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 44
+    }
+
+    private func updateViews() {
+        self.submissionDateLabel.text = "\(Calendar.current.isDateInToday(viewModel.submissionDate) ? "Today, " : "")\(viewModel.submissionDate.formattedDate(dateFormat: "EEEE MMMM d"))"
+
+        infoLabel.isHidden = viewModel.submission == nil ? false: true
+
+        updateCount()
+
+        tableView.reloadData()
+
+        if let submission = viewModel.submission {
+            for submissionDestination in submission.destinations {
+                for (index, destination) in viewModel.categories.enumerated() where submissionDestination?.slug == destination.slug {
+                    tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
+                }
+            }
         }
+
+        saveButton.setTitle(viewModel.submission == nil ? "Save" : "Update", for: .normal)
+    }
+
+    private func updateCount() {
+        contactCountTextField.text = "\(viewModel.currentContactCount)"
+
+        peopleLabel.text = viewModel.currentContactCount == 1 ? "person" : "people"
+
+        decrementNumberOfPeopleButton.isEnabled = viewModel.currentContactCount > 0 ? true : false
+    }
+
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        contactCountTextField.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction() {
+        contactCountTextField.resignFirstResponder()
     }
 }
 
@@ -154,10 +189,10 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
 extension AddRecordViewController: AddRecordViewModelDelegate {
 
     func retrievedDestinations() {
-        DispatchQueue.main.async { [weak self] in self?.tableView.reloadData() }
+        DispatchQueue.main.async { [weak self] in self?.updateViews() }
     }
 
-    func addedSubmission(record: RecordDetailViewModel) {
+    func addedSubmission() {
         DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
     }
 
@@ -168,5 +203,9 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
 
             self.present(alert, animated: true, completion: nil)
         }
+    }
+
+    func retrievedSubmission() {
+        DispatchQueue.main.async { [weak self] in self?.updateViews() }
     }
 }

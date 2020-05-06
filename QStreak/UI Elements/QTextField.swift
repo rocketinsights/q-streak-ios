@@ -27,17 +27,25 @@ import UIKit
 
     @IBInspectable var noTextBackgroundColor: UIColor? {
         didSet {
-            setBackgroundColor()
+            updateBackgroundColor()
         }
     }
 
     @IBInspectable var hasTextBackgroundColor: UIColor? {
         didSet {
-            setBackgroundColor()
+            updateBackgroundColor()
         }
     }
 
     @IBInspectable var leadingTrailingPadding: CGFloat = 0
+
+    // MARK: - Properties
+
+    override var text: String? {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
 
     // MARK: - Initializers
 
@@ -57,7 +65,7 @@ import UIKit
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor?.cgColor
         setBorderStyle()
-        setBackgroundColor()
+        updateBackgroundColor()
         enablesReturnKeyAutomatically = true
         addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
@@ -76,10 +84,10 @@ import UIKit
     }
 
     @objc private func editingChanged() {
-        setBackgroundColor()
+        updateBackgroundColor()
     }
 
-    private func setBackgroundColor() {
+    private func updateBackgroundColor() {
         backgroundColor = hasText ? hasTextBackgroundColor : noTextBackgroundColor
     }
 

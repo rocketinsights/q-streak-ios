@@ -12,8 +12,10 @@ enum QstreakService {
     case signUp(name: String?, zipCode: String)
     case createSubmission(contactCount: Int, date: String, destinations: [String])
     case getDestinations
+    case getSubmission(date: String)
     case getSubmissions(page: Int, pageSize: Int)
-    case deleteSubmission(submissionId: Int)
+    case deleteSubmission(date: String)
+    case updateSubmission(contactCount: Int, date: String, destinations: [String])
     case getUser
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
@@ -35,8 +37,8 @@ extension QstreakService: NetworkService {
             return "/submissions"
         case .getDestinations:
             return "/destinations"
-        case .deleteSubmission(let submissionId):
-            return "/submissions/\(submissionId)"
+        case .getSubmission(let date), .deleteSubmission(let date), .updateSubmission(_, let date, _):
+            return "/submissions/\(date)"
         case .getUser:
             return "/me"
         }
@@ -46,10 +48,12 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
-        case .getDestinations, .getSubmissions, .getUser:
+        case .getDestinations, .getSubmission, .getSubmissions, .getUser:
             return .get
         case .deleteSubmission:
             return .delete
+        case .updateSubmission:
+            return .put
         }
     }
 
@@ -57,7 +61,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission, .getDestinations, .getSubmissions, .deleteSubmission, .getUser:
+        case .createSubmission, .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission, .updateSubmission, .getUser:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -72,18 +76,23 @@ extension QstreakService: NetworkService {
             return ["submission": ["contact_count": contactCount,
                                    "date": date,
                                    "destination_slugs": destinations]]
+        case .updateSubmission(let contactCount, _, let destinations):
+            return ["submission": ["contact_count": contactCount,
+                                   "destination_slugs": destinations]]
         case .getSubmissions(let page, let pageSize):
             return ["page": page, "page_size": pageSize]
-        case .getDestinations, .deleteSubmission, .getUser:
+        case .getSubmission(let date), .deleteSubmission(let date):
+            return ["": date]
+        case .getDestinations, .getUser:
           return nil
         }
     }
 
     var parameterEncoding: ParameterEncoding? {
         switch self {
-        case .signUp, .createSubmission:
+        case .signUp, .createSubmission, .updateSubmission:
             return .json
-        case .getSubmissions, .getDestinations, .deleteSubmission:
+        case .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission:
             return .url
         case .getUser:
             return nil

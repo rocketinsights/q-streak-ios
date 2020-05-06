@@ -10,8 +10,9 @@ import Foundation
 
 protocol AddRecordViewModelDelegate: AnyObject {
     func retrievedDestinations()
-    func addedSubmission(record: RecordDetailViewModel)
+    func addedSubmission()
     func failedSubmission(error: NetworkError)
+    func retrievedSubmission()
 }
 
 class AddRecordViewModel {
@@ -29,11 +30,65 @@ class AddRecordViewModel {
 
     let submissionDate: Date
 
+    var submission: Submission?
+
+    var currentContactCount: Int = 0
+
     // MARK: Initializers
 
     init(date: Date = Calendar.current.startOfDay(for: Date())) {
         submissionDate = date
 
+        getSubmission()
+        getDestinations()
+    }
+
+    // MARK: - Methods
+
+    func saveButtonTapped(selectedIndexPaths: [IndexPath]?) {
+        var destinations = [String]()
+
+        if let selectedIndexPaths = selectedIndexPaths {
+            destinations = selectedIndexPaths.map { categories[$0.row].slug }
+        }
+
+        if submission != nil {
+            updateSubmission(destinations: destinations)
+        } else {
+            addSubmission(destinations: destinations)
+        }
+    }
+
+    func isContactCountValid(contactCountString: String?) -> Bool {
+        guard
+            let contactCountString = contactCountString,
+            let contactCount = Int(contactCountString)
+            else { return false }
+
+        return contactCount > 0 ? true : false
+    }
+
+    func decrementedContactCount() {
+        guard currentContactCount > 0 else { return }
+        currentContactCount -= 1
+    }
+
+    func incrementedContactCount() {
+        currentContactCount += 1
+    }
+
+    func setContactCount(_ contactCountString: String?) {
+        guard
+            let contactCountString = contactCountString,
+            let contactCount = Int(contactCountString)
+            else {
+                currentContactCount = 0
+                return
+            }
+        currentContactCount = contactCount
+    }
+
+    private func getDestinations() {
         sessionProvider.request(type: [Activity].self, service: QstreakService.getDestinations) { [weak self] result in
             switch result {
             case .success(let activities):
@@ -47,47 +102,48 @@ class AddRecordViewModel {
         }
     }
 
-    // MARK: - Methods
+    private func getSubmission() {
+        sessionProvider.request(type: Submission.self, service: QstreakService.getSubmission(date: submissionDate.formattedDate(dateFormat: "yyyy-MM-dd"))) { [weak self] result in
+            guard let self = self else { return }
 
-    func saveButtonTapped(contactCountString: String?, selectedIndexPaths: [IndexPath]?) {
-        guard
-            let contactCountString = contactCountString,
-            let contactCount = Int(contactCountString)
-        else { return }
-
-        var destinations = [String]()
-
-        if let selectedIndexPaths = selectedIndexPaths {
-            destinations = selectedIndexPaths.map { categories[$0.row].slug }
-        }
-
-        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: contactCount, date: submissionDate.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
             switch result {
             case .success(let submission):
                 if let submission = submission {
-                    let recordDetailViewModel = RecordDetailViewModel.init(record: submission)
-                    self?.delegate?.addedSubmission(record: recordDetailViewModel)
+                    self.submission = submission
+                    self.currentContactCount = submission.contactCount
+                    self.delegate?.retrievedSubmission()
                 }
-            case .failure(let error):
-                self?.delegate?.failedSubmission(error: error)
+            case .failure:
+                break
             }
         }
     }
 
-    func isContactCountValid(contactCountString: String?) -> Bool {
-        guard
-            let contactCountString = contactCountString,
-            let contactCount = Int(contactCountString)
-            else { return false }
+    private func updateSubmission(destinations: [String]) {
+        guard let submission = submission else { return }
 
-        return contactCount > 0 ? true : false
+        sessionProvider.request(type: Submission.self, service: QstreakService.updateSubmission(contactCount: currentContactCount, date: submission.dateString, destinations: destinations)) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success:
+                self.delegate?.addedSubmission()
+            case .failure(let error):
+                self.delegate?.failedSubmission(error: error)
+            }
+        }
     }
 
-    func decrementedContactCount(currentCount: String) -> Int {
-        return (Int(currentCount) ?? 0) - 1
-    }
+    private func addSubmission(destinations: [String]) {
+        sessionProvider.request(type: Submission.self, service: QstreakService.createSubmission(contactCount: currentContactCount, date: submissionDate.formattedDate(dateFormat: "yyyy-MM-dd"), destinations: destinations)) { [weak self ] result in
+            guard let self = self else { return }
 
-    func incrementedContactCount(currentCount: String) -> Int {
-        return (Int(currentCount) ?? 0) + 1
+            switch result {
+            case .success:
+                self.delegate?.addedSubmission()
+            case .failure(let error):
+                self.delegate?.failedSubmission(error: error)
+            }
+        }
     }
 }

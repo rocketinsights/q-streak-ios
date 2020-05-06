@@ -80,7 +80,7 @@ class RecordListViewModel {
 
     func userTappedRecordCell(_ indexPath: IndexPath) {
         if let selectedRecord = records[indexPath.row] {
-            let recordDetailViewModel = RecordDetailViewModel(record: selectedRecord)
+            let recordDetailViewModel = RecordDetailViewModel(dateString: selectedRecord.dateString)
 
             delegate?.showRecordDetailViewController(recordDetailViewModel: recordDetailViewModel)
         }

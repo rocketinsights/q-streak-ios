@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jj0-bc-JGM">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,11 +77,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeV-0b-At9">
-                                                <rect key="frame" x="30" y="390.66666666666669" width="315" height="203.00000000000006"/>
+                                                <rect key="frame" x="30" y="390.66666666666669" width="315" height="193.00000000000006"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="203" id="Foc-y7-dhf"/>
-                                                </constraints>
                                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordActivitiesCell" rowHeight="56" id="o0D-FP-sFm" customClass="SubmissionActivityCell" customModule="QStreak" customModuleProvider="target">
@@ -128,7 +125,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J1-TV-vph" customClass="QButton" customModule="QStreak" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="683.66666666666663" width="315" height="56"/>
+                                                <rect key="frame" x="30" y="613.66666666666663" width="315" height="56"/>
                                                 <color key="backgroundColor" red="0.54901960780000003" green="0.96078431369999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="RAn-C1-kOy"/>
@@ -142,11 +139,13 @@
                                                         <real key="value" value="30"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="editButtonTapped:" destination="jj0-bc-JGM" eventType="touchUpInside" id="aGy-aq-3om"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0HY-aJ-AJ9" userLabel="Delete Button" customClass="QButton" customModule="QStreak" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="749.66666666666663" width="315" height="56"/>
+                                                <rect key="frame" x="30" y="679.66666666666663" width="315" height="56"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="8YB-i2-aDb"/>
                                                     <constraint firstAttribute="height" constant="56" id="IqU-gR-rpf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -166,20 +165,19 @@
                                             <constraint firstItem="xTG-Lc-j7N" firstAttribute="top" secondItem="Oaq-AD-zov" secondAttribute="bottom" constant="35" id="B6m-K7-ZXb"/>
                                             <constraint firstItem="QXm-m8-BIF" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="CcP-zR-itI"/>
                                             <constraint firstItem="0HY-aJ-AJ9" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="DNu-uY-OKh"/>
+                                            <constraint firstAttribute="bottom" secondItem="0HY-aJ-AJ9" secondAttribute="bottom" id="DlC-S5-k03"/>
                                             <constraint firstItem="1J1-TV-vph" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="GgX-ji-rGG"/>
                                             <constraint firstAttribute="trailing" secondItem="mSJ-IS-JcV" secondAttribute="trailing" constant="30" id="IsE-uf-o6Y"/>
                                             <constraint firstAttribute="trailing" secondItem="q46-oi-heQ" secondAttribute="trailing" constant="30" id="JCB-gX-bLr"/>
-                                            <constraint firstItem="EeV-0b-At9" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="LcW-fc-p04"/>
                                             <constraint firstAttribute="trailing" secondItem="xTG-Lc-j7N" secondAttribute="trailing" constant="30" id="LjR-IT-i8F"/>
                                             <constraint firstItem="xTG-Lc-j7N" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="My9-lB-CNe"/>
                                             <constraint firstAttribute="trailing" secondItem="1J1-TV-vph" secondAttribute="trailing" constant="30" id="PKe-8K-MNP"/>
-                                            <constraint firstItem="EeV-0b-At9" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="R88-jt-LtV"/>
                                             <constraint firstItem="liC-6J-YZv" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="RLl-v6-ecd"/>
                                             <constraint firstItem="hd3-1X-mzD" firstAttribute="top" secondItem="q46-oi-heQ" secondAttribute="bottom" constant="10" id="RNF-Cr-RIH"/>
                                             <constraint firstAttribute="trailing" secondItem="EeV-0b-At9" secondAttribute="trailing" constant="30" id="RSO-Nn-cgM"/>
                                             <constraint firstItem="EeV-0b-At9" firstAttribute="top" secondItem="QXm-m8-BIF" secondAttribute="bottom" id="S3h-SI-Nyu"/>
+                                            <constraint firstItem="1J1-TV-vph" firstAttribute="top" secondItem="EeV-0b-At9" secondAttribute="bottom" constant="30" id="Ssc-gF-kCY"/>
                                             <constraint firstItem="mSJ-IS-JcV" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="UcJ-ZQ-3D5"/>
-                                            <constraint firstItem="1J1-TV-vph" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="W2t-1a-zmx"/>
                                             <constraint firstAttribute="trailing" secondItem="0HY-aJ-AJ9" secondAttribute="trailing" constant="30" id="W3c-G5-NUO"/>
                                             <constraint firstAttribute="trailing" secondItem="hd3-1X-mzD" secondAttribute="trailing" constant="30" id="XhS-uz-sGR"/>
                                             <constraint firstItem="0HY-aJ-AJ9" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="YWT-FA-p2K"/>
@@ -193,7 +191,6 @@
                                             <constraint firstItem="hd3-1X-mzD" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="lI2-35-A82"/>
                                             <constraint firstItem="liC-6J-YZv" firstAttribute="top" secondItem="xTG-Lc-j7N" secondAttribute="bottom" constant="10" id="lfh-7p-xaO"/>
                                             <constraint firstItem="Oaq-AD-zov" firstAttribute="top" secondItem="hd3-1X-mzD" secondAttribute="bottom" constant="10" id="lpz-ol-cnv"/>
-                                            <constraint firstItem="1J1-TV-vph" firstAttribute="top" secondItem="EeV-0b-At9" secondAttribute="bottom" constant="90" id="r3a-S7-6vE"/>
                                             <constraint firstItem="QXm-m8-BIF" firstAttribute="centerX" secondItem="jXu-6v-z5E" secondAttribute="centerX" id="rcX-Sq-cuu"/>
                                             <constraint firstItem="q46-oi-heQ" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="tjn-qZ-AtY"/>
                                             <constraint firstItem="mSJ-IS-JcV" firstAttribute="leading" secondItem="jXu-6v-z5E" secondAttribute="leading" constant="30" id="wcf-fF-Uuh"/>

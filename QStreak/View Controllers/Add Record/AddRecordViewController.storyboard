@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dh0-eu-ygi">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,12 +53,13 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCj-jb-hxE" customClass="QTextField" customModule="QStreak" customModuleProvider="target">
                                 <rect key="frame" x="30" y="316.66666666666669" width="80" height="48"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="bKq-pa-LGC"/>
                                     <constraint firstAttribute="width" constant="80" id="urK-FR-37w"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="noTextBackgroundColor">
                                         <color key="value" red="0.60784313729999995" green="0.61176470589999998" blue="0.68235294120000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -68,7 +69,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="contactCountTextFieldEditingChanged:" destination="dh0-eu-ygi" eventType="editingChanged" id="ahx-Q1-PQJ"/>
+                                    <action selector="contactCountTextFieldEditingChanged:" destination="dh0-eu-ygi" eventType="editingChanged" id="K7W-xo-DAb"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="people" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNN-5Y-TRs">
@@ -88,9 +89,8 @@
                                     <constraint firstAttribute="height" constant="40" id="XNE-Rq-lv7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
-                                <color key="tintColor" red="0.60784313729999995" green="0.61176470589999998" blue="0.68235294120000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="minus.circle" catalog="system">
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="36" scale="large" weight="semibold"/>
                                 </state>
                                 <connections>
@@ -121,11 +121,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRx-Pt-Wsj">
-                                <rect key="frame" x="30" y="439.66666666666669" width="354" height="123.00000000000006"/>
+                                <rect key="frame" x="30" y="439.66666666666674" width="354" height="296.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="123" id="pcq-3T-MAV"/>
-                                </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="44" id="5Ct-7a-5GO" customClass="ActivityCell" customModule="QStreak" customModuleProvider="target">
@@ -208,7 +205,6 @@
                             <constraint firstItem="bEC-ag-46D" firstAttribute="top" secondItem="ngg-UG-H36" secondAttribute="top" constant="32" id="FLv-x1-2yN"/>
                             <constraint firstItem="nNN-5Y-TRs" firstAttribute="top" secondItem="XDv-PX-1wR" secondAttribute="bottom" constant="27.5" id="GfN-Qt-Z9e"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="6J3-e1-w2C" secondAttribute="trailing" constant="30" id="Gy9-OM-ffI"/>
-                            <constraint firstItem="CRx-Pt-Wsj" firstAttribute="centerX" secondItem="ceu-CH-zkl" secondAttribute="centerX" id="HKP-le-lZS"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="1bu-7v-3JF" secondAttribute="trailing" constant="30" id="JPW-By-pha"/>
                             <constraint firstItem="yCj-jb-hxE" firstAttribute="top" secondItem="XDv-PX-1wR" secondAttribute="bottom" constant="14.5" id="LJd-UN-6Ho"/>
                             <constraint firstItem="nNN-5Y-TRs" firstAttribute="leading" secondItem="yCj-jb-hxE" secondAttribute="trailing" constant="11" id="NEF-PO-aMp"/>
@@ -220,6 +216,7 @@
                             <constraint firstItem="Nzg-7v-swe" firstAttribute="centerX" secondItem="ceu-CH-zkl" secondAttribute="centerX" id="bMw-4N-wKF"/>
                             <constraint firstItem="CRx-Pt-Wsj" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="bc5-oX-eFJ"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="Nzg-7v-swe" secondAttribute="trailing" constant="30" id="bxY-Of-CEg"/>
+                            <constraint firstItem="Nzg-7v-swe" firstAttribute="top" secondItem="CRx-Pt-Wsj" secondAttribute="bottom" constant="30" id="cJJ-wz-d6V"/>
                             <constraint firstItem="6J3-e1-w2C" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="cwp-KW-N56"/>
                             <constraint firstItem="1bu-7v-3JF" firstAttribute="top" secondItem="XDv-PX-1wR" secondAttribute="bottom" constant="20" id="cx7-2i-Fp0"/>
                             <constraint firstItem="XDv-PX-1wR" firstAttribute="top" secondItem="Uk0-xu-4Mx" secondAttribute="bottom" constant="35" id="hPh-nz-mDC"/>
@@ -233,6 +230,9 @@
                         <outlet property="contactCountTextField" destination="yCj-jb-hxE" id="OS5-nh-yeN"/>
                         <outlet property="decrementNumberOfPeopleButton" destination="hwd-ir-dYE" id="KeP-3s-wAE"/>
                         <outlet property="incrementNumberOfPeopleButton" destination="1bu-7v-3JF" id="VwV-BY-Ypd"/>
+                        <outlet property="infoLabel" destination="Uk0-xu-4Mx" id="2Mq-p8-EYI"/>
+                        <outlet property="peopleLabel" destination="nNN-5Y-TRs" id="ZiU-8Z-g0y"/>
+                        <outlet property="saveButton" destination="Nzg-7v-swe" id="xUC-4Y-UeB"/>
                         <outlet property="submissionDateLabel" destination="bEC-ag-46D" id="zUr-aS-4zT"/>
                         <outlet property="tableView" destination="CRx-Pt-Wsj" id="oBy-Bk-hAM"/>
                     </connections>

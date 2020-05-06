@@ -122,7 +122,7 @@ extension DashboardViewController: DashboardViewModelDelegate {
     }
 
     func showSubmissionDetail(for submission: Submission) {
-        let recordDetailViewModel = RecordDetailViewModel(record: submission)
+        let recordDetailViewModel = RecordDetailViewModel(dateString: submission.dateString)
         if let recordDetailViewController = RecordDetailViewController.initialize(viewModel: recordDetailViewModel) {
             navigationController?.pushViewController(recordDetailViewController, animated: true)
         }

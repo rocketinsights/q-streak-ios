@@ -58,7 +58,7 @@
                                     <constraint firstAttribute="width" constant="80" id="urK-FR-37w"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="noTextBackgroundColor">
                                         <color key="value" red="0.60784313729999995" green="0.61176470589999998" blue="0.68235294120000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>

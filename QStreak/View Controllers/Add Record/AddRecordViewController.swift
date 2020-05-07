@@ -120,6 +120,7 @@ class AddRecordViewController: UIViewController {
         self.submissionDateLabel.text = "\(Calendar.current.isDateInToday(viewModel.submissionDate) ? "Today, " : "")\(viewModel.submissionDate.formattedDate(dateFormat: "EEEE MMMM d"))"
 
         infoLabel.isHidden = viewModel.submission == nil ? false: true
+        infoLabel.text = viewModel.submission == nil ? viewModel.infoText : nil
 
         updateCount()
 

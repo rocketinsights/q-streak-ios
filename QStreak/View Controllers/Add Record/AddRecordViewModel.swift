@@ -20,7 +20,10 @@ class AddRecordViewModel {
     // MARK: - Properties
 
     let alertTitleText = "Unable to create submission"
+
     let alertDismissButtonText =  "OK"
+
+    let infoText = "📉 Let’s get your score calculated for the day. You can return here at any time to update your daily input."
 
     private let sessionProvider = URLSessionProvider()
 

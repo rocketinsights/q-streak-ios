@@ -34,6 +34,18 @@ class DashboardViewController: UIViewController {
 
     private var isInitialLoad = true
 
+    //swiftlint:disable weak_delegate
+    private let cardTransitioningDelegate = CardTransitioningDelegate()
+    //swiftlint:enable weak_delegate
+
+    private lazy var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.alpha = 0
+        return blurView
+    }()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -42,6 +54,7 @@ class DashboardViewController: UIViewController {
         setUpCollectionView()
         setUpPlaceholderViews()
         setUpRecordActivityView()
+        setUpBlurView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,10 +76,16 @@ class DashboardViewController: UIViewController {
         let aboutScoreViewStoryboard = UIStoryboard(name: String(describing: AboutScoreViewController.self), bundle: nil)
         let aboutScoreViewController = aboutScoreViewStoryboard.instantiateViewController(withIdentifier: String(describing: AboutScoreViewController.self))
 
-        aboutScoreViewController.transitioningDelegate = self
+        aboutScoreViewController.transitioningDelegate = cardTransitioningDelegate
         aboutScoreViewController.modalPresentationStyle = .custom
+        (aboutScoreViewController as? AboutScoreViewController)?.delegate = self
 
-        present(aboutScoreViewController, animated: true, completion: nil)
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
+
+            self.blurView.alpha = 0.95
+            self.present(aboutScoreViewController, animated: true)
+        }
     }
 
     // MARK: - Methods
@@ -97,6 +116,16 @@ class DashboardViewController: UIViewController {
         recordActivityView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recordActivityView.layer.shadowRadius = 10
         recordActivityView.layer.shadowPath = UIBezierPath(rect: recordActivityView.bounds).cgPath
+    }
+
+    private func setUpBlurView() {
+        view.addSubview(blurView)
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 
     private func showAddRecordViewController() {
@@ -190,14 +219,25 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UIAdaptivePresentationControllerDelegate
+
 extension DashboardViewController: UIAdaptivePresentationControllerDelegate {
+
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.viewModel.fetchSubmissions()
     }
 }
 
-extension DashboardViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
+// MARK: AboutScoreViewControllerDelegate
+
+extension DashboardViewController: AboutScoreViewControllerDelegate {
+
+    func dismissButtonTapped(_ aboutScoreViewController: AboutScoreViewController) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
+
+            self.blurView.alpha = 0
+            aboutScoreViewController.dismiss(animated: true)
+        }
     }
 }

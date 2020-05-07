@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,29 +12,23 @@
             <objects>
                 <viewController storyboardIdentifier="AboutScoreViewController" modalPresentationStyle="overCurrentContext" id="f8G-F0-C0M" customClass="AboutScoreViewController" customModule="QStreak" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lPs-Wl-j2T">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s my score?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAD-KT-2Ns">
-                                <rect key="frame" x="30" y="30" width="315" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="e1U-uV-Dzh"/>
-                                </constraints>
+                                <rect key="frame" x="30" y="79" width="315" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your score is a reflection of your risk level based on your reported activity and location relative to the Covid-19 outbreak." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nj-tG-3Qx">
-                                <rect key="frame" x="30" y="80" width="315" height="94"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="94" id="bOh-ah-yIN"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Your score is a reflection of your risk level based on your reported activity and location relative to the Covid-19 outbreak." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nj-tG-3Qx">
+                                <rect key="frame" x="30" y="129" width="315" height="568"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iL6-3w-nGp" customClass="QButton" customModule="QStreak" customModuleProvider="target">
-                                <rect key="frame" x="30" y="608" width="315" height="56"/>
+                                <rect key="frame" x="30" y="722" width="315" height="56"/>
                                 <color key="backgroundColor" red="0.54901960780000003" green="0.96078431369999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="M3t-mB-eZz"/>
@@ -57,9 +51,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="3Nj-tG-3Qx" firstAttribute="top" secondItem="lAD-KT-2Ns" secondAttribute="bottom" constant="16" id="320-Ie-QTM"/>
-                            <constraint firstItem="HjW-bw-dS9" firstAttribute="bottom" secondItem="iL6-3w-nGp" secondAttribute="bottom" constant="60" id="BLJ-6W-dsM"/>
+                            <constraint firstItem="iL6-3w-nGp" firstAttribute="top" secondItem="3Nj-tG-3Qx" secondAttribute="bottom" constant="25" id="8qu-J5-737"/>
+                            <constraint firstItem="HjW-bw-dS9" firstAttribute="bottom" secondItem="iL6-3w-nGp" secondAttribute="bottom" id="BLJ-6W-dsM"/>
                             <constraint firstItem="HjW-bw-dS9" firstAttribute="trailing" secondItem="iL6-3w-nGp" secondAttribute="trailing" constant="30" id="ILm-cQ-n1d"/>
-                            <constraint firstItem="lAD-KT-2Ns" firstAttribute="top" secondItem="HjW-bw-dS9" secondAttribute="top" constant="30" id="NXk-6b-pdm"/>
+                            <constraint firstItem="lAD-KT-2Ns" firstAttribute="top" secondItem="HjW-bw-dS9" secondAttribute="top" constant="35" id="NXk-6b-pdm"/>
                             <constraint firstItem="HjW-bw-dS9" firstAttribute="trailing" secondItem="3Nj-tG-3Qx" secondAttribute="trailing" constant="30" id="d0a-bR-iVQ"/>
                             <constraint firstItem="iL6-3w-nGp" firstAttribute="leading" secondItem="HjW-bw-dS9" secondAttribute="leading" constant="30" id="d38-za-JOC"/>
                             <constraint firstItem="lAD-KT-2Ns" firstAttribute="leading" secondItem="HjW-bw-dS9" secondAttribute="leading" constant="30" id="m0f-cL-YHm"/>
@@ -68,7 +63,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HjW-bw-dS9"/>
                     </view>
-                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2z-J8-BMr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

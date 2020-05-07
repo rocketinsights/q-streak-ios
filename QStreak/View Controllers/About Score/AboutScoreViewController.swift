@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol AboutScoreViewControllerDelegate: AnyObject {
+    func dismissButtonTapped(_ aboutScoreViewController: AboutScoreViewController)
+}
+
 class AboutScoreViewController: UIViewController {
+
+    weak var delegate: AboutScoreViewControllerDelegate?
+
     @IBAction func gotItButtonTapped(_ sender: Any) {
-         self.dismiss(animated: true, completion: nil)
+        delegate?.dismissButtonTapped(self)
     }
 }

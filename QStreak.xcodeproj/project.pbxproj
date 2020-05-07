@@ -54,9 +54,12 @@
 		D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */; };
 		D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5048B002440B33A0029AE0C /* Date+Extensions.swift */; };
 		D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E589F2448A1EB00A0C2FA /* DailyStat.swift */; };
+		D540181224646DFE00C3DCAF /* DashboardMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D540181124646DFE00C3DCAF /* DashboardMessage.swift */; };
+		D540181424646E6A00C3DCAF /* DashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D540181324646E6A00C3DCAF /* DashboardData.swift */; };
 		D557671824632A9800B4BEBB /* AboutScoreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D557671724632A9800B4BEBB /* AboutScoreViewController.storyboard */; };
 		D557671A24632AB100B4BEBB /* AboutScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557671924632AB100B4BEBB /* AboutScoreViewController.swift */; };
 		D557671C24633F5C00B4BEBB /* HalfSizePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557671B24633F5C00B4BEBB /* HalfSizePresentationController.swift */; };
+		D5619FC92464955200325D28 /* FontAwesomeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5619FC82464955200325D28 /* FontAwesomeUtils.swift */; };
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
 		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
 		D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F8662450BE410083DB6C /* String+Extensions.swift */; };
@@ -136,9 +139,12 @@
 		D5048AFD243F90950029AE0C /* RecordDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordDetailViewController.storyboard; sourceTree = "<group>"; };
 		D5048B002440B33A0029AE0C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D52E589F2448A1EB00A0C2FA /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
+		D540181124646DFE00C3DCAF /* DashboardMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMessage.swift; sourceTree = "<group>"; };
+		D540181324646E6A00C3DCAF /* DashboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardData.swift; sourceTree = "<group>"; };
 		D557671724632A9800B4BEBB /* AboutScoreViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScoreViewController.storyboard; sourceTree = "<group>"; };
 		D557671924632AB100B4BEBB /* AboutScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScoreViewController.swift; sourceTree = "<group>"; };
 		D557671B24633F5C00B4BEBB /* HalfSizePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationController.swift; sourceTree = "<group>"; };
+		D5619FC82464955200325D28 /* FontAwesomeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesomeUtils.swift; sourceTree = "<group>"; };
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D5B1F8662450BE410083DB6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -214,6 +220,8 @@
 				990B4551243E510D00177002 /* Activity.swift */,
 				992249BC2441010700A4790A /* User.swift */,
 				D52E589F2448A1EB00A0C2FA /* DailyStat.swift */,
+				D540181124646DFE00C3DCAF /* DashboardMessage.swift */,
+				D540181324646E6A00C3DCAF /* DashboardData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +359,7 @@
 				D5048B002440B33A0029AE0C /* Date+Extensions.swift */,
 				D5B1F8662450BE410083DB6C /* String+Extensions.swift */,
 				D557671B24633F5C00B4BEBB /* HalfSizePresentationController.swift */,
+				D5619FC82464955200325D28 /* FontAwesomeUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -541,9 +550,11 @@
 				992249BD2441010700A4790A /* User.swift in Sources */,
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
+				D540181424646E6A00C3DCAF /* DashboardData.swift in Sources */,
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
 				D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */,
 				D557671C24633F5C00B4BEBB /* HalfSizePresentationController.swift in Sources */,
+				D540181224646DFE00C3DCAF /* DashboardMessage.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,
 				990B454C243E4E4F00177002 /* RecordListViewController.swift in Sources */,
 				D5048B012440B33A0029AE0C /* Date+Extensions.swift in Sources */,
@@ -571,6 +582,7 @@
 				D5E2FE18246095AB006F63CA /* SubmissionActivityCell.swift in Sources */,
 				992A0D7524648AAD004EC46C /* CardPresentationAnimator.swift in Sources */,
 				D557671A24632AB100B4BEBB /* AboutScoreViewController.swift in Sources */,
+				D5619FC92464955200325D28 /* FontAwesomeUtils.swift in Sources */,
 				9938CCBE2459D24B002E2B49 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ protocol DashboardViewModelDelegate: AnyObject {
     func userUpdated(_ user: User)
     func showSubmissionDetail(for submission: Submission)
     func showAddSubmission(for date: Date)
+    func dashboardDataUpdated(dashboardData: DashboardData)
 }
 
 class DashboardViewModel {
@@ -40,6 +41,7 @@ class DashboardViewModel {
     init() {
         fetchSubmissions()
         fetchUser()
+        fetchDashboardData()
     }
 
     // MARK: - Methods
@@ -165,6 +167,21 @@ class DashboardViewModel {
             delegate?.showSubmissionDetail(for: submission)
         } else {
             delegate?.showAddSubmission(for: submissionDate)
+        }
+    }
+
+    func fetchDashboardData() {
+       sessionProvider.request(type: DashboardData.self, service: QstreakService.getDashboardData) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let dashboardData):
+                if let dashboardData = dashboardData {
+                    self.delegate?.dashboardDataUpdated(dashboardData: dashboardData)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

@@ -22,9 +22,21 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var greetingLabel: UILabel!
 
-    @IBOutlet private weak var placeholderView1: UIView!
+    @IBOutlet private weak var dashboardMessage1View: UIView!
 
-    @IBOutlet private weak var placeholderView2: UIView!
+    @IBOutlet private weak var dashboardMessage1Icon: UILabel!
+
+    @IBOutlet private weak var dashboardMessage1Header: UILabel!
+
+    @IBOutlet private weak var dashboardMessage1Body: UITextView!
+
+    @IBOutlet private weak var dashboardMessage2View: UIView!
+
+    @IBOutlet private weak var dashboardMessage2Icon: UILabel!
+
+    @IBOutlet private weak var dashboardMessage2Header: UILabel!
+
+    @IBOutlet weak var dashboardMessage2Body: UITextView!
 
     @IBOutlet private weak var recordActivityView: UIView!
 
@@ -46,13 +58,15 @@ class DashboardViewController: UIViewController {
         return blurView
     }()
 
+    private let indigo = UIColor(red: 0.42, green: 0.39, blue: 1.00, alpha: 1.00)
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         setUpCollectionView()
-        setUpPlaceholderViews()
+        setupDashboardMessageViews()
         setUpRecordActivityView()
         setUpBlurView()
     }
@@ -96,17 +110,29 @@ class DashboardViewController: UIViewController {
         collectionView.isPagingEnabled = true
     }
 
-    private func setUpPlaceholderViews() {
+    private func setupDashboardMessageViews() {
         let borderColor = UIColor(red: 63 / 255, green: 61 / 255, blue: 86 / 255, alpha: 0.2).cgColor
-        placeholderView1.clipsToBounds = true
-        placeholderView1.layer.cornerRadius = 11
-        placeholderView1.layer.borderWidth = 1
-        placeholderView1.layer.borderColor = borderColor
+        dashboardMessage1View.clipsToBounds = true
+        dashboardMessage1View.layer.cornerRadius = 11
+        dashboardMessage1View.layer.borderWidth = 1
+        dashboardMessage1View.layer.borderColor = borderColor
 
-        placeholderView2.clipsToBounds = true
-        placeholderView2.layer.cornerRadius = 11
-        placeholderView2.layer.borderWidth = 1
-        placeholderView2.layer.borderColor = borderColor
+        dashboardMessage1Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
+        dashboardMessage1Body.linkTextAttributes = [
+            .foregroundColor: indigo,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+
+        dashboardMessage2View.clipsToBounds = true
+        dashboardMessage2View.layer.cornerRadius = 11
+        dashboardMessage2View.layer.borderWidth = 1
+        dashboardMessage2View.layer.borderColor = borderColor
+
+        dashboardMessage2Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
+        dashboardMessage2Body.linkTextAttributes = [
+            .foregroundColor: indigo,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
     }
 
     private func setUpRecordActivityView() {
@@ -133,6 +159,19 @@ class DashboardViewController: UIViewController {
             addRecordViewController.presentationController?.delegate = self
             present(addRecordViewController, animated: true, completion: nil)
         }
+    }
+
+    private func constructDashboardMessageBodyText(dashboardMessage: DashboardMessage) -> NSMutableAttributedString {
+        let message = dashboardMessage.body
+        let attributedString = NSMutableAttributedString(string: message)
+
+        guard let urlString = dashboardMessage.url
+            else { return attributedString }
+
+        let url = URL(string: urlString)!
+        attributedString.setAttributes([.link: url], range: NSRange(location: 0, length: message.count))
+
+        return attributedString
     }
 }
 
@@ -181,6 +220,20 @@ extension DashboardViewController: DashboardViewModelDelegate {
         if let addRecordViewController = AddRecordViewController.initialize(viewModel: addRecordViewModel) {
             addRecordViewController.presentationController?.delegate = self
             present(addRecordViewController, animated: true, completion: nil)
+        }
+    }
+
+    func dashboardDataUpdated(dashboardData: DashboardData) {
+        DispatchQueue.main.async {
+            let message1 = dashboardData.dashboardMessages[0]
+            self.dashboardMessage1Header.text = message1.title
+            self.dashboardMessage1Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message1)
+            self.dashboardMessage1Icon.text =  FontAwesomeUtils().stringToUnicode(icon: message1.icon)
+
+            let message2 = dashboardData.dashboardMessages[1]
+            self.dashboardMessage2Header.text = message2.title
+            self.dashboardMessage2Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message2)
+            self.dashboardMessage2Icon.text = FontAwesomeUtils().stringToUnicode(icon: message2.icon)
         }
     }
 }
@@ -239,5 +292,12 @@ extension DashboardViewController: AboutScoreViewControllerDelegate {
             self.blurView.alpha = 0
             aboutScoreViewController.dismiss(animated: true)
         }
+    }
+}
+
+extension DashboardViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }

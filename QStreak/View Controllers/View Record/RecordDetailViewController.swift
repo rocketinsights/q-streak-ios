@@ -140,13 +140,9 @@ extension RecordDetailViewController: UITableViewDataSource, UITableViewDelegate
         if let destination = viewModel.record?.destinations[indexPath.section] {
             cell.activityLabel?.text = destination.name
             cell.activityIcon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
-
-            if let iconNum = Int(destination.icon, radix: 16) {
-                if let scalar = UnicodeScalar(iconNum) {
-                    cell.activityIcon.text = String(scalar)
-                }
-            }
+            cell.activityIcon.text = FontAwesomeUtils().stringToUnicode(icon: destination.icon)
         }
+
         return cell
     }
 

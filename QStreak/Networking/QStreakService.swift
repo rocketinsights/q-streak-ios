@@ -17,6 +17,7 @@ enum QstreakService {
     case deleteSubmission(date: String)
     case updateSubmission(contactCount: Int, date: String, destinations: [String])
     case getUser
+    case getDashboardData
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
 }
@@ -41,6 +42,8 @@ extension QstreakService: NetworkService {
             return "/submissions/\(date)"
         case .getUser:
             return "/me"
+        case .getDashboardData:
+            return "/dashboard"
         }
     }
 
@@ -48,7 +51,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
-        case .getDestinations, .getSubmission, .getSubmissions, .getUser:
+        case .getDestinations, .getSubmission, .getSubmissions, .getUser, .getDashboardData:
             return .get
         case .deleteSubmission:
             return .delete
@@ -61,7 +64,7 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission, .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission, .updateSubmission, .getUser:
+        case .createSubmission, .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission, .updateSubmission, .getUser, .getDashboardData:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -83,7 +86,7 @@ extension QstreakService: NetworkService {
             return ["page": page, "page_size": pageSize]
         case .getSubmission(let date), .deleteSubmission(let date):
             return ["": date]
-        case .getDestinations, .getUser:
+        case .getDestinations, .getUser, .getDashboardData:
           return nil
         }
     }
@@ -94,7 +97,7 @@ extension QstreakService: NetworkService {
             return .json
         case .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission:
             return .url
-        case .getUser:
+        case .getUser, .getDashboardData:
             return nil
         }
     }

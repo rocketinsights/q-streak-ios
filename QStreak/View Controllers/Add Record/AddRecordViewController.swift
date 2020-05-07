@@ -57,6 +57,10 @@ class AddRecordViewController: UIViewController {
         submissionDateLabel.becomeFirstResponder()
     }
 
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
     // MARK: - Properties
 
     private var viewModel: AddRecordViewModel!

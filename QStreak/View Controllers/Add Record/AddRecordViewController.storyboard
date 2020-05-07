@@ -188,6 +188,16 @@
                                     <action selector="saveButtonTapped:" destination="dh0-eu-ygi" eventType="touchUpInside" id="X1s-UW-adS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-hb-pfT">
+                                <rect key="frame" x="30" y="847" width="354" height="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="dh0-eu-ygi" eventType="touchUpInside" id="Xlc-rA-VwD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -206,6 +216,7 @@
                             <constraint firstAttribute="trailing" secondItem="VUE-iN-pgh" secondAttribute="trailing" constant="30" id="BQh-qG-nEq"/>
                             <constraint firstItem="VUE-iN-pgh" firstAttribute="top" secondItem="yCj-jb-hxE" secondAttribute="bottom" constant="35" id="Bb9-5Z-QBX"/>
                             <constraint firstAttribute="trailing" secondItem="XDv-PX-1wR" secondAttribute="trailing" constant="30" id="DL0-dW-5Hw"/>
+                            <constraint firstItem="ngg-UG-H36" firstAttribute="bottom" secondItem="bSm-hb-pfT" secondAttribute="bottom" id="EZ6-r1-trv"/>
                             <constraint firstItem="bEC-ag-46D" firstAttribute="top" secondItem="ngg-UG-H36" secondAttribute="top" constant="32" id="FLv-x1-2yN"/>
                             <constraint firstItem="nNN-5Y-TRs" firstAttribute="top" secondItem="XDv-PX-1wR" secondAttribute="bottom" constant="27.5" id="GfN-Qt-Z9e"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="6J3-e1-w2C" secondAttribute="trailing" constant="30" id="Gy9-OM-ffI"/>
@@ -224,9 +235,12 @@
                             <constraint firstItem="6J3-e1-w2C" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="cwp-KW-N56"/>
                             <constraint firstItem="1bu-7v-3JF" firstAttribute="top" secondItem="XDv-PX-1wR" secondAttribute="bottom" constant="20" id="cx7-2i-Fp0"/>
                             <constraint firstItem="XDv-PX-1wR" firstAttribute="top" secondItem="Uk0-xu-4Mx" secondAttribute="bottom" constant="35" id="hPh-nz-mDC"/>
+                            <constraint firstItem="bSm-hb-pfT" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="hQp-oU-hK2"/>
+                            <constraint firstItem="bSm-hb-pfT" firstAttribute="top" secondItem="Nzg-7v-swe" secondAttribute="bottom" constant="25" id="o4P-7Z-shT"/>
                             <constraint firstItem="6J3-e1-w2C" firstAttribute="top" secondItem="bEC-ag-46D" secondAttribute="bottom" constant="10" id="oQX-S4-8jb"/>
                             <constraint firstAttribute="trailing" secondItem="Uk0-xu-4Mx" secondAttribute="trailing" constant="30" id="rxH-UU-nSF"/>
                             <constraint firstItem="1bu-7v-3JF" firstAttribute="leading" secondItem="hwd-ir-dYE" secondAttribute="trailing" constant="13.5" id="tRa-oJ-JFq"/>
+                            <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="bSm-hb-pfT" secondAttribute="trailing" constant="30" id="uHI-qw-oAf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ngg-UG-H36"/>
                     </view>

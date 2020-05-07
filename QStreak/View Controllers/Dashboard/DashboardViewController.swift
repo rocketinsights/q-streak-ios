@@ -52,10 +52,11 @@ class DashboardViewController: UIViewController {
     // MARK: IBActions
 
     @IBAction func recordActivityButtonTapped(_ sender: Any) {
-        if let addRecordViewController = AddRecordViewController.initialize(viewModel: AddRecordViewModel()) {
-            addRecordViewController.presentationController?.delegate = self
-            present(addRecordViewController, animated: true, completion: nil)
-        }
+        showAddRecordViewController()
+    }
+
+    @IBAction func scoreButtonTapped(_ sender: Any) {
+        showAddRecordViewController()
     }
 
     @IBAction func aboutScoreButtonTapped(_ sender: Any) {
@@ -96,6 +97,13 @@ class DashboardViewController: UIViewController {
         recordActivityView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recordActivityView.layer.shadowRadius = 10
         recordActivityView.layer.shadowPath = UIBezierPath(rect: recordActivityView.bounds).cgPath
+    }
+
+    private func showAddRecordViewController() {
+        if let addRecordViewController = AddRecordViewController.initialize(viewModel: AddRecordViewModel()) {
+            addRecordViewController.presentationController?.delegate = self
+            present(addRecordViewController, animated: true, completion: nil)
+        }
     }
 }
 

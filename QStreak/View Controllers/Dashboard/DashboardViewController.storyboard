@@ -48,6 +48,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCX-Z6-AYa">
                                                 <rect key="frame" x="291" y="65" width="93" height="69"/>
                                                 <state key="normal" backgroundImage="noScore"/>
+                                                <connections>
+                                                    <action selector="scoreButtonTapped:" destination="D8d-ak-FG3" eventType="touchUpInside" id="6oA-aD-m59"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FwJ-PN-unV" userLabel="Activity Log View">
                                                 <rect key="frame" x="0.0" y="169" width="414" height="200"/>

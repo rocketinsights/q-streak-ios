@@ -94,7 +94,7 @@
                                     <action selector="getStartedButtonTapped:" destination="1yQ-61-FOK" eventType="touchUpInside" id="0jy-dv-lvt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📝 This information helps us calculate your daily activity score." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blq-dj-WKc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📝 This information helps us calculate your daily activity score." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blq-dj-WKc">
                                 <rect key="frame" x="30" y="193" width="354" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="q9X-7o-4YT"/>

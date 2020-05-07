@@ -18,6 +18,7 @@
 		990B4552243E510D00177002 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4551243E510D00177002 /* Activity.swift */; };
 		992249BB2440F92800A4790A /* QStreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BA2440F92800A4790A /* QStreakService.swift */; };
 		992249BD2441010700A4790A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992249BC2441010700A4790A /* User.swift */; };
+		992A0D6F24645F56004EC46C /* DatePickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A0D6E24645F56004EC46C /* DatePickerLabel.swift */; };
 		9938CCBE2459D24B002E2B49 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938CCBD2459D24B002E2B49 /* DashboardViewController.swift */; };
 		9938CCC02459D295002E2B49 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938CCBF2459D295002E2B49 /* DashboardViewModel.swift */; };
 		9938CCC22459D2BF002E2B49 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9938CCC12459D2BF002E2B49 /* DashboardViewController.storyboard */; };
@@ -89,6 +90,7 @@
 		990B4551243E510D00177002 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		992249BA2440F92800A4790A /* QStreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QStreakService.swift; sourceTree = "<group>"; };
 		992249BC2441010700A4790A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		992A0D6E24645F56004EC46C /* DatePickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerLabel.swift; sourceTree = "<group>"; };
 		9938CCBD2459D24B002E2B49 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		9938CCBF2459D295002E2B49 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		9938CCC12459D2BF002E2B49 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				9955F946243F7DB500077C58 /* AddRecordViewController.swift */,
 				9955F948243F7DD600077C58 /* AddRecordViewModel.swift */,
 				D5E2FE10246059E4006F63CA /* ActivityCell.swift */,
+				992A0D6E24645F56004EC46C /* DatePickerLabel.swift */,
 			);
 			path = "Add Record";
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				2C38EE57244A471A006CDF7D /* WelcomeViewController.swift in Sources */,
 				9955F974243FE4D700077C58 /* NetworkError.swift in Sources */,
 				D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */,
+				992A0D6F24645F56004EC46C /* DatePickerLabel.swift in Sources */,
 				99746A0A2444E31100829473 /* Submission.swift in Sources */,
 				9955F96E243FE0D600077C58 /* ParameterEncoding.swift in Sources */,
 				9955F980243FF32900077C58 /* URLSession+Extentions.swift in Sources */,

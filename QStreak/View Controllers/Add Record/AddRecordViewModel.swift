@@ -10,7 +10,7 @@ import Foundation
 
 protocol AddRecordViewModelDelegate: AnyObject {
     func retrievedDestinations()
-    func addedSubmission()
+    func addedSubmission(_ submission: Submission)
     func failedSubmission(error: NetworkError)
     func retrievedSubmission()
 }
@@ -28,7 +28,11 @@ class AddRecordViewModel {
 
     var categories = [Activity]()
 
-    let submissionDate: Date
+    var submissionDate: Date {
+        didSet {
+            getSubmission()
+        }
+    }
 
     var submission: Submission?
 
@@ -103,6 +107,8 @@ class AddRecordViewModel {
     }
 
     private func getSubmission() {
+        submission = nil
+        currentContactCount = 0
         sessionProvider.request(type: Submission.self, service: QstreakService.getSubmission(date: submissionDate.formattedDate(dateFormat: "yyyy-MM-dd"))) { [weak self] result in
             guard let self = self else { return }
 
@@ -111,11 +117,11 @@ class AddRecordViewModel {
                 if let submission = submission {
                     self.submission = submission
                     self.currentContactCount = submission.contactCount
-                    self.delegate?.retrievedSubmission()
                 }
             case .failure:
                 break
             }
+            self.delegate?.retrievedSubmission()
         }
     }
 
@@ -126,8 +132,10 @@ class AddRecordViewModel {
             guard let self = self else { return }
 
             switch result {
-            case .success:
-                self.delegate?.addedSubmission()
+            case .success(let submission):
+                if let submission = submission {
+                    self.delegate?.addedSubmission(submission)
+                }
             case .failure(let error):
                 self.delegate?.failedSubmission(error: error)
             }
@@ -139,8 +147,10 @@ class AddRecordViewModel {
             guard let self = self else { return }
 
             switch result {
-            case .success:
-                self.delegate?.addedSubmission()
+            case .success(let submission):
+                if let submission = submission {
+                    self.delegate?.addedSubmission(submission)
+                }
             case .failure(let error):
                 self.delegate?.failedSubmission(error: error)
             }

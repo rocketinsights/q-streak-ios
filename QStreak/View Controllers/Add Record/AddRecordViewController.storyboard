@@ -15,14 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEC-ag-46D">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEC-ag-46D" customClass="DatePickerLabel" customModule="QStreak" customModuleProvider="target">
                                 <rect key="frame" x="30" y="76" width="354" height="22"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="irL-3T-miM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.60784313729999995" green="0.61176470589999998" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DM3-7V-Dok" appends="YES" id="Gol-7f-KqZ"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6J3-e1-w2C">
                                 <rect key="frame" x="30" y="108" width="354" height="34"/>
@@ -233,11 +237,16 @@
                         <outlet property="infoLabel" destination="Uk0-xu-4Mx" id="2Mq-p8-EYI"/>
                         <outlet property="peopleLabel" destination="nNN-5Y-TRs" id="ZiU-8Z-g0y"/>
                         <outlet property="saveButton" destination="Nzg-7v-swe" id="xUC-4Y-UeB"/>
-                        <outlet property="submissionDateLabel" destination="bEC-ag-46D" id="zUr-aS-4zT"/>
+                        <outlet property="submissionDateLabel" destination="bEC-ag-46D" id="CU0-AW-1wp"/>
                         <outlet property="tableView" destination="CRx-Pt-Wsj" id="oBy-Bk-hAM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CC3-ZK-BA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DM3-7V-Dok">
+                    <connections>
+                        <action selector="datePickerTapGestureRecognizer:" destination="dh0-eu-ygi" id="kt5-Pb-rgg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="166.07142857142856"/>
         </scene>

@@ -16,7 +16,7 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    @IBOutlet private weak var submissionDateLabel: UILabel!
+    @IBOutlet private weak var submissionDateLabel: DatePickerLabel!
 
     @IBOutlet private weak var contactCountTextField: QTextField!
 
@@ -51,6 +51,10 @@ class AddRecordViewController: UIViewController {
 
         viewModel.setContactCount(contactCountString)
         updateCount()
+    }
+
+    @IBAction func datePickerTapGestureRecognizer(_ sender: Any) {
+        submissionDateLabel.becomeFirstResponder()
     }
 
     // MARK: - Properties
@@ -93,6 +97,7 @@ class AddRecordViewController: UIViewController {
     private func setUpViews() {
         addDoneButtonOnKeyboard()
         setUpTableView()
+        setUpDatePicker()
     }
 
     private func setUpTableView() {
@@ -100,6 +105,11 @@ class AddRecordViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 44
+    }
+
+    private func setUpDatePicker() {
+        submissionDateLabel.delegate = self
+        submissionDateLabel.selectedDate = viewModel.submissionDate
     }
 
     private func updateViews() {
@@ -186,14 +196,20 @@ extension AddRecordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - AddRecordViewModelDelegate
+
 extension AddRecordViewController: AddRecordViewModelDelegate {
 
     func retrievedDestinations() {
         DispatchQueue.main.async { [weak self] in self?.updateViews() }
     }
 
-    func addedSubmission() {
-        DispatchQueue.main.async { [weak self] in self?.dismiss(animated: true, completion: nil) }
+    func addedSubmission(_ submission: Submission) {
+        DispatchQueue.main.async { [weak self] in
+            let recordDetailViewController = (self?.presentingViewController as? UINavigationController)?.topViewController as? RecordDetailViewController
+            recordDetailViewController?.viewModel.submissionDateString = submission.dateString
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
     func failedSubmission(error: NetworkError) {
@@ -207,5 +223,16 @@ extension AddRecordViewController: AddRecordViewModelDelegate {
 
     func retrievedSubmission() {
         DispatchQueue.main.async { [weak self] in self?.updateViews() }
+    }
+}
+
+// MARK: - DatePickerLabelDelegate
+
+extension AddRecordViewController: DatePickerLabelDelegate {
+
+    func datePickerDismissed() {
+        guard let datePicker = submissionDateLabel.inputView as? UIDatePicker else { return }
+
+        viewModel.submissionDate = Calendar.current.startOfDay(for: datePicker.date)
     }
 }

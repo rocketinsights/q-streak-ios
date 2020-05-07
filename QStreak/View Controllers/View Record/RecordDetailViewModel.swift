@@ -28,7 +28,11 @@ class RecordDetailViewModel {
 
     weak var delegate: RecordDetailViewModelDelegate?
 
-    let submissionDateString: String
+    var submissionDateString: String {
+        didSet {
+            retrieveSubmission()
+        }
+    }
 
     init(dateString: String) {
         submissionDateString = dateString
@@ -36,6 +40,8 @@ class RecordDetailViewModel {
     }
 
     func retrieveSubmission() {
+        record = nil
+
         sessionProvider.request(type: Submission.self, service: QstreakService.getSubmission(date: submissionDateString)) { [weak self] result in
             guard let self = self else { return }
 

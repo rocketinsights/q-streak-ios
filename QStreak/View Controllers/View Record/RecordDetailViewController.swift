@@ -63,7 +63,14 @@ class RecordDetailViewController: UIViewController {
     }
 
     @IBAction private func deleteButtonTapped(_ sender: Any) {
-        viewModel.deleteButtonTapped()
+        let alert = UIAlertController(title: viewModel.alertDeleteConfirmationText, message: viewModel.alertDeleteConfirmationBodyText, preferredStyle: .alert)
+        let deleteAlertAction = UIAlertAction(title: viewModel.alertDeleteConfirmationDeleteButtonText, style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteButtonTapped()
+        }
+        alert.addAction(UIAlertAction(title: viewModel.alertDeleteConfirmationCancelButtonText, style: .cancel))
+        alert.addAction(deleteAlertAction)
+
+        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func backButtonTapped(_ sender: Any) {

@@ -22,6 +22,14 @@ class RecordDetailViewModel {
 
     let alertDismissButtonText =  "OK"
 
+    let alertDeleteConfirmationText = "Are you sure?"
+
+    let alertDeleteConfirmationBodyText = "Deleting a submission is permanent and cannot be reversed."
+
+    let alertDeleteConfirmationDeleteButtonText = "Delete"
+
+    let alertDeleteConfirmationCancelButtonText = "Cancel"
+
     var record: Submission?
 
     let sessionProvider = URLSessionProvider()

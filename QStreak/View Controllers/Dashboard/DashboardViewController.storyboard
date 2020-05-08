@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D8d-ak-FG3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsc-9R-mdr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="761"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="717"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izs-hy-QBw" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="850"/>
@@ -358,7 +358,7 @@
                             <constraint firstAttribute="bottom" secondItem="HlQ-pd-uwl" secondAttribute="bottom" id="SMz-Un-6u4"/>
                             <constraint firstItem="HlQ-pd-uwl" firstAttribute="leading" secondItem="ry2-yk-spi" secondAttribute="leading" id="dJ5-rN-5da"/>
                             <constraint firstItem="HlQ-pd-uwl" firstAttribute="top" secondItem="Gsc-9R-mdr" secondAttribute="bottom" id="fbg-uD-IEi"/>
-                            <constraint firstItem="Gsc-9R-mdr" firstAttribute="top" secondItem="q1o-lR-XBe" secondAttribute="top" id="qt5-wO-sll"/>
+                            <constraint firstItem="Gsc-9R-mdr" firstAttribute="top" secondItem="ry2-yk-spi" secondAttribute="top" id="qt5-wO-sll"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ry2-yk-spi"/>
                     </view>

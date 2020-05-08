@@ -28,7 +28,7 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var dashboardMessage1Header: UILabel!
 
-    @IBOutlet private weak var dashboardMessage1Body: UITextView!
+    @IBOutlet weak var dashboardMessage1Body: UILabel!
 
     @IBOutlet private weak var dashboardMessage2View: UIView!
 
@@ -36,7 +36,7 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var dashboardMessage2Header: UILabel!
 
-    @IBOutlet private weak var dashboardMessage2Body: UITextView!
+    @IBOutlet private weak var dashboardMessage2Body: UILabel!
 
     @IBOutlet private weak var hazardMessageLabel: UILabel!
 
@@ -104,6 +104,22 @@ class DashboardViewController: UIViewController {
         }
     }
 
+    @objc func dashboardMessage1BodyTextTapped(_ sender: UITapGestureRecognizer) {
+        if let urlString = self.viewModel.dashboardData?.dashboardMessages[0].url {
+            if let url = URL(string: urlString) {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+
+    @objc func dashboardMessage2BodyTextTapped(_ sender: UITapGestureRecognizer) {
+        if let urlString = self.viewModel.dashboardData?.dashboardMessages[1].url {
+            if let url = URL(string: urlString) {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+
     // MARK: - Methods
 
     private func setUpCollectionView() {
@@ -120,10 +136,6 @@ class DashboardViewController: UIViewController {
         dashboardMessage1View.layer.borderColor = borderColor
 
         dashboardMessage1Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
-        dashboardMessage1Body.linkTextAttributes = [
-            .foregroundColor: indigo,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
 
         dashboardMessage2View.clipsToBounds = true
         dashboardMessage2View.layer.cornerRadius = 11
@@ -131,10 +143,6 @@ class DashboardViewController: UIViewController {
         dashboardMessage2View.layer.borderColor = borderColor
 
         dashboardMessage2Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
-        dashboardMessage2Body.linkTextAttributes = [
-            .foregroundColor: indigo,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
     }
 
     private func setUpRecordActivityView() {
@@ -167,11 +175,12 @@ class DashboardViewController: UIViewController {
         let message = dashboardMessage.body
         let attributedString = NSMutableAttributedString(string: message)
 
-        guard let urlString = dashboardMessage.url
+        guard dashboardMessage.url != nil
             else { return attributedString }
 
-        let url = URL(string: urlString)!
-        attributedString.setAttributes([.link: url], range: NSRange(location: 0, length: message.count))
+        let linkRange =  NSRange(location: 0, length: message.count)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: linkRange)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: indigo, range: linkRange)
 
         return attributedString
     }
@@ -232,10 +241,22 @@ extension DashboardViewController: DashboardViewModelDelegate {
             self.dashboardMessage1Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message1)
             self.dashboardMessage1Icon.text =  FontAwesomeUtils().stringToUnicode(icon: message1.icon)
 
+            if message1.url != nil {
+                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage1BodyTextTapped(_:)))
+                self.dashboardMessage1Body.isUserInteractionEnabled = true
+                self.dashboardMessage1Body.addGestureRecognizer(labelTap)
+            }
+
             let message2 = dashboardData.dashboardMessages[1]
             self.dashboardMessage2Header.text = message2.title
             self.dashboardMessage2Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message2)
             self.dashboardMessage2Icon.text = FontAwesomeUtils().stringToUnicode(icon: message2.icon)
+
+            if message2.url != nil {
+                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage2BodyTextTapped(_:)))
+                self.dashboardMessage2Body.isUserInteractionEnabled = true
+                self.dashboardMessage2Body.addGestureRecognizer(labelTap)
+            }
 
             let countyName = dashboardData.dailyStats.location.county
             self.hazardMessageLabel.text = "\(countyName) is at risk for continued outbreaks."
@@ -297,12 +318,5 @@ extension DashboardViewController: AboutScoreViewControllerDelegate {
             self.blurView.alpha = 0
             aboutScoreViewController.dismiss(animated: true)
         }
-    }
-}
-
-extension DashboardViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        UIApplication.shared.open(URL)
-        return false
     }
 }

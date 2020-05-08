@@ -21,6 +21,8 @@ class DashboardViewModel {
     // MARK: - Properties
 
     var submissionsToShow = [Submission?]()
+    
+    var dashboardData: DashboardData?
 
     private var submissions = [Submission]()
 
@@ -177,6 +179,7 @@ class DashboardViewModel {
             switch result {
             case .success(let dashboardData):
                 if let dashboardData = dashboardData {
+                    self.dashboardData = dashboardData
                     self.delegate?.dashboardDataUpdated(dashboardData: dashboardData)
                 }
             case .failure(let error):

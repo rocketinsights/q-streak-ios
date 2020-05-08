@@ -251,7 +251,7 @@
                                                             <constraint firstAttribute="height" constant="36" id="RMz-U3-2xe"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yYG-4o-Byi">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="yYG-4o-Byi">
                                                         <rect key="frame" x="49" y="32.5" width="225" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="fXj-R2-SZT"/>

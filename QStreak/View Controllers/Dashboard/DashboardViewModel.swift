@@ -21,7 +21,7 @@ class DashboardViewModel {
     // MARK: - Properties
 
     var submissionsToShow = [Submission?]()
-    
+
     var dashboardData: DashboardData?
 
     private var submissions = [Submission]()

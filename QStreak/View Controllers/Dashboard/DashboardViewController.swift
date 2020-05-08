@@ -36,7 +36,9 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var dashboardMessage2Header: UILabel!
 
-    @IBOutlet weak var dashboardMessage2Body: UITextView!
+    @IBOutlet private weak var dashboardMessage2Body: UITextView!
+
+    @IBOutlet private weak var hazardMessageLabel: UILabel!
 
     @IBOutlet private weak var recordActivityView: UIView!
 
@@ -234,6 +236,9 @@ extension DashboardViewController: DashboardViewModelDelegate {
             self.dashboardMessage2Header.text = message2.title
             self.dashboardMessage2Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message2)
             self.dashboardMessage2Icon.text = FontAwesomeUtils().stringToUnicode(icon: message2.icon)
+
+            let countyName = dashboardData.dailyStats.location.county
+            self.hazardMessageLabel.text = "\(countyName) is at risk for continued outbreaks."
         }
     }
 }

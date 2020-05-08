@@ -13,11 +13,25 @@ struct DailyStat: Decodable {
     let date: String
     let deaths: Int
     let riskLevel: Int
+    let location: DailyStatLocation
 
     enum CodingKeys: String, CodingKey {
         case cases
         case date
         case deaths
+        case location
         case riskLevel = "risk_level"
+    }
+}
+
+struct DailyStatLocation: Decodable {
+    let county: String
+    let region: String
+    let regionCode: String
+
+    enum CodingKeys: String, CodingKey {
+        case county
+        case region
+        case regionCode = "region_code"
     }
 }

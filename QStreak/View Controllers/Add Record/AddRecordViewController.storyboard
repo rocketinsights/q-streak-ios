@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzg-7v-swe" customClass="QButton" customModule="QStreak" customModuleProvider="target">
-                                <rect key="frame" x="30" y="766" width="354" height="56"/>
+                                <rect key="frame" x="30" y="745" width="354" height="56"/>
                                 <color key="backgroundColor" red="0.54901960780000003" green="0.96078431369999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="Xho-bV-P3h"/>
@@ -35,7 +35,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-hb-pfT">
-                                <rect key="frame" x="30" y="847" width="354" height="5"/>
+                                <rect key="frame" x="30" y="806" width="354" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="sfx-Bo-vdj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,7 +48,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aY-po-KpZ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="696"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oyg-4v-XHS" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="391.66666666666669"/>
@@ -236,16 +239,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ngg-UG-H36" firstAttribute="bottom" secondItem="Nzg-7v-swe" secondAttribute="bottom" constant="40" id="24v-8D-ib8"/>
                             <constraint firstItem="Nzg-7v-swe" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="3hq-Bq-kf9"/>
-                            <constraint firstItem="ngg-UG-H36" firstAttribute="bottom" secondItem="bSm-hb-pfT" secondAttribute="bottom" constant="10" id="EZ6-r1-trv"/>
+                            <constraint firstItem="ngg-UG-H36" firstAttribute="bottom" secondItem="bSm-hb-pfT" secondAttribute="bottom" id="EZ6-r1-trv"/>
                             <constraint firstItem="8aY-po-KpZ" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" id="PJ5-7u-FYd"/>
-                            <constraint firstItem="Nzg-7v-swe" firstAttribute="centerX" secondItem="ceu-CH-zkl" secondAttribute="centerX" id="bMw-4N-wKF"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="Nzg-7v-swe" secondAttribute="trailing" constant="30" id="bxY-Of-CEg"/>
                             <constraint firstItem="bSm-hb-pfT" firstAttribute="leading" secondItem="ngg-UG-H36" secondAttribute="leading" constant="30" id="hQp-oU-hK2"/>
                             <constraint firstItem="8aY-po-KpZ" firstAttribute="top" secondItem="ngg-UG-H36" secondAttribute="top" id="kqV-Wq-W2K"/>
                             <constraint firstItem="Nzg-7v-swe" firstAttribute="top" secondItem="8aY-po-KpZ" secondAttribute="bottom" constant="5" id="ld7-dx-g9A"/>
-                            <constraint firstItem="bSm-hb-pfT" firstAttribute="top" secondItem="Nzg-7v-swe" secondAttribute="bottom" constant="25" id="o4P-7Z-shT"/>
+                            <constraint firstItem="bSm-hb-pfT" firstAttribute="top" secondItem="Nzg-7v-swe" secondAttribute="bottom" constant="5" id="o4P-7Z-shT"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="bSm-hb-pfT" secondAttribute="trailing" constant="30" id="uHI-qw-oAf"/>
                             <constraint firstItem="ngg-UG-H36" firstAttribute="trailing" secondItem="8aY-po-KpZ" secondAttribute="trailing" id="zPg-XW-zxq"/>
                         </constraints>

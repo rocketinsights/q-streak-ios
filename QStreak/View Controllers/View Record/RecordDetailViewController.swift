@@ -14,6 +14,8 @@ class RecordDetailViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var submissionDateLabel: UILabel!
 
     @IBOutlet private weak var submissionRatingImage: UIImageView!
@@ -83,8 +85,12 @@ class RecordDetailViewController: UIViewController {
         setRatingImage()
         setupTableView()
     }
+
     private func setupNavbar() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
     }
 
     private func setRatingImage() {
@@ -117,6 +123,9 @@ class RecordDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 56
         tableView.reloadData()
+        if let destinationCount = viewModel.record?.destinations.count {
+            tableViewHeightConstraint.constant = CGFloat(destinationCount) * (tableView.rowHeight + tableView.sectionHeaderHeight)
+        }
     }
 }
 

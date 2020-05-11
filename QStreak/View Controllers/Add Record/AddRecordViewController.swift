@@ -16,6 +16,8 @@ class AddRecordViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var submissionDateLabel: DatePickerLabel!
 
     @IBOutlet private weak var contactCountTextField: QTextField!
@@ -125,6 +127,8 @@ class AddRecordViewController: UIViewController {
         updateCount()
 
         tableView.reloadData()
+
+        tableViewHeightConstraint.constant = tableView.rowHeight * CGFloat(viewModel.categories.count)
 
         if let submission = viewModel.submission {
             for submissionDestination in submission.destinations {

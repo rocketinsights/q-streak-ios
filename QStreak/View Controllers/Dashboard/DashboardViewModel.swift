@@ -34,6 +34,8 @@ class DashboardViewModel {
 
     let calendar = Calendar.current
 
+    var userAccount: User?
+
     private var numberOfDaysInWeek: Int {
         return calendar.range(of: .weekday, in: .weekOfYear, for: calendar.startOfDay(for: Date()))?.count ?? 0
     }
@@ -150,6 +152,7 @@ class DashboardViewModel {
             switch result {
             case .success(let user):
                 if let user = user {
+                    self.userAccount = user
                     self.delegate?.userUpdated(user)
                 }
             case .failure(let error):

@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D8d-ak-FG3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,20 +22,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izs-hy-QBw" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="850"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks For Tracking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neE-U5-SPQ">
-                                                <rect key="frame" x="30" y="60" width="166" height="21"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP4-4M-hzP">
-                                                <rect key="frame" x="30" y="89" width="182.5" height="33.5"/>
+                                                <rect key="frame" x="30" y="88" width="182.5" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <color key="textColor" red="0.082352941176470587" green="0.070588235294117646" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfJ-kw-B9L">
-                                                <rect key="frame" x="217.5" y="92" width="28" height="28"/>
+                                                <rect key="frame" x="217.5" y="91" width="28" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="qUF-mz-TWY"/>
                                                     <constraint firstAttribute="width" constant="28" id="zNq-DO-cay"/>
@@ -271,14 +265,35 @@
                                                     <constraint firstAttribute="height" constant="125" id="yb7-27-oVS"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Dan!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="neE-U5-SPQ">
+                                                <rect key="frame" x="58" y="60" width="154.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="RzX-jR-c4o"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34h-nz-sNN">
+                                                <rect key="frame" x="30" y="60" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="40o-9H-abH"/>
+                                                    <constraint firstAttribute="width" constant="20" id="L1o-RJ-ner"/>
+                                                </constraints>
+                                                <state key="normal" image="user"/>
+                                                <connections>
+                                                    <action selector="userAccountButtonTapped:" destination="D8d-ak-FG3" eventType="touchUpInside" id="IaK-az-kCb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="neE-U5-SPQ" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="30" id="3kb-KU-H4i"/>
                                             <constraint firstItem="ULM-0I-8YX" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="70" id="4Lj-Vc-ZTC"/>
                                             <constraint firstItem="ULM-0I-8YX" firstAttribute="top" secondItem="GCm-oG-587" secondAttribute="bottom" id="4NB-11-fOC"/>
+                                            <constraint firstItem="neE-U5-SPQ" firstAttribute="trailing" secondItem="LP4-4M-hzP" secondAttribute="trailing" id="9H3-EC-DSA"/>
                                             <constraint firstAttribute="trailing" secondItem="ULM-0I-8YX" secondAttribute="trailing" constant="70" id="9Rt-vd-Mhb"/>
                                             <constraint firstItem="JfJ-kw-B9L" firstAttribute="leading" secondItem="LP4-4M-hzP" secondAttribute="trailing" constant="5" id="9df-Ww-TfY"/>
+                                            <constraint firstItem="34h-nz-sNN" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="30" id="Hjh-Eu-tQ6"/>
                                             <constraint firstAttribute="trailing" secondItem="3Xe-BU-jbB" secondAttribute="trailing" constant="30" id="I8C-Wc-yn6"/>
                                             <constraint firstItem="FwJ-PN-unV" firstAttribute="top" secondItem="zCX-Z6-AYa" secondAttribute="bottom" constant="35" id="L67-Zn-Xw9"/>
                                             <constraint firstAttribute="trailing" secondItem="FwJ-PN-unV" secondAttribute="trailing" id="P70-kx-3Rq"/>
@@ -287,13 +302,15 @@
                                             <constraint firstAttribute="trailing" secondItem="GCm-oG-587" secondAttribute="trailing" constant="30" id="UUg-bB-5ml"/>
                                             <constraint firstItem="LP4-4M-hzP" firstAttribute="top" secondItem="neE-U5-SPQ" secondAttribute="bottom" constant="8" id="adD-ui-8oI"/>
                                             <constraint firstItem="FwJ-PN-unV" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" id="cfi-io-4xd"/>
+                                            <constraint firstItem="neE-U5-SPQ" firstAttribute="leading" secondItem="34h-nz-sNN" secondAttribute="trailing" constant="8" id="eOY-By-sSe"/>
                                             <constraint firstItem="GCm-oG-587" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="30" id="fUm-HT-25r"/>
+                                            <constraint firstItem="34h-nz-sNN" firstAttribute="top" secondItem="izs-hy-QBw" secondAttribute="top" constant="60" id="nNL-cR-c1o"/>
                                             <constraint firstAttribute="height" constant="850" id="pGb-zI-RsQ"/>
                                             <constraint firstAttribute="trailing" secondItem="zCX-Z6-AYa" secondAttribute="trailing" constant="30" id="qGL-fJ-BDA"/>
                                             <constraint firstItem="LP4-4M-hzP" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="30" id="qIB-Bl-5Bc"/>
                                             <constraint firstItem="GCm-oG-587" firstAttribute="top" secondItem="3Xe-BU-jbB" secondAttribute="bottom" constant="15" id="qYx-Ax-Ie0"/>
+                                            <constraint firstItem="neE-U5-SPQ" firstAttribute="centerY" secondItem="34h-nz-sNN" secondAttribute="centerY" id="sYS-5d-2h2"/>
                                             <constraint firstItem="3Xe-BU-jbB" firstAttribute="leading" secondItem="izs-hy-QBw" secondAttribute="leading" constant="30" id="uGm-j2-hYm"/>
-                                            <constraint firstItem="neE-U5-SPQ" firstAttribute="top" secondItem="izs-hy-QBw" secondAttribute="top" constant="60" id="wFp-7Z-E65"/>
                                             <constraint firstItem="zCX-Z6-AYa" firstAttribute="top" secondItem="izs-hy-QBw" secondAttribute="top" constant="65" id="wkM-UO-0Ms"/>
                                         </constraints>
                                     </view>
@@ -378,6 +395,7 @@
                         <outlet property="lastTwoWeeksLabel" destination="kF5-Ua-6S4" id="xOS-kw-eK9"/>
                         <outlet property="recordActivityView" destination="HlQ-pd-uwl" id="6IZ-Fq-92v"/>
                         <outlet property="scoreButton" destination="zCX-Z6-AYa" id="8J2-B1-PIl"/>
+                        <outlet property="userAccountButton" destination="34h-nz-sNN" id="Nnv-kO-cO1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExG-EK-KYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -390,5 +408,6 @@
         <image name="hazard" width="36" height="36"/>
         <image name="noScore" width="93" height="69"/>
         <image name="questionmarkCircle" width="28" height="28"/>
+        <image name="user" width="17.5" height="20"/>
     </resources>
 </document>

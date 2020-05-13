@@ -22,6 +22,8 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet private weak var greetingLabel: UILabel!
 
+    @IBOutlet private weak var userAccountButton: UIButton!
+
     @IBOutlet private weak var dashboardMessage1View: UIView!
 
     @IBOutlet private weak var dashboardMessage1Icon: UILabel!
@@ -101,6 +103,16 @@ class DashboardViewController: UIViewController {
 
             self.blurView.alpha = 0.95
             self.present(aboutScoreViewController, animated: true)
+        }
+    }
+
+    @IBAction func userAccountButtonTapped(_ sender: Any) {
+        if let userAccount = viewModel.userAccount {
+            let viewAccountModel = ViewAccountModel(account: userAccount)
+
+            if let viewAccountController = ViewAccountController.initialize(viewModel: viewAccountModel) {
+                navigationController?.pushViewController(viewAccountController, animated: true)
+            }
         }
     }
 
@@ -212,9 +224,9 @@ extension DashboardViewController: DashboardViewModelDelegate {
     func userUpdated(_ user: User) {
         DispatchQueue.main.async {
             if let firstName = user.name?.components(separatedBy: .whitespaces).first?.capitalized {
-                self.greetingLabel.text = "Thanks For Tracking, \(firstName)!"
+                self.greetingLabel.text = "Hello, \(firstName)!"
             } else {
-                self.greetingLabel.text = "Thanks For Tracking!"
+                self.greetingLabel.text = "Hello!"
             }
         }
     }

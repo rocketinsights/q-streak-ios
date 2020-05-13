@@ -30,6 +30,8 @@ class AccountSetupViewController: UIViewController {
         viewModel.delegate = self
 
         navigationController?.setNavigationBarHidden(true, animated: false)
+
+        updateViews()
     }
 
     // MARK: - IBAction
@@ -38,9 +40,16 @@ class AccountSetupViewController: UIViewController {
         viewModel.continueButtonTapped(name: userNameTextField.text, zipCode: zipCodeTextField.text)
     }
 
+    private func updateViews() {
+        zipCodeTextField.text = viewModel.account?.zipCode
+        userNameTextField.text = viewModel.account?.name
+    }
 }
 
 extension AccountSetupViewController: AccountSetupViewModelDelegate {
+    func retrievedAccount() {
+        DispatchQueue.main.async { [weak self] in self?.updateViews() }
+    }
 
     func showDashboardViewController() {
         let dashboardViewStoryboard = UIStoryboard(name: String(describing: DashboardViewController.self), bundle: nil)
@@ -49,7 +58,7 @@ extension AccountSetupViewController: AccountSetupViewModelDelegate {
         navigationController?.pushViewController(dashboardViewController, animated: true)
     }
 
-    func failedAccountCreation(error: NetworkError) {
+    func failedRequest(error: NetworkError) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: self.viewModel.alertTitleText, message: error.message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: self.viewModel.alertDismissButtonText, style: .default))

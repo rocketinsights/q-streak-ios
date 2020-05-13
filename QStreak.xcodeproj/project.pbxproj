@@ -56,10 +56,16 @@
 		D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E589F2448A1EB00A0C2FA /* DailyStat.swift */; };
 		D540181224646DFE00C3DCAF /* DashboardMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D540181124646DFE00C3DCAF /* DashboardMessage.swift */; };
 		D540181424646E6A00C3DCAF /* DashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D540181324646E6A00C3DCAF /* DashboardData.swift */; };
+		D5444B81246AF4E20076E29D /* ViewAccountController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5444B80246AF4E20076E29D /* ViewAccountController.storyboard */; };
+		D5444B83246AF4F60076E29D /* ViewAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5444B82246AF4F60076E29D /* ViewAccountController.swift */; };
+		D5444B85246AF51D0076E29D /* ViewAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5444B84246AF51D0076E29D /* ViewAccountModel.swift */; };
 		D557671824632A9800B4BEBB /* AboutScoreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D557671724632A9800B4BEBB /* AboutScoreViewController.storyboard */; };
 		D557671A24632AB100B4BEBB /* AboutScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557671924632AB100B4BEBB /* AboutScoreViewController.swift */; };
 		D5619FC92464955200325D28 /* FontAwesomeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5619FC82464955200325D28 /* FontAwesomeUtils.swift */; };
 		D578745424477DC800AFC30D /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D578745324477DC800AFC30D /* RecordTableViewCell.swift */; };
+		D58E29F3246B3CAB00628EC9 /* EditAccountFieldController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58E29F2246B3CAB00628EC9 /* EditAccountFieldController.storyboard */; };
+		D58E29F5246B3CEA00628EC9 /* EditAccountFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58E29F4246B3CEA00628EC9 /* EditAccountFieldController.swift */; };
+		D58E29F7246B441B00628EC9 /* EditAccountFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58E29F6246B441B00628EC9 /* EditAccountFieldModel.swift */; };
 		D5B1F860244F93860083DB6C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F85F244F93860083DB6C /* APIError.swift */; };
 		D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1F8662450BE410083DB6C /* String+Extensions.swift */; };
 		D5E2FE11246059E4006F63CA /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E2FE10246059E4006F63CA /* ActivityCell.swift */; };
@@ -140,10 +146,16 @@
 		D52E589F2448A1EB00A0C2FA /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
 		D540181124646DFE00C3DCAF /* DashboardMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMessage.swift; sourceTree = "<group>"; };
 		D540181324646E6A00C3DCAF /* DashboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardData.swift; sourceTree = "<group>"; };
+		D5444B80246AF4E20076E29D /* ViewAccountController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewAccountController.storyboard; sourceTree = "<group>"; };
+		D5444B82246AF4F60076E29D /* ViewAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAccountController.swift; sourceTree = "<group>"; };
+		D5444B84246AF51D0076E29D /* ViewAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAccountModel.swift; sourceTree = "<group>"; };
 		D557671724632A9800B4BEBB /* AboutScoreViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScoreViewController.storyboard; sourceTree = "<group>"; };
 		D557671924632AB100B4BEBB /* AboutScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScoreViewController.swift; sourceTree = "<group>"; };
 		D5619FC82464955200325D28 /* FontAwesomeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesomeUtils.swift; sourceTree = "<group>"; };
 		D578745324477DC800AFC30D /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		D58E29F2246B3CAB00628EC9 /* EditAccountFieldController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditAccountFieldController.storyboard; sourceTree = "<group>"; };
+		D58E29F4246B3CEA00628EC9 /* EditAccountFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountFieldController.swift; sourceTree = "<group>"; };
+		D58E29F6246B441B00628EC9 /* EditAccountFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountFieldModel.swift; sourceTree = "<group>"; };
 		D5B1F85F244F93860083DB6C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D5B1F8662450BE410083DB6C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D5E2FE10246059E4006F63CA /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
@@ -179,6 +191,7 @@
 		990B4553243E658A00177002 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5444B7F246AF4C60076E29D /* View Account */,
 				D557671624632A4800B4BEBB /* About Score */,
 				990B4554243E65A300177002 /* Account Setup */,
 				9955F943243F7D8100077C58 /* Add Record */,
@@ -361,6 +374,17 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		D5444B7F246AF4C60076E29D /* View Account */ = {
+			isa = PBXGroup;
+			children = (
+				D58E29EF246B3B3200628EC9 /* Edit Account Field */,
+				D5444B80246AF4E20076E29D /* ViewAccountController.storyboard */,
+				D5444B82246AF4F60076E29D /* ViewAccountController.swift */,
+				D5444B84246AF51D0076E29D /* ViewAccountModel.swift */,
+			);
+			path = "View Account";
+			sourceTree = "<group>";
+		};
 		D557671624632A4800B4BEBB /* About Score */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +396,16 @@
 				992A0D7624648BB6004EC46C /* CardTransitioningDelegate.swift */,
 			);
 			path = "About Score";
+			sourceTree = "<group>";
+		};
+		D58E29EF246B3B3200628EC9 /* Edit Account Field */ = {
+			isa = PBXGroup;
+			children = (
+				D58E29F2246B3CAB00628EC9 /* EditAccountFieldController.storyboard */,
+				D58E29F4246B3CEA00628EC9 /* EditAccountFieldController.swift */,
+				D58E29F6246B441B00628EC9 /* EditAccountFieldModel.swift */,
+			);
+			path = "Edit Account Field";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,8 +517,10 @@
 				9955F945243F7DA700077C58 /* AddRecordViewController.storyboard in Resources */,
 				D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */,
 				2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */,
+				D5444B81246AF4E20076E29D /* ViewAccountController.storyboard in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
+				D58E29F3246B3CAB00628EC9 /* EditAccountFieldController.storyboard in Resources */,
 				D5E2FE1A2460C31A006F63CA /* fa-solid-900.ttf in Resources */,
 				D557671824632A9800B4BEBB /* AboutScoreViewController.storyboard in Resources */,
 				99A908DE243E1EDF00628E3F /* LaunchScreen.storyboard in Resources */,
@@ -540,15 +576,19 @@
 				D52E58A02448A1EB00A0C2FA /* DailyStat.swift in Sources */,
 				992A0D6F24645F56004EC46C /* DatePickerLabel.swift in Sources */,
 				99746A0A2444E31100829473 /* Submission.swift in Sources */,
+				D58E29F7246B441B00628EC9 /* EditAccountFieldModel.swift in Sources */,
 				992A0D73246489E0004EC46C /* CardDismissionAnimator.swift in Sources */,
 				9955F96E243FE0D600077C58 /* ParameterEncoding.swift in Sources */,
 				9955F980243FF32900077C58 /* URLSession+Extentions.swift in Sources */,
+				D5444B83246AF4F60076E29D /* ViewAccountController.swift in Sources */,
+				D5444B85246AF51D0076E29D /* ViewAccountModel.swift in Sources */,
 				9938CCC02459D295002E2B49 /* DashboardViewModel.swift in Sources */,
 				992249BD2441010700A4790A /* User.swift in Sources */,
 				992249BB2440F92800A4790A /* QStreakService.swift in Sources */,
 				9955F968243FE00F00077C58 /* NetworkService.swift in Sources */,
 				D540181424646E6A00C3DCAF /* DashboardData.swift in Sources */,
 				D5048AFC243F90790029AE0C /* RecordDetailViewModel.swift in Sources */,
+				D58E29F5246B3CEA00628EC9 /* EditAccountFieldController.swift in Sources */,
 				D5B1F8672450BE410083DB6C /* String+Extensions.swift in Sources */,
 				D540181224646DFE00C3DCAF /* DashboardMessage.swift in Sources */,
 				990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */,

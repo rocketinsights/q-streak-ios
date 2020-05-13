@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Account Field Controller-->
+        <scene sceneID="kHT-rZ-Em7">
+            <objects>
+                <viewController storyboardIdentifier="EditAccountFieldController" id="wu4-1a-nTG" customClass="EditAccountFieldController" customModule="QStreak" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OGa-C8-3aY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qe-e3-OLb">
+                                <rect key="frame" x="30" y="74" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="PRT-ca-Xgo"/>
+                                    <constraint firstAttribute="height" constant="22" id="hiA-ez-vMq"/>
+                                </constraints>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="wu4-1a-nTG" eventType="touchUpInside" id="CaZ-33-svE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX9-JW-vpB">
+                                <rect key="frame" x="123" y="74" width="168" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="Hdl-Oh-1nY"/>
+                                    <constraint firstAttribute="height" constant="20" id="fzz-w9-l9o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nxg-pn-pUb">
+                                <rect key="frame" x="331" y="74" width="53" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="bgP-ai-g9E"/>
+                                    <constraint firstAttribute="height" constant="22" id="vTo-gJ-pI8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.54901960780000003" green="0.96078431369999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="wu4-1a-nTG" eventType="touchUpInside" id="24V-h2-D0O"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-70-kfV" customClass="QTextField" customModule="QStreak" customModuleProvider="target">
+                                <rect key="frame" x="30" y="119" width="354" height="48"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Lsz-fa-BKp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="noTextBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="hasTextBackgroundColor">
+                                        <color key="value" red="0.54901960780000003" green="0.96078431369999995" blue="0.81568627449999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingTrailingPadding">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Nxg-pn-pUb" firstAttribute="top" secondItem="lKF-GX-TmZ" secondAttribute="top" constant="30" id="64f-pQ-AEX"/>
+                            <constraint firstItem="7qe-e3-OLb" firstAttribute="leading" secondItem="lKF-GX-TmZ" secondAttribute="leading" constant="30" id="6vb-Bj-mcl"/>
+                            <constraint firstItem="lKF-GX-TmZ" firstAttribute="trailing" secondItem="Nxg-pn-pUb" secondAttribute="trailing" constant="30" id="Cbn-TY-18I"/>
+                            <constraint firstItem="lKF-GX-TmZ" firstAttribute="trailing" secondItem="H9M-70-kfV" secondAttribute="trailing" constant="30" id="IHi-He-z7F"/>
+                            <constraint firstItem="nX9-JW-vpB" firstAttribute="centerX" secondItem="OGa-C8-3aY" secondAttribute="centerX" id="Jxm-bW-8l1"/>
+                            <constraint firstItem="H9M-70-kfV" firstAttribute="leading" secondItem="lKF-GX-TmZ" secondAttribute="leading" constant="30" id="OxM-EO-dgg"/>
+                            <constraint firstItem="7qe-e3-OLb" firstAttribute="top" secondItem="lKF-GX-TmZ" secondAttribute="top" constant="30" id="cjG-Ll-ATy"/>
+                            <constraint firstItem="H9M-70-kfV" firstAttribute="top" secondItem="nX9-JW-vpB" secondAttribute="bottom" constant="25" id="gRz-tJ-Vyu"/>
+                            <constraint firstItem="nX9-JW-vpB" firstAttribute="top" secondItem="lKF-GX-TmZ" secondAttribute="top" constant="30" id="ij1-Ge-vdi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lKF-GX-TmZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="accountValueTextField" destination="H9M-70-kfV" id="H3R-NC-FAA"/>
+                        <outlet property="pageTitle" destination="nX9-JW-vpB" id="eps-Vp-aZd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X3g-WW-phR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-104" y="-25"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backButton" width="22.5" height="18"/>
+    </resources>
+</document>

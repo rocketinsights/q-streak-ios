@@ -18,6 +18,8 @@ enum QstreakService {
     case updateSubmission(contactCount: Int, date: String, destinations: [String])
     case getUser
     case getDashboardData
+    case getAccount
+    case updateAccount(zipCode: String, name: String?)
 
     var uuid: String { return UserDefaults.standard.string(forKey: "uuid") ?? "" }
 }
@@ -44,6 +46,10 @@ extension QstreakService: NetworkService {
             return "/me"
         case .getDashboardData:
             return "/dashboard"
+        case .updateAccount:
+            return "/account/update"
+        case .getAccount:
+            return "/me"
         }
     }
 
@@ -51,11 +57,11 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp, .createSubmission:
             return .post
-        case .getDestinations, .getSubmission, .getSubmissions, .getUser, .getDashboardData:
+        case .getDestinations, .getSubmission, .getSubmissions, .getUser, .getDashboardData, .getAccount:
             return .get
         case .deleteSubmission:
             return .delete
-        case .updateSubmission:
+        case .updateSubmission, .updateAccount:
             return .put
         }
     }
@@ -64,7 +70,9 @@ extension QstreakService: NetworkService {
         switch self {
         case .signUp:
             return ["Content-Type": "application/json"]
-        case .createSubmission, .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission, .updateSubmission, .getUser, .getDashboardData:
+        case .createSubmission,
+             .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission, .updateSubmission,
+             .getUser, .getDashboardData, .getAccount, .updateAccount:
             return ["Content-Type": "application/json",
                     "authorization": "bearer \(uuid)"]
         }
@@ -86,18 +94,20 @@ extension QstreakService: NetworkService {
             return ["page": page, "page_size": pageSize]
         case .getSubmission(let date), .deleteSubmission(let date):
             return ["": date]
-        case .getDestinations, .getUser, .getDashboardData:
+        case .updateAccount(let zipCode, let name):
+            return [ "account": [ "zip": zipCode, "name": name]]
+        case .getDestinations, .getUser, .getDashboardData, .getAccount:
           return nil
         }
     }
 
     var parameterEncoding: ParameterEncoding? {
         switch self {
-        case .signUp, .createSubmission, .updateSubmission:
+        case .signUp, .createSubmission, .updateSubmission, .updateAccount:
             return .json
         case .getDestinations, .getSubmission, .getSubmissions, .deleteSubmission:
             return .url
-        case .getUser, .getDashboardData:
+        case .getUser, .getDashboardData, .getAccount:
             return nil
         }
     }

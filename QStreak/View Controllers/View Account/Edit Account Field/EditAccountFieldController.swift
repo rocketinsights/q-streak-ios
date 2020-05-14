@@ -11,6 +11,8 @@ import UIKit
 class EditAccountFieldController: UIViewController {
 
     var viewModel: EditAccountFieldModel!
+    
+    var parentViewControllerDelegate: UIViewController?
 
     @IBOutlet weak var accountValueTextField: QTextField!
 
@@ -52,9 +54,12 @@ extension EditAccountFieldController: EditAccountFieldModelDelegate {
         DispatchQueue.main.async {
             let viewAccountModel = ViewAccountModel(account: self.viewModel.account)
 
-            if let viewAccountController = ViewAccountController.initialize(viewModel: viewAccountModel) {
-                self.navigationController?.pushViewController(viewAccountController, animated: true)
-            }
+            let parentViewController = self.parentViewControllerDelegate as? ViewAccountController
+
+            parentViewController?.viewModel = viewAccountModel
+            parentViewController?.accountUpdated()
+
+            self.navigationController?.popViewController(animated: true)
         }
     }
 

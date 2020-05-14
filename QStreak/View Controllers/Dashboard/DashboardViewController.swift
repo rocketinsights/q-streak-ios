@@ -73,6 +73,7 @@ class DashboardViewController: UIViewController {
         setupDashboardMessageViews()
         setUpRecordActivityView()
         setUpBlurView()
+        setupGreetingLabel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -107,13 +108,11 @@ class DashboardViewController: UIViewController {
     }
 
     @IBAction func userAccountButtonTapped(_ sender: Any) {
-        if let userAccount = viewModel.userAccount {
-            let viewAccountModel = ViewAccountModel(account: userAccount)
+        showUserAccountViewController()
+    }
 
-            if let viewAccountController = ViewAccountController.initialize(viewModel: viewAccountModel) {
-                navigationController?.pushViewController(viewAccountController, animated: true)
-            }
-        }
+    @objc func greetingLabelTapped(_ sender: UITapGestureRecognizer) {
+        showUserAccountViewController()
     }
 
     @objc func dashboardMessage1BodyTextTapped(_ sender: UITapGestureRecognizer) {
@@ -176,10 +175,26 @@ class DashboardViewController: UIViewController {
         ])
     }
 
+    private func setupGreetingLabel() {
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.greetingLabelTapped(_:)))
+        self.greetingLabel.isUserInteractionEnabled = true
+        self.greetingLabel.addGestureRecognizer(labelTap)
+    }
+
     private func showAddRecordViewController() {
         if let addRecordViewController = AddRecordViewController.initialize(viewModel: AddRecordViewModel()) {
             addRecordViewController.presentationController?.delegate = self
             present(addRecordViewController, animated: true, completion: nil)
+        }
+    }
+
+    private func showUserAccountViewController() {
+        if let userAccount = viewModel.userAccount {
+            let viewAccountModel = ViewAccountModel(account: userAccount)
+
+            if let viewAccountController = ViewAccountController.initialize(viewModel: viewAccountModel) {
+                navigationController?.pushViewController(viewAccountController, animated: true)
+            }
         }
     }
 

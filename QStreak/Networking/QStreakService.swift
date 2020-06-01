@@ -29,7 +29,9 @@ enum QstreakService {
 extension QstreakService: NetworkService {
 
     var baseURL: URL {
-        return URL(string: "http://127.0.0.1:4000")!
+        guard let infoPlist = Bundle.main.infoDictionary,
+            let baseURL = infoPlist["base_url"] as? String else { fatalError("No Info Plist") }
+        return URL(string: baseURL)!
     }
 
     var path: String {

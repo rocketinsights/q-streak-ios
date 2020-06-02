@@ -115,19 +115,29 @@ class DashboardViewController: UIViewController {
         showUserAccountViewController()
     }
 
-    @objc func dashboardMessage1BodyTextTapped(_ sender: UITapGestureRecognizer) {
+    @objc func dashboardMessage1ViewTapped(_ sender: UITapGestureRecognizer) {
         if let urlString = self.viewModel.dashboardData?.dashboardMessages[0].url {
-            if let url = URL(string: urlString) {
+            if let url = makeValidURL(from: urlString) {
                 UIApplication.shared.open(url)
             }
         }
     }
 
-    @objc func dashboardMessage2BodyTextTapped(_ sender: UITapGestureRecognizer) {
+    @objc func dashboardMessage2ViewTapped(_ sender: UITapGestureRecognizer) {
         if let urlString = self.viewModel.dashboardData?.dashboardMessages[1].url {
-            if let url = URL(string: urlString) {
-                UIApplication.shared.open(url)
+            if let url = makeValidURL(from: urlString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
+        }
+    }
+
+    private func makeValidURL(from potentialURL: String?) -> URL? {
+        guard let urlString = potentialURL else { return nil }
+        if urlString.hasPrefix("https://") || urlString.hasPrefix("http://") {
+            return URL(string: urlString)
+        } else {
+            let correctedURL = "http://\(urlString)"
+            return URL(string: correctedURL)
         }
     }
 
@@ -145,15 +155,17 @@ class DashboardViewController: UIViewController {
         dashboardMessage1View.layer.cornerRadius = 11
         dashboardMessage1View.layer.borderWidth = 1
         dashboardMessage1View.layer.borderColor = borderColor
+        dashboardMessage1View.isUserInteractionEnabled = true
 
-        dashboardMessage1Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
+        dashboardMessage1Icon.font = UIFont(name: "Font Awesome 5 Free", size: 24)
 
         dashboardMessage2View.clipsToBounds = true
         dashboardMessage2View.layer.cornerRadius = 11
         dashboardMessage2View.layer.borderWidth = 1
         dashboardMessage2View.layer.borderColor = borderColor
+        dashboardMessage2View.isUserInteractionEnabled = true
 
-        dashboardMessage2Icon.font = UIFont(name: "Font Awesome 5 Free", size: 16)
+        dashboardMessage2Icon.font = UIFont(name: "Font Awesome 5 Free", size: 24)
     }
 
     private func setUpRecordActivityView() {
@@ -202,13 +214,10 @@ class DashboardViewController: UIViewController {
         let message = dashboardMessage.body
         let attributedString = NSMutableAttributedString(string: message)
 
-        guard dashboardMessage.url != nil
-            else { return attributedString }
+        guard dashboardMessage.url != nil else { return attributedString }
 
         let linkRange =  NSRange(location: 0, length: message.count)
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: linkRange)
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: indigo, range: linkRange)
-
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: linkRange)
         return attributedString
     }
 }
@@ -263,30 +272,30 @@ extension DashboardViewController: DashboardViewModelDelegate {
 
     func dashboardDataUpdated(dashboardData: DashboardData) {
         DispatchQueue.main.async {
+            let countyName = dashboardData.dailyStats.location.county
+            self.hazardMessageLabel.text = "\(countyName) is at risk for continued outbreaks."
+
+            guard dashboardData.dashboardMessages.count > 0 else { return }
             let message1 = dashboardData.dashboardMessages[0]
             self.dashboardMessage1Header.text = message1.title
             self.dashboardMessage1Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message1)
             self.dashboardMessage1Icon.text =  FontAwesomeUtils().stringToUnicode(icon: message1.icon)
 
             if message1.url != nil {
-                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage1BodyTextTapped(_:)))
-                self.dashboardMessage1Body.isUserInteractionEnabled = true
-                self.dashboardMessage1Body.addGestureRecognizer(labelTap)
+                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage1ViewTapped(_:)))
+                self.dashboardMessage1View.addGestureRecognizer(labelTap)
             }
 
+            guard dashboardData.dashboardMessages.count > 1 else { return }
             let message2 = dashboardData.dashboardMessages[1]
             self.dashboardMessage2Header.text = message2.title
             self.dashboardMessage2Body.attributedText = self.constructDashboardMessageBodyText(dashboardMessage: message2)
             self.dashboardMessage2Icon.text = FontAwesomeUtils().stringToUnicode(icon: message2.icon)
 
             if message2.url != nil {
-                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage2BodyTextTapped(_:)))
-                self.dashboardMessage2Body.isUserInteractionEnabled = true
-                self.dashboardMessage2Body.addGestureRecognizer(labelTap)
+                let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.dashboardMessage2ViewTapped(_:)))
+                self.dashboardMessage2View.addGestureRecognizer(labelTap)
             }
-
-            let countyName = dashboardData.dailyStats.location.county
-            self.hazardMessageLabel.text = "\(countyName) is at risk for continued outbreaks."
         }
     }
 }

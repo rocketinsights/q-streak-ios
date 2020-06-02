@@ -1,0 +1,13 @@
+//
+//  Local.xcconfig
+//  QStreak
+//
+//  Created by Michael Neas on 6/1/20.
+//  Copyright © 2020 Rocket Insights. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_SCHEME = http
+API_HOST = 127.0.0.1:4000

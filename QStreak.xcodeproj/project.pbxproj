@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2C38EE57244A471A006CDF7D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38EE56244A471A006CDF7D /* WelcomeViewController.swift */; };
 		2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FF2982447884500D42000 /* q_streak_splash.png */; };
+		681647AF24859EAB00A30BC3 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 681647AE24859EAB00A30BC3 /* Production.xcconfig */; };
+		681647B124859EF300A30BC3 /* Local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 681647B024859EF300A30BC3 /* Local.xcconfig */; };
 		990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990B4542243E463D00177002 /* AccountSetupViewController.storyboard */; };
 		990B4545243E465900177002 /* AccountSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4544243E465900177002 /* AccountSetupViewController.swift */; };
 		990B4547243E467100177002 /* AccountSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990B4546243E467100177002 /* AccountSetupViewModel.swift */; };
@@ -95,6 +97,8 @@
 /* Begin PBXFileReference section */
 		2C38EE56244A471A006CDF7D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		2C7FF2982447884500D42000 /* q_streak_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q_streak_splash.png; sourceTree = "<group>"; };
+		681647AE24859EAB00A30BC3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		681647B024859EF300A30BC3 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		990B4542243E463D00177002 /* AccountSetupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountSetupViewController.storyboard; sourceTree = "<group>"; };
 		990B4544243E465900177002 /* AccountSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupViewController.swift; sourceTree = "<group>"; };
 		990B4546243E467100177002 /* AccountSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupViewModel.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 		990B4557243E65FF00177002 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				681647B024859EF300A30BC3 /* Local.xcconfig */,
+				681647AE24859EAB00A30BC3 /* Production.xcconfig */,
 				D5E2FE192460C302006F63CA /* fa-solid-900.ttf */,
 				2C7FF2982447884500D42000 /* q_streak_splash.png */,
 				99A908DA243E1EDF00628E3F /* Assets.xcassets */,
@@ -524,8 +530,10 @@
 				D5048AFE243F90950029AE0C /* RecordDetailViewController.storyboard in Resources */,
 				2C7FF2992447884500D42000 /* q_streak_splash.png in Resources */,
 				D5444B81246AF4E20076E29D /* ViewAccountController.storyboard in Resources */,
+				681647AF24859EAB00A30BC3 /* Production.xcconfig in Resources */,
 				990B4543243E463D00177002 /* AccountSetupViewController.storyboard in Resources */,
 				990B454A243E4E3400177002 /* RecordListViewController.storyboard in Resources */,
+				681647B124859EF300A30BC3 /* Local.xcconfig in Resources */,
 				D58E29F3246B3CAB00628EC9 /* EditAccountFieldController.storyboard in Resources */,
 				D5E2FE1A2460C31A006F63CA /* fa-solid-900.ttf in Resources */,
 				D557671824632A9800B4BEBB /* AboutScoreViewController.storyboard in Resources */,
@@ -676,6 +684,7 @@
 /* Begin XCBuildConfiguration section */
 		99A908F6243E1EDF00628E3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681647AE24859EAB00A30BC3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -736,6 +745,7 @@
 		};
 		99A908F7243E1EDF00628E3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681647AE24859EAB00A30BC3 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -793,6 +803,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QStreak/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -810,6 +822,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QStreak/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
